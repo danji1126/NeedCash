@@ -1,0 +1,52 @@
+{
+  "timestamp": "2026-02-02T04:45:39.778Z",
+  "reason": "compaction",
+  "status": {
+    "version": "2.0",
+    "lastUpdated": "2026-02-02T04:50:00.000Z",
+    "activeFeatures": [
+      "project-init"
+    ],
+    "primaryFeature": "project-init",
+    "features": {
+      "project-init": {
+        "phase": "do",
+        "matchRate": null,
+        "iterationCount": 0,
+        "startedAt": "2026-02-02T04:30:00.000Z",
+        "tasks": {
+          "plan": "completed",
+          "design": "completed",
+          "do": "completed"
+        }
+      }
+    },
+    "pipeline": {
+      "currentPhase": 3,
+      "level": "Starter",
+      "phaseHistory": [
+        {
+          "phase": "plan",
+          "feature": "project-init",
+          "completedAt": "2026-02-02T04:30:00.000Z"
+        },
+        {
+          "phase": "design",
+          "feature": "project-init",
+          "completedAt": "2026-02-02T04:40:00.000Z"
+        },
+        {
+          "phase": "do",
+          "feature": "project-init",
+          "completedAt": "2026-02-02T04:50:00.000Z"
+        }
+      ]
+    },
+    "session": {
+      "startedAt": "2026-02-02T04:21:43.612Z",
+      "onboardingCompleted": true,
+      "lastActivity": "2026-02-02T04:50:00.000Z"
+    },
+    "history": []
+  }
+}

@@ -1,0 +1,442 @@
+2007년 08월 20일 ~ 2008년 1월 31일 SGCNS(주) 개발팀근무 [HTML, JavaScript]
+-. 홈페이지 유지보수[http://sgcns.com]
+2008년 02월 01일 ~ 2008년 08월 17일 SGCNS(주) 개발팀근무 [Spring, iBatis, JSP, JSTL, HTML, javascript, prototype, Oracle]
+-. 생산관리(도장, 조달, 생산관리 부분) 컨버전
+2009년 01월 15일 ~ 2010년 04월 30일 SGCNS(주) 개발팀근무 [Spring, iBatis, JSP, JSTL, HTML, javascript, prototype, Oracle]
+-.생산관리, 조달, 인사, 협력사공사관리 부분 개발[http://sims.dsme.co.kr]
+-.신한기계통합관리시스템
+2010년 05월 01일 ~ 2010년 12월 31일 SGCNS(주) 개발팀근무 [Spring, iBatis, JSP, JSTL, HTML, javascript, prototype, Oracle]
+-. 블록공정, 가공, BOM, 수주, 공통,철의장 분야 개발 [Spring, iBatis, JSP, JSTL, HTML, javascript, prototype, Oracle]
+-. DSME상생 프로젝트[http://m-cims.com]
+2010년 12월 01일 ~ 2011년 01월 07일 SGCNS(주) 개발팀근무 [Spring, iBatis, JSP, JSTL, HTML, javascript, prototype, Oracle]
+-. 블록공정 개발 [http://swiis.swhi.co.kr]
+-. 삼우중공업 생산관리 시스템
+2011년 06월 01일 ~ 2011년 10월 01일 SGCNS(주) 개발팀 근무 [Spring, iBatis, JSP, JSTL, HTML, javascript, prototype, Oracle]
+-. 생산관리 시스템( 블록공정 개발)
+-. 대아기업 가공작업관리 개발
+2011년 01월 01일 ~ 2011년 07월
+-. DSME상생 시스템 운영[http://m-cism.com]
+2011년 06월 ~ 2011년 11월 [Spring, myBatis, JSP, JSTL, HTML, javascript, prototype, jquery, Oracle]
+-. 블록공정, 가공작업관리 개발
+-. 대아기업 생산관리 시스템[http://dae-adream.co.kr]
+2012년 8월 ~ 2012년 12월 SGCNS(주) 개발팀 근무 [Spring, iBatis, JSP, JSTL, HTML, javascript, prototype, Oracle]
+-. 작업일보 및 생산진행현황, 자재관리 시스템 개발
+-. 장한통합관리 시스템[http://chang-han.co.kr]
+2012년 06월 ~ 2012년 07월 SGCNS(주) 개발팀 근무 [HTML, JSP, Oracle]
+-. 삼성중공업 SHI 에너지관리시스템[내부]
+2013년 1월 ~ 2013년 3월
+-. 신한기계 MDB Interface 개발
+-. 삼우중공업 설비관리 시스템[http://swiis.swhi.co.kr]
+2013년 04월~ 2013년 08월
+-. 설비자산 및 수리 개발, 기존 시스템 연결부위 개발
+-. 삼우중공업 설비관리 시스템[http://swiis.swhi.co.kr]
+2013년 09월 ~ 2014년 03월
+-. 삼우중공업 강재관리 시스템[http://swiis.swhi.co.kr]
+-. 강재관리시스템 개발
+2014년 6월 ~ 2014년 9월 성동조선해양(주) 정보기술근무 [Nexacro, HTML, JSP, 전자정부프레임워크, Oracle]
+-. [성동조선해양(주)] 전자협업시스템[http://apros.isungdong.com]
+-. 표준, 사급, 공정, 선적, 관리 부분 개발
+2016년 3월 ~ 2016년 5월 성동조선해양(주) 정보기술근무 [Nexacro, 전자정부프레임워크, Oracle]
+-. [성동조선해양(주)] 선주선급지원시스템[http://ocens.isungdong.com]
+-. 표준, 공통 부분 개발
+2016년 5월 ~ 2016년 7월 성동조선해양(주) 정보기술근무 [Nexacro, 전자정부프레임워크, Oracle]
+-. [성동조선해양(주)] 통합HSE시스템[http://hse.isungdong.com]
+-. 물리치료, 안전교육 설계
+2016년 6월 ~ 2016년 8월 성동조선해양(주) 정보기술근무 [Android, nodeJS, Oracle]
+-. [성동조선해양(주)] 안전신고[ app ]
+-. 부적합 사항 및 안전 관련 신고 앱 개발
+2017년 1월 ~ 2017년 4월 성동조선해양(주) 정보기술근무 [Nexacro, 전자정부프레임워크, Oracle]
+-. [성동조선해양(주)] 통합HSE시스템[http://hse.isungdong.com]
+-. 화학물질 관리 시스템 설계/개발
+
+2014년 9월 ~
+-. 유지보수 [성동조선해양(주) 정보기술 근무]
+-. 인사시스템 유지보수[http://ehr.isungdong.com](JSP, IBSheet, jQuery, Oracle 10g) 
+-. 채용시스템 유지보수[http://recurit.isungdong.com](JSP, jQuery, Oracle 10g) 
+-. 홈페이지 유지보수[http://www.isungdong.com](JSP, jQuery, Oracle 10g) 
+-. 임원정보시스템 유지보수[http://eis.isungdong.com](전자정부프레임워크, MiPlatform, Oracle 11g)
+-. HSE 안전/보건 시스템 유지보수[http://hse.isungdong.com](PHP, JSP, Oracle 11g)
+-. 홈페이지/홈페이지 관리 유지보수[http://www.isungdong.com / 내부](JSP,JAVA, Oracle 11g)
+-. 전사일정관리 유지보수[내부](JAVA, javaplanner, DHTML, Oracle 11g)
+-. 그룹웨어 유지보수[http://ep.isungdong.com]](SharePoint2010 ASP.NET(C#), SQL-SERVER 2008 R2)
+-. 조선종합시스템 유지보수[내부] (powerbuilder, Pro*c, Entera, Oralce 11g)
+
+2018 7월 ~  2019년 6월 대우정보시스템(주) 근무 [Oralce, Xplatform/Nexacro17, Java, Spring, 전자정부프레임워크]
+ -. DSME ERP수준 조기복원프로젝트 
+ -. 선박후행 공정표 분석/설계/개발(2018/06~2018/09)
+ -. MTR(Master Tag Register)시스템 개발(2018/10~2019/02) [https://livedata.dsme.co.kr]
+ -. 창정비 시스템 개발(2019/03~2019/06)
+ -. DSME 표준계산 플랫폼 개발(2019/03~2019/06)
+ -. ILS 문서관리시스템 개발(2019/03~2019/06)
+
+2019년 8월 ~ 2022년 04월 대우정보시스템(주) 근무
+ DSME 통합자재 품질 프로젝트 [Oralce, Xplatform, Nexacro 17, 전자정부프레임워크]
+2019년 11월 ~ 2019년 12월 대우정보시스템(주) 근무
+ DSME 스마트폼 고도화 [Oralce, Xplatform, Nexacro 17, 전자정부프레임워크]
+2019년 12월 ~ 2020년 03월 대우정보시스템(주) 근무
+ DSME Sparepart/IO LIst [Oralce, Xplatform, Nexacro 17, 전자정부프레임워크]
+2020년 06월 ~ 2020년 08월 대우정보시스템(주) 근무
+ DSME 배관제작검사 관리시스템 재구축 [Oralce, Xplatform, Nexacro 17, 전자정부프레임워크]
+2020년 09월 ~ 2020년 12월 대우정보시스템(주) 근무
+ DSME 특수선 스마트폼 구축 [Oralce, Xplatform, Nexacro 17, 전자정부프레임워크]
+ DSME 스마트폼 활용 자재품질시스템 고도화 [Oralce, Xplatform, Nexacro 17, 전자정부프레임워크]
+2021년 08월 ~ 2021년 12월 대우정보시스템(주) 근무
+ 현대일렉트릭 웹기반 외주협엽시스템 구축 및 프레임워크 개발[Oralce, Nexacro 17, 전자정부프레임워크]
+2022년 01월 ~ 2020년 03월
+ DSME 카메라 앱 개발 [Oralce, Nexacro 17, 전자정부프레임워크]
+
+2022년 05월 ~ 2022년 11월
+동국시스템즈 F-Project [Tibero, Nexacro 17, Spring boot]
+
+2023년 04월 ~ 2024년 02월
+ -. Oasis Flow 개발 [ReactJS, nestJS, tailwindCSS, MongoDB]
+2024년 03월 ~ 
+ -. Oasis Flow 운영 [ReactJS, nestJS, tailwindCSS, MongoDB]
+
+2024년 05월 ~ 2024년 10월
+동국시스템즈 F-Project 2차 [Tibero, Nexacro 17, Spring boot]
+
+--------------------------------상세-----------------------------------------
+기간 : 2007-08 ~ 2008-01
+프로젝트명 : 홈페이지 유지보수
+프로젝트 내용
+- http://sgcns.com 홈페이지 개편 및 유지보수
+소속회사 : SGCNS(주)
+의뢰회사 : SGCNS(주)
+담당업무 : 유지보수 및 개편
+개발인원 : 1명
+개발환경
+- H/W : HP
+- 언어 : HTML, PHP
+- O/S : Windows2008
+- D/B : Oracle
+
+기간 : 2008-02 ~ 2010-04
+프로젝트명 : (주)신한기계 신한기계통합관리시스템[http://sims.dsme.co.kr]
+프로젝트 내용
+- 생산관리(도장, 조달, 생산관리), 조달, 인사, 협력사공사관리, 시스템관리 개발/유지보수
+소속회사 : SGCNS(주)
+의뢰회사 : (주)신한기계
+담당업무 : 개발
+개발인원 : 5명
+개발환경
+- H/W : HP
+- 언어 : JAVA(Spring 2.5, iBatis, Abator) JSP(JSTL), HTML, JAVA SCRIPT(prototype)
+- O/S : UNIX
+- D/B : ORACLE
+
+기간 : 2010-05 ~ 2011-07
+프로젝트명 : (주)대우조선해양 협력사 생산관리시스템[http://www.m-cims.com]
+프로젝트 내용
+- 블록공정, 가공, BOM, 수주, 시스템관리, 철의장 개발/유지보수
+소속회사 : SGCNS(주)
+의뢰회사 : (주)대우조선해양
+담당업무 : 개발
+개발인원 : 5명
+개발환경
+- H/W : HP
+- 언어 : JAVA(Spring 2.5, iBatis, Abator) JSP(JSTL), HTML, JAVA SCRIPT(prototype)
+- O/S : Windows 2008 Server
+- D/B : ORACLE
+
+기간 : 2010-12 ~ 2011-03
+프로젝트명 : 삼우중공업 생산관리 시스템[http://swiis.swhi.co.kr]
+프로젝트 내용
+- 블록, 도장, 자재, 시스템관리, 수주, BOM
+소속회사 : SGCNS(주)
+의뢰회사 : 삼우중공업(주)
+담당업무 : 개발
+개발인원 : 5명
+개발환경
+- 언어 : JAVA(Spring 2.5, iBatis, Abator) JSP(JSTL), HTML, JAVA SCRIPT(prototype)
+- O/S : Windows 2008 Server
+- D/B : ORACLE
+
+기간 : 2011-06 ~ 2011-11
+프로젝트명 : 대아기업 생산관리 시스템[http://dae-adream.co.kr]
+프로젝트 내용
+- 블록공정, 가공작업관리 개발
+소속회사 : SGCNS(주)
+의뢰회사 : 대아기업
+담당업무 : 개발
+개발인원 : 3명
+개발환경
+- H/W : HP
+- 언어 : JAVA(Spring 2.5, iBatis, Abator) JSP(JSTL), HTML, JAVA SCRIPT(prototype)
+- O/S : Windows 2008 Server
+- D/B : ORACLE
+
+기간 : 2011-12 ~ 2012-06
+프로젝트명 : 삼우중공업 품질관리 시스템[http://swiis.swhi.co.kr]
+프로젝트 내용
+- 품질, 품질문제 개발
+소속회사 : SGCNS(주)
+의뢰회사 : 삼우중공업(주)
+담당업무 : 개발
+개발인원 : 4명
+개발환경
+- 언어 : JAVA(Spring 2.5, iBatis, Abator) JSP(JSTL), HTML, JAVA SCRIPT(prototype)
+- O/S : Windows 2008 Server
+- D/B : ORACLE
+
+기간 : 2012-06 ~ 2012-07
+프로젝트명 : SHI 에너지관리시스템[내부]
+프로젝트 내용
+- 가스 설비 모니터링 시스템 DB변경 및 Report 추가
+소속회사 : SGCNS(주)
+의뢰회사 : 삼성중공업
+담당업무 : 개발
+개발인원 : 5명
+개발환경
+
+기간 : 2012-08 ~ 2012-12
+프로젝트명 : 장한통합관리 시스템[http://chang-han.co.kr]
+프로젝트 내용
+- 작업일보 및 생산진행현황, 자재관리 시스템 개발
+소속회사 : SGCNS(주)
+의뢰회사 : (주)장한
+담당업무 : 개발
+개발인원 : 3명
+개발환경
+- 언어 : JAVA(Spring 2.5, iBatis, Abator) JSP(JSTL), HTML, JAVA SCRIPT(prototype)
+- O/S : Windows 2008 Server
+- D/B : ORACLE
+
+기간 : 2013-01 ~ 2013-03
+프로젝트명 : 삼우중공업 생산관리 시스템[http://swiis.swhi.co.kr]
+프로젝트 내용
+- MDB Interface 개발
+소속회사 : SGCNS(주)
+의뢰회사 : 삼우중공업(주)
+담당업무 : 개발
+개발인원 : 3명
+개발환경
+- 언어 : JAVA(Spring 2.5, iBatis, Abator) JSP(JSTL), HTML, JAVA SCRIPT(prototype)
+- O/S : Windows 2008 Server
+- D/B : ORACLE
+
+기간 : 2013-04 ~ 2013-08
+프로젝트명 : 삼우중공업 설비관리 시스템[http://swiis.swhi.co.kr]
+프로젝트 내용
+- 설비자산 및 수리 개발, 기존 시스템 연결부위 개발
+소속회사 : SGCNS(주)
+의뢰회사 : 삼우중공업(주)
+담당업무 : 개발
+개발인원 : 4명
+개발환경
+
+기간 : 2013-09 ~ 2014-03
+프로젝트명 : 삼우중공업 강재관리 시스템[http://swiis.swhi.co.kr]
+프로젝트 내용
+- 강재관리시스템 개발
+소속회사 : SGCNS(주)
+의뢰회사 : 삼우중공업(주)
+담당업무 : 개발
+개발인원 : 3명
+개발환경
+- 언어 : JAVA(Spring 2.5, iBatis, Abator) JSP(JSTL), HTML, JAVA SCRIPT(prototype)
+- O/S : Windows 2008 Server
+- D/B : ORACLE
+
+기간 : 2014-06 ~ 2014-09
+프로젝트명 : APROS 전자협업시스템
+프로젝트 내용
+- 구매협력 회사들의 계약 / 견적 / 납품 관리 개발
+PKI Tool(공인인증 툴 사용), Report designer, DaView사용
+소속회사 : 성동조선해양(주)
+의뢰회사 : 성동조선해양(주)
+담당업무 : 개발
+개발인원 : 5명
+개발환경
+- H/W : HP
+- 언어 : JAVA(전자정부 프레임워크), Nexacro 14, HTML, JSP
+- O/S : HP UNIX
+- D/B : Oracle
+
+기간 : 2016-03 ~ 2016-05
+프로젝트명 : 선주/선급 시스템
+프로젝트 내용
+- 선주/선급들의 호선정보 및 품질 검사 관련 담당자들의 정보를 볼 수 있는 시스템
+소속회사 : 성동조선해양(주)
+의뢰회사 : 성동조선해양(주)
+담당업무 : 개발표준정의,공통모듈,표준개발
+개발인원 : 3명
+개발환경
+- H/W : HP
+- 언어 : JAVA(전자정부 프레임워크), Nexacro 14, HTML, JSP
+- O/S : HP UNIX
+- D/B : Oracle
+
+기간 : 2016-05 ~ 2016-07
+프로젝트명 : 통합HSE지원시스템
+프로젝트 내용
+- 통합HSE지원시스템
+안전작업신고, 물리치료신청, 안전교육관리, 보건관리시스템
+소속회사 : 성동조선해양(주)
+의뢰회사 : 성동조선해양(주)
+담당업무 : 시스템 설계 및 개발
+개발인원 : 4명
+개발환경
+- H/W : HP
+- 언어 : JAVA(전자정부 프레임워크), Nexacro 14, HTML, JSP
+- O/S : HP UNIX
+- D/B : Oracle
+
+기간 : 2016-06 ~ 2016-12
+프로젝트명 : 안전신고 APP
+프로젝트 내용
+- 현장에서 시정조치 및 안전관련 신고를 할 수있는 App
+소속회사 : 성동조선해양(주)
+의뢰회사 : 성동조선해양(주)
+담당업무 : 시스템 설계 및 개발
+개발인원 : 1명
+개발환경
+- H/W : HP
+- 언어 : Android, nodeJS
+- O/S : Ubuntu
+- D/B : Oracle
+
+기간 : 2017-01 ~ 2017-04
+프로젝트명 : 화학물질관리
+프로젝트 내용
+- 화학물질을 관리하고 자재 납품시 제약을 줄수 있도록 관리 하는 시스템
+소속회사 : 성동조선해양(주)
+의뢰회사 : 성동조선해양(주)
+담당업무 : 시스템 설계 및 개발
+개발인원 : 2명
+개발환경
+- H/W : HP
+- 언어 : JAVA(전자정부 프레임워크), Nexacro 14, HTML, JSP
+- O/S : HP UNIX
+- D/B : Oracle
+
+기간 : 2017-07 ~ 2017-10
+프로젝트명 : 안전신고 APP 추가기능개발
+프로젝트 내용
+- 현장에서 시정초지 및 자체안전활동 보고 기능 추가
+소속회사 : 성동조선해양(주)
+의뢰회사 : 성동조선해양(주)
+담당업무 : 시스템 설계 및 개발
+개발인원 : 1명
+개발환경
+- H/W : HP
+- 언어 : Android, nodeJS 
+- O/S : Ubuntu
+- D/B : Oracle
+
+기간 : 2018-06 ~ 2019-06
+프로젝트명 : FR 프로젝트
+소속회사 : 대우정보시스템(주)
+의뢰회사 : DSME/DINC
+담당업무 : 시스템 설계 및 개발
+개발 환경
+- 언어 : Java, Nexacro 17, Xplatform
+- D/B : Oracle
+
+기간 : 2019-08 ~ 2019-10
+프로젝트명 : DSME 통합자재 품질 프로젝트
+소속회사 : 대우정보시스템(주)
+의뢰회사 : DSME/DINC
+담당업무 : 시스템 개발
+개발 환경
+- 언어 : Java, Nexacro 17, Xplatform, 전자정부 프레임워크
+- D/B : Oracle
+
+기간 : 2019-11 ~ 2019-12
+프로젝트명 : DSME 스마트폼 고도화
+소속회사 : 대우정보시스템(주)
+의뢰회사 : DSME/DINC
+담당업무 : 시스템 개발
+개발 환경
+- 언어 : Java, Nexacro 17, Xplatform, 전자정부 프레임워크
+- D/B : Oracle
+
+기간 : 2019-12 ~ 2020-3
+프로젝트명 : DSME Sparepart/IO LIst
+소속회사 : 대우정보시스템(주)
+의뢰회사 : DSME/DINC
+담당업무 : 시스템 개발
+개발 환경
+- 언어 : Java, Nexacro 17, Xplatform, 전자정부 프레임워크
+- D/B : Oracle
+
+기간 : 2020-06 ~ 2020-08
+프로젝트명 : DSME 배관제작검사 관리시스템 재구축
+소속회사 : 대우정보시스템(주)
+의뢰회사 : DSME/DINC
+담당업무 : 시스템 개발
+개발 환경
+- 언어 : Java, Nexacro 17, Xplatform, 전자정부 프레임워크
+- D/B : Oracle
+
+기간 : 2020-09 ~ 2020-12
+프로젝트명 : DSME 특수선 스마트폼 구축
+소속회사 : 대우정보시스템(주)
+의뢰회사 : DSME/DINC
+담당업무 : 시스템 개발
+개발 환경
+- 언어 : Java, Nexacro 17, Xplatform, 전자정부 프레임워크
+- D/B : Oracle
+
+기간 : 2020-09 ~ 2020-12
+프로젝트명 : DSME 스마트폼 활용 자재품질시스템 고도화
+소속회사 : 대우정보시스템(주)
+의뢰회사 : DSME/DINC
+담당업무 : 시스템 개발
+개발 환경
+- 언어 : Java, Nexacro 17, Xplatform, 전자정부 프레임워크
+- D/B : Oracle
+
+기간 : 2021-01 ~ 2020-03
+프로젝트명 : 한국아이티더블류 인사시스템 재구축
+소속회사 : 
+의뢰회사 : 이수시스템
+담당업무 : 시스템 개발
+개발 환경
+- 언어 : Java, Jquery, HTML, AnyFrame
+- D/B : Oracle
+
+기간 : 2021-08 ~ 2021-12
+프로젝트명 : 웹기반 외주협엽시스템 구축 및 프레임워크 개발
+소속회사 : 대우정보시스템(주)
+의뢰회사 : 현대일렉트릭 
+담당업무 : 시스템 개발
+개발 환경
+- 언어 : Java, Nexacro 17, 전자정부 프레임워크
+- D/B : Oracle
+
+기간 : 2022-01 ~ 2022-03
+프로젝트명 : DSME 카메라 앱 개발
+소속회사 : 대우정보시스템(주)
+의뢰회사 : DSME/DINC
+담당업무 : 시스템 개발
+개발 환경
+- 언어 : Java, Nexacro 17, 전자정부 프레임워크
+- D/B : Oracle
+
+기간 : 2022-05 ~ 2022-11
+프로젝트명 : F-Project
+소속회사 : 
+의뢰회사 : 동국제강/동국시스템즈
+담당업무 : 시스템 개발
+개발 환경
+- 언어 : Java, Nexacro 17, Spring boot
+- D/B : Tibero
+
+기간 : 2023-04 ~ 2024-02
+프로젝트명 : BPGOAT개발
+소속회사 :  동국시스템즈
+의뢰회사 : 동국시스템즈
+담당업무 : 시스템 분석, 설계, 개발
+개발 환경
+- 언어 : React, nestJS, tailwind
+- D/B : MongoDB
+
+기간 : 2024-05 ~ 2024-10
+프로젝트명 : F-Project 2차
+소속회사 : 동국시스템즈
+의뢰회사 : 동국제강/동국시스템즈
+담당업무 : 시스템 분석&설계&개발
+개발 환경
+- 언어 : Java, Nexacro 17, Spring boot
+- D/B : Tibero

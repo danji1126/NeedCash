@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-02-02T05:07:23.596Z",
+  "reason": "compaction",
+  "status": {
+    "version": "2.0",
+    "lastUpdated": "2026-02-02T05:30:00.000Z",
+    "activeFeatures": [
+      "project-init"
+    ],
+    "primaryFeature": "project-init",
+    "features": {
+      "project-init": {
+        "phase": "completed",
+        "matchRate": 93,
+        "iterationCount": 1,
+        "startedAt": "2026-02-02T04:30:00.000Z",
+        "tasks": {
+          "plan": "completed",
+          "design": "completed",
+          "do": "completed",
+          "check": "completed",
+          "act": "completed",
+          "report": "completed"
+        }
+      }
+    },
+    "pipeline": {
+      "currentPhase": 6,
+      "level": "Starter",
+      "phaseHistory": [
+        {
+          "phase": "plan",
+          "feature": "project-init",
+          "completedAt": "2026-02-02T04:30:00.000Z"
+        },
+        {
+          "phase": "design",
+          "feature": "project-init",
+          "completedAt": "2026-02-02T04:40:00.000Z"
+        },
+        {
+          "phase": "do",
+          "feature": "project-init",
+          "completedAt": "2026-02-02T04:50:00.000Z"
+        },
+        {
+          "phase": "check",
+          "feature": "project-init",
+          "completedAt": "2026-02-02T05:10:00.000Z"
+        },
+        {
+          "phase": "act",
+          "feature": "project-init",
+          "completedAt": "2026-02-02T05:20:00.000Z"
+        },
+        {
+          "phase": "report",
+          "feature": "project-init",
+          "completedAt": "2026-02-02T05:30:00.000Z"
+        }
+      ]
+    },
+    "session": {
+      "startedAt": "2026-02-02T04:21:43.612Z",
+      "onboardingCompleted": true,
+      "lastActivity": "2026-02-02T05:30:00.000Z"
+    },
+    "history": []
+  }
+}

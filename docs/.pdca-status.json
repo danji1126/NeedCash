@@ -1,0 +1,243 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2026-02-02T06:05:47.526Z",
+  "activeFeatures": [
+    "project-init",
+    "web"
+  ],
+  "primaryFeature": "project-init",
+  "features": {
+    "project-init": {
+      "phase": "completed",
+      "matchRate": 93,
+      "iterationCount": 1,
+      "startedAt": "2026-02-02T04:30:00.000Z",
+      "tasks": {
+        "plan": "completed",
+        "design": "completed",
+        "do": "completed",
+        "check": "completed",
+        "act": "completed",
+        "report": "completed"
+      }
+    },
+    "web": {
+      "phase": "do",
+      "phaseNumber": 3,
+      "matchRate": null,
+      "iterationCount": 0,
+      "requirements": [],
+      "documents": {},
+      "timestamps": {
+        "started": "2026-02-02T05:09:06.184Z",
+        "lastUpdated": "2026-02-02T06:05:47.526Z"
+      },
+      "lastFile": "/Users/jiinbae/dev/eduProjects/NeedCash/apps/web/next.config.ts"
+    }
+  },
+  "pipeline": {
+    "currentPhase": 6,
+    "level": "Starter",
+    "phaseHistory": [
+      {
+        "phase": "plan",
+        "feature": "project-init",
+        "completedAt": "2026-02-02T04:30:00.000Z"
+      },
+      {
+        "phase": "design",
+        "feature": "project-init",
+        "completedAt": "2026-02-02T04:40:00.000Z"
+      },
+      {
+        "phase": "do",
+        "feature": "project-init",
+        "completedAt": "2026-02-02T04:50:00.000Z"
+      },
+      {
+        "phase": "check",
+        "feature": "project-init",
+        "completedAt": "2026-02-02T05:10:00.000Z"
+      },
+      {
+        "phase": "act",
+        "feature": "project-init",
+        "completedAt": "2026-02-02T05:20:00.000Z"
+      },
+      {
+        "phase": "report",
+        "feature": "project-init",
+        "completedAt": "2026-02-02T05:30:00.000Z"
+      }
+    ]
+  },
+  "session": {
+    "startedAt": "2026-02-02T04:21:43.612Z",
+    "onboardingCompleted": true,
+    "lastActivity": "2026-02-02T06:05:47.526Z"
+  },
+  "history": [
+    {
+      "timestamp": "2026-02-02T05:09:06.184Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:12:07.113Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:12:23.565Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:12:28.747Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:12:39.169Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:12:42.523Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:13:03.120Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:13:13.262Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:13:18.506Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:13:28.351Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:13:41.905Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:13:50.441Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:13:57.003Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:14:00.137Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:14:06.343Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:14:20.434Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:14:37.386Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:14:41.390Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:15:03.296Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:15:18.672Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:15:32.295Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:15:44.170Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:15:59.165Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:28:45.808Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:29:07.893Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T05:29:22.179Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-02T06:05:47.526Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    }
+  ]
+}
