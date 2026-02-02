@@ -1,4 +1,4 @@
-name = "needcash"
+name = "needcash-hub"
 compatibility_date = "2025-01-01"
 pages_build_output_dir = "./apps/web/out"
 
