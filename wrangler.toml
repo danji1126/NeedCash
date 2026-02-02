@@ -1,4 +1,6 @@
 name = "needcash"
 compatibility_date = "2025-01-01"
-
 pages_build_output_dir = "./apps/web/out"
+
+[build]
+command = "cd apps/web && npm install && npm run build"
