@@ -1,4 +1,11 @@
+import Link from "next/link";
 import { SITE } from "@/lib/constants";
+
+const FOOTER_LINKS = [
+  { href: "/about", label: "About" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+] as const;
 
 export function Footer() {
   return (
@@ -9,9 +16,17 @@ export function Footer() {
           <p className="text-[13px] tracking-wide text-text-muted">
             &copy; {new Date().getFullYear()} {SITE.name}
           </p>
-          <p className="text-[13px] tracking-wide text-text-muted">
-            Built with Next.js
-          </p>
+          <nav className="flex gap-4">
+            {FOOTER_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-[13px] tracking-wide text-text-muted transition-opacity hover:opacity-60"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </div>
     </footer>

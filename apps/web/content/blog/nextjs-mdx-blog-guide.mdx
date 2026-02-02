@@ -1,0 +1,129 @@
+---
+title: "Next.js 15와 MDX로 정적 블로그 만들기"
+description: "Next.js 15 App Router와 MDX를 활용해 마크다운 기반 정적 블로그를 구축하는 과정을 단계별로 소개합니다."
+date: "2026-02-02"
+category: "dev"
+tags: ["nextjs", "mdx", "blog", "react", "tutorial"]
+published: true
+---
+
+## 왜 Next.js + MDX인가
+
+개발 블로그를 만들 때 선택지는 많습니다. WordPress, Ghost, Notion 기반 블로그 등 다양한 옵션이 있지만, 개발자라면 직접 만들어보는 것도 좋은 경험입니다.
+
+Next.js와 MDX 조합을 선택한 이유는 다음과 같습니다.
+
+- **마크다운의 편리함**: 글 작성에 집중할 수 있는 포맷
+- **React 컴포넌트 삽입**: 마크다운 안에서 인터랙티브 요소 추가 가능
+- **정적 생성**: 빌드 타임에 HTML로 변환되어 빠른 로딩 속도
+- **완전한 커스터마이징**: 디자인과 기능을 자유롭게 수정 가능
+
+## 프로젝트 구조
+
+MDX 블로그의 핵심 구조는 간단합니다.
+
+```
+app/
+  blog/
+    page.tsx          # 블로그 목록 페이지
+    [slug]/
+      page.tsx        # 개별 포스트 페이지
+content/
+  blog/
+    my-first-post.mdx # MDX 파일들
+    another-post.mdx
+lib/
+  mdx.ts              # MDX 파싱 유틸리티
+```
+
+`content/blog/` 디렉토리에 MDX 파일을 작성하면, Next.js가 빌드 시 각 파일을 읽어 정적 페이지로 생성합니다.
+
+## MDX 파일 구조
+
+각 MDX 파일은 frontmatter(메타데이터)와 본문으로 구성됩니다.
+
+```mdx
+---
+title: "포스트 제목"
+description: "포스트 설명"
+date: "2026-01-15"
+category: "dev"
+tags: ["nextjs", "react"]
+published: true
+---
+
+## 본문 시작
+
+여기서부터 마크다운으로 글을 작성합니다.
+```
+
+frontmatter는 `gray-matter` 라이브러리로 파싱하고, 본문은 `next-mdx-remote`로 렌더링합니다.
+
+## MDX 파싱 유틸리티
+
+블로그 글 목록을 가져오고, 개별 글을 읽는 유틸리티 함수가 필요합니다. 핵심 함수 두 가지입니다.
+
+### 전체 글 목록 가져오기
+
+`content/blog/` 디렉토리의 모든 `.mdx` 파일을 읽어 frontmatter를 추출합니다. 날짜순으로 정렬하고 `published: true`인 글만 필터링합니다.
+
+### 개별 글 읽기
+
+slug를 받아 해당 MDX 파일을 읽고, frontmatter와 컴파일된 MDX 콘텐츠를 반환합니다.
+
+## 코드 하이라이팅
+
+개발 블로그에서 코드 하이라이팅은 필수입니다. `shiki`를 사용하면 VS Code와 동일한 수준의 문법 강조를 적용할 수 있습니다.
+
+```typescript
+// rehype-pretty-code 플러그인 설정 예시
+const options = {
+  theme: "github-dark",
+  keepBackground: true,
+};
+```
+
+`rehype-pretty-code` 플러그인을 MDX 컴파일러에 연결하면, 코드 블록이 자동으로 하이라이팅됩니다.
+
+## 정적 생성(Static Export)
+
+Next.js의 `output: 'export'` 설정을 사용하면 전체 사이트를 정적 HTML로 빌드할 수 있습니다.
+
+```typescript
+// next.config.ts
+const nextConfig: NextConfig = {
+  output: 'export',
+};
+```
+
+이렇게 하면 서버 없이 정적 파일만으로 블로그를 운영할 수 있어, Cloudflare Pages, Vercel, Netlify 등에 무료로 배포할 수 있습니다.
+
+정적 생성 시 주의할 점은 `generateStaticParams`를 사용해 모든 동적 경로를 미리 정의해야 한다는 것입니다.
+
+## 스타일링
+
+Tailwind CSS를 사용하면 MDX 콘텐츠의 타이포그래피를 깔끔하게 처리할 수 있습니다. `@tailwindcss/typography` 플러그인의 `prose` 클래스를 활용하거나, 직접 MDX 컴포넌트 스타일을 정의할 수 있습니다.
+
+블로그 본문의 가독성을 위해 고려할 점들입니다.
+
+- **줄 높이**: `leading-relaxed` 이상으로 여유롭게
+- **단락 간격**: 충분한 `space-y` 값 적용
+- **코드 블록**: 배경색과 패딩으로 구분
+- **최대 너비**: `max-w-3xl` 정도로 한 줄이 너무 길지 않게
+
+## 배포
+
+정적 빌드된 파일은 어떤 정적 호스팅 서비스에서든 배포할 수 있습니다.
+
+Cloudflare Pages를 기준으로 하면, `wrangler.toml` 설정 파일을 추가하고 GitHub 리포지토리를 연결하면 push 시 자동으로 빌드 및 배포됩니다.
+
+```toml
+name = "my-blog"
+pages_build_output_dir = "./out"
+```
+
+## 정리
+
+Next.js + MDX 조합은 개발자가 직접 블로그를 만들고 운영하기에 적합한 스택입니다. 마크다운으로 편하게 글을 쓰면서도, 필요할 때 React 컴포넌트를 활용한 인터랙티브 콘텐츠를 만들 수 있습니다.
+
+초기 설정에 시간이 들지만, 한번 구축해두면 글 작성과 배포가 매우 간편합니다. MDX 파일 하나 추가하고 git push하면 자동으로 배포되는 워크플로우가 만들어집니다.
