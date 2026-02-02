@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
+  other: {
+    "google-adsense-account": "ca-pub-7452986546914975",
+  },
 };
 
 export default function RootLayout({
