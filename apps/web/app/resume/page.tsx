@@ -54,27 +54,6 @@ export default function ResumePage() {
         </section>
       </ScrollReveal>
 
-      {/* Education */}
-      <ScrollReveal delay={0.3}>
-        <section className="mt-16">
-          <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
-            Education
-          </p>
-          <div className="mt-4 space-y-0">
-            {RESUME.education.map((edu) => (
-              <div
-                key={edu.school}
-                className="border-b border-border/60 py-5"
-              >
-                <p className="font-medium tracking-[-0.01em]">{edu.school}</p>
-                <p className="mt-1 text-sm text-text-secondary">{edu.degree}</p>
-                <p className="mt-1 text-[13px] text-text-muted">{edu.period}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </ScrollReveal>
-
       {/* Contact */}
       <ScrollReveal delay={0.4}>
         <section className="mt-16">

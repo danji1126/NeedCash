@@ -75,7 +75,7 @@ export interface ResumeData {
   bio: string;
   experience: Experience[];
   skills: Skill[];
-  education: Education[];
+  education?: Education[];
   contact: {
     email?: string;
     github?: string;

@@ -1,5 +1,5 @@
 {
-  "name": "지인배",
+  "name": "IB",
   "title": "풀스택 개발자",
   "bio": "17년차 IT 개발자. 조선/중공업 도메인 ERP, 생산관리, 품질관리 시스템 개발 경험을 바탕으로 React, Next.js, NestJS 등 모던 웹 기술로 전환하며 폭넓은 풀스택 역량을 갖추고 있습니다.",
   "experience": [
@@ -343,15 +343,9 @@
     { "name": "Git", "level": 4, "category": "Tool" },
     { "name": "전자정부프레임워크", "level": 5, "category": "Backend" }
   ],
-  "education": [
-    {
-      "school": "OO대학교",
-      "degree": "컴퓨터공학",
-      "period": "2003 - 2007"
-    }
-  ],
   "contact": {
-    "email": "hello@needcash.dev",
+    "email": "danji1126@naver.com",
+    "blog": "https://danji1126.tistory.com/",
     "github": "https://github.com/needcash"
   }
 }
