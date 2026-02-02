@@ -7,6 +7,7 @@ import { getAllPosts, getPostBySlug, extractHeadings } from "@/lib/mdx";
 import { mdxComponents } from "@/components/blog/mdx-components";
 import { TableOfContents } from "@/components/blog/toc";
 import { MobileToc } from "@/components/blog/mobile-toc";
+import { AdBanner } from "@/components/ads/ad-banner";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -68,6 +69,8 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Mobile TOC */}
       <MobileToc headings={extractHeadings(post.content)} />
 
+      <AdBanner className="my-8" />
+
       <div className="mt-10 lg:grid lg:grid-cols-[1fr_200px] lg:gap-12">
         <div className="prose-custom">
           <MDXRemote
@@ -86,6 +89,8 @@ export default async function BlogPostPage({ params }: Props) {
           <TableOfContents headings={extractHeadings(post.content)} />
         </aside>
       </div>
+
+      <AdBanner className="mt-12" />
     </article>
   );
 }

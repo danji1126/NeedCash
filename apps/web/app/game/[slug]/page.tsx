@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { GAMES } from "@/lib/constants";
 import { DiceGame } from "@/components/game/dice-game";
 import { LottoGame } from "@/components/game/lotto-game";
+import { AdBanner } from "@/components/ads/ad-banner";
 
 const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   dice: DiceGame,
@@ -57,9 +58,13 @@ export default async function GameDetailPage({ params }: Props) {
         <div className="mx-auto mt-6 h-px max-w-xs bg-border/60" />
       </div>
 
+      <AdBanner className="mt-10" />
+
       <div className="mt-12">
         <GameComponent />
       </div>
+
+      <AdBanner className="mt-12" />
     </div>
   );
 }

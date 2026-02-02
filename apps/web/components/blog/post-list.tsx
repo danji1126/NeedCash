@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Tag } from "@/components/ui/tag";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import type { PostMeta } from "@/lib/mdx";
-
-const CATEGORIES = ["All", "tech", "design", "life"] as const;
 
 interface PostListProps {
   posts: PostMeta[];
@@ -14,24 +12,77 @@ interface PostListProps {
 
 export function PostList({ posts }: PostListProps) {
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [activeTag, setActiveTag] = useState<string | null>(null);
 
-  const filtered =
-    activeCategory === "All"
-      ? posts
-      : posts.filter((p) => p.category === activeCategory);
+  const categories = useMemo(() => {
+    const unique = Array.from(new Set(posts.map((p) => p.category)));
+    return ["All", ...unique.sort()];
+  }, [posts]);
+
+  const filtered = useMemo(() => {
+    let result = posts;
+    if (activeCategory !== "All") {
+      result = result.filter((p) => p.category === activeCategory);
+    }
+    if (activeTag) {
+      result = result.filter((p) => p.tags.includes(activeTag));
+    }
+    return result;
+  }, [posts, activeCategory, activeTag]);
+
+  const visibleTags = useMemo(() => {
+    const source =
+      activeCategory === "All"
+        ? posts
+        : posts.filter((p) => p.category === activeCategory);
+    const tagCount = new Map<string, number>();
+    source.forEach((p) =>
+      p.tags.forEach((t) => tagCount.set(t, (tagCount.get(t) ?? 0) + 1)),
+    );
+    return Array.from(tagCount.entries())
+      .sort((a, b) => b[1] - a[1])
+      .map(([tag]) => tag);
+  }, [posts, activeCategory]);
+
+  const handleTagClick = (tag: string) => {
+    setActiveTag((prev) => (prev === tag ? null : tag));
+  };
 
   return (
     <>
+      {/* 카테고리 필터 */}
       <div className="mt-8 flex flex-wrap gap-2">
-        {CATEGORIES.map((cat) => (
+        {categories.map((cat) => (
           <Tag
             key={cat}
             label={cat === "All" ? "All" : `#${cat}`}
             active={activeCategory === cat}
-            onClick={() => setActiveCategory(cat)}
+            onClick={() => {
+              setActiveCategory(cat);
+              setActiveTag(null);
+            }}
           />
         ))}
       </div>
+
+      {/* 태그 필터 */}
+      {visibleTags.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {visibleTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => handleTagClick(tag)}
+              className={`rounded-full px-2.5 py-0.5 text-[12px] transition-all ${
+                activeTag === tag
+                  ? "bg-text text-bg font-medium"
+                  : "bg-bg-secondary text-text-muted hover:text-text"
+              }`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="mt-4">
         {filtered.map((post, i) => (
@@ -49,7 +100,18 @@ export function PostList({ posts }: PostListProps) {
                 </p>
                 <div className="mt-2 flex flex-wrap gap-2 text-[13px] text-text-muted">
                   {post.tags.map((tag) => (
-                    <span key={tag}>#{tag}</span>
+                    <span
+                      key={tag}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleTagClick(tag);
+                      }}
+                      className={`cursor-pointer transition-colors hover:text-text ${
+                        activeTag === tag ? "font-medium text-text" : ""
+                      }`}
+                    >
+                      #{tag}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -65,7 +127,7 @@ export function PostList({ posts }: PostListProps) {
 
         {filtered.length === 0 && (
           <p className="py-16 text-center text-text-muted">
-            No posts in this category.
+            No posts found.
           </p>
         )}
       </div>
