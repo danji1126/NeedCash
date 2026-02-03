@@ -33,6 +33,12 @@ export const GAMES: Game[] = [
     description: "행운의 로또번호를 뽑아보세요",
     emoji: "🍀",
   },
+  {
+    slug: "animal-face",
+    title: "동물상 찾기",
+    description: "카메라로 셀카를 찍으면 당신의 동물상을 알려드려요",
+    emoji: "🐾",
+  },
 ];
 
 // ── 이력서 데이터 ──

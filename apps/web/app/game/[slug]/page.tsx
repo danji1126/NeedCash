@@ -11,10 +11,14 @@ const DiceGame = dynamic(() =>
 const LottoGame = dynamic(() =>
   import("@/components/game/lotto-game").then((m) => m.LottoGame),
 );
+const AnimalFaceGame = dynamic(() =>
+  import("@/components/game/animal-face").then((m) => m.AnimalFaceGame),
+);
 
 const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   dice: DiceGame,
   lotto: LottoGame,
+  "animal-face": AnimalFaceGame,
 };
 
 interface Props {
