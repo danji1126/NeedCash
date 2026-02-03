@@ -4,7 +4,18 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Experience } from "@/lib/constants";
 
-function ProjectList({ projects }: { projects: NonNullable<Experience["projects"]> }) {
+interface TimelineLabels {
+  projectCount: string;
+  teamMemberSuffix: string;
+}
+
+function ProjectList({
+  projects,
+  teamMemberSuffix,
+}: {
+  projects: NonNullable<Experience["projects"]>;
+  teamMemberSuffix: string;
+}) {
   return (
     <motion.div
       initial={{ height: 0, opacity: 0 }}
@@ -23,7 +34,7 @@ function ProjectList({ projects }: { projects: NonNullable<Experience["projects"
             {project.client && (
               <p className="mt-0.5 text-[12px] text-text-muted">
                 {project.client}
-                {project.teamSize && ` · ${project.teamSize}명`}
+                {project.teamSize && ` · ${project.teamSize}${teamMemberSuffix}`}
               </p>
             )}
             <p className="mt-1 text-[13px] leading-relaxed text-text-secondary">
@@ -48,7 +59,15 @@ function ProjectList({ projects }: { projects: NonNullable<Experience["projects"
   );
 }
 
-export function Timeline({ items }: { items: Experience[] }) {
+export function Timeline({
+  items,
+  labels,
+}: {
+  items: Experience[];
+  labels?: TimelineLabels;
+}) {
+  const projectSuffix = labels?.projectCount ?? "개 프로젝트";
+  const memberSuffix = labels?.teamMemberSuffix ?? "명";
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
@@ -84,7 +103,7 @@ export function Timeline({ items }: { items: Experience[] }) {
                 </span>
                 {hasProjects && (
                   <span className="ml-2 text-[12px] text-text-muted">
-                    {item.projects!.length}개 프로젝트
+                    {item.projects!.length}{projectSuffix}
                   </span>
                 )}
               </p>
@@ -95,7 +114,7 @@ export function Timeline({ items }: { items: Experience[] }) {
             </p>
             <AnimatePresence>
               {isExpanded && hasProjects && (
-                <ProjectList projects={item.projects!} />
+                <ProjectList projects={item.projects!} teamMemberSuffix={memberSuffix} />
               )}
             </AnimatePresence>
           </div>

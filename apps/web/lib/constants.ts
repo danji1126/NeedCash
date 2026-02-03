@@ -37,7 +37,12 @@ export const GAMES: Game[] = [
 
 // ── 이력서 데이터 ──
 
+import type { Lang } from "./i18n/languages";
 import resumeData from "@/content/resume/resume.json";
+import resumeEn from "@/content/resume/resume.en.json";
+import resumeTh from "@/content/resume/resume.th.json";
+import resumeVi from "@/content/resume/resume.vi.json";
+import resumeJa from "@/content/resume/resume.ja.json";
 
 export interface Project {
   name: string;
@@ -80,7 +85,20 @@ export interface ResumeData {
     email?: string;
     github?: string;
     linkedin?: string;
+    blog?: string;
   };
 }
 
 export const RESUME: ResumeData = resumeData as ResumeData;
+
+const RESUME_BY_LANG: Record<Lang, ResumeData> = {
+  ko: resumeData as ResumeData,
+  en: resumeEn as ResumeData,
+  th: resumeTh as ResumeData,
+  vi: resumeVi as ResumeData,
+  ja: resumeJa as ResumeData,
+};
+
+export function getResumeByLang(lang: Lang): ResumeData {
+  return RESUME_BY_LANG[lang] ?? RESUME_BY_LANG.ko;
+}

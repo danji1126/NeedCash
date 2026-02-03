@@ -1,0 +1,351 @@
+{
+  "name": "IB",
+  "title": "Full-stack Developer",
+  "bio": "IT developer with 17 years of experience. Built ERP, production management, and quality management systems in the shipbuilding and heavy industry domain, and transitioned to modern web technologies including React, Next.js, and NestJS with comprehensive full-stack capabilities.",
+  "experience": [
+    {
+      "company": "Dongkuk Systems",
+      "role": "System Analysis / Design / Development",
+      "period": "2022.05 - 2024.10",
+      "description": "Developed Dongkuk Steel F-Project and BPGOAT systems. Built ERP on Spring Boot/Nexacro and BPM system on React/NestJS.",
+      "projects": [
+        {
+          "name": "F-Project",
+          "client": "Dongkuk Steel / Dongkuk Systems",
+          "period": "2022.05 - 2022.11",
+          "description": "Dongkuk Steel ERP system development",
+          "role": "System Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "Spring Boot", "Tibero"]
+        },
+        {
+          "name": "BPGOAT Development",
+          "client": "Dongkuk Systems",
+          "period": "2023.04 - 2024.02",
+          "description": "BPM system analysis, design, and development",
+          "role": "System Analysis / Design / Development",
+          "teamSize": null,
+          "techStack": ["React", "NestJS", "Tailwind CSS", "MongoDB"]
+        },
+        {
+          "name": "BPGOAT Operations",
+          "client": "Dongkuk Systems",
+          "period": "2024.03 - 2024.04",
+          "description": "BPGOAT system operations and maintenance",
+          "role": "Operations",
+          "teamSize": null,
+          "techStack": ["React", "NestJS", "Tailwind CSS", "MongoDB"]
+        },
+        {
+          "name": "F-Project Phase 2",
+          "client": "Dongkuk Steel / Dongkuk Systems",
+          "period": "2024.05 - 2024.10",
+          "description": "Dongkuk Steel ERP system phase 2 development",
+          "role": "System Analysis / Design / Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "Spring Boot", "Tibero"]
+        }
+      ]
+    },
+    {
+      "company": "Daewoo Information Systems",
+      "role": "System Design / Development",
+      "period": "2018.06 - 2022.03",
+      "description": "Designed and developed multiple projects for DSME including ERP restoration, quality management, and smart forms.",
+      "projects": [
+        {
+          "name": "FR Project (ERP Early Restoration)",
+          "client": "DSME / DINC",
+          "period": "2018.06 - 2019.06",
+          "description": "Ship post-process schedule analysis/design/development, MTR system, maintenance system, standard calculation platform, ILS document management system",
+          "role": "System Design / Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "Xplatform", "Oracle"]
+        },
+        {
+          "name": "DSME Integrated Material Quality Project",
+          "client": "DSME / DINC",
+          "period": "2019.08 - 2019.10",
+          "description": "Integrated material quality management system development",
+          "role": "System Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "Xplatform", "eGovFrame", "Oracle"]
+        },
+        {
+          "name": "DSME Smart Form Enhancement",
+          "client": "DSME / DINC",
+          "period": "2019.11 - 2019.12",
+          "description": "Smart form system enhancement",
+          "role": "System Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "Xplatform", "eGovFrame", "Oracle"]
+        },
+        {
+          "name": "DSME Sparepart / IO List",
+          "client": "DSME / DINC",
+          "period": "2019.12 - 2020.03",
+          "description": "Sparepart and IO List management system development",
+          "role": "System Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "Xplatform", "eGovFrame", "Oracle"]
+        },
+        {
+          "name": "DSME Pipe Fabrication Inspection System Rebuild",
+          "client": "DSME / DINC",
+          "period": "2020.06 - 2020.08",
+          "description": "Pipe fabrication inspection management system rebuild",
+          "role": "System Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "Xplatform", "eGovFrame", "Oracle"]
+        },
+        {
+          "name": "DSME Special Vessel Smart Form",
+          "client": "DSME / DINC",
+          "period": "2020.09 - 2020.12",
+          "description": "Special vessel smart form system construction",
+          "role": "System Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "Xplatform", "eGovFrame", "Oracle"]
+        },
+        {
+          "name": "DSME Material Quality System Enhancement via Smart Form",
+          "client": "DSME / DINC",
+          "period": "2020.09 - 2020.12",
+          "description": "Material quality system enhancement utilizing smart forms",
+          "role": "System Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "Xplatform", "eGovFrame", "Oracle"]
+        },
+        {
+          "name": "Korea IT W HR System Rebuild",
+          "client": "ISU Systems",
+          "period": "2021.01 - 2021.03",
+          "description": "HR system rebuild",
+          "role": "System Development",
+          "teamSize": null,
+          "techStack": ["Java", "jQuery", "HTML", "AnyFrame", "Oracle"]
+        },
+        {
+          "name": "Hyundai Electric Web-based Outsourcing Collaboration System",
+          "client": "Hyundai Electric",
+          "period": "2021.08 - 2021.12",
+          "description": "Web-based outsourcing collaboration system and framework development",
+          "role": "System Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "eGovFrame", "Oracle"]
+        },
+        {
+          "name": "DSME Camera App Development",
+          "client": "DSME / DINC",
+          "period": "2022.01 - 2022.03",
+          "description": "Camera application development",
+          "role": "System Development",
+          "teamSize": null,
+          "techStack": ["Java", "Nexacro 17", "eGovFrame", "Oracle"]
+        }
+      ]
+    },
+    {
+      "company": "Sungdong Shipbuilding & Marine Engineering",
+      "role": "System Design / Development / Operations",
+      "period": "2014.06 - 2017.10",
+      "description": "Developed shipyard IT systems including electronic collaboration, owner/class systems, integrated HSE, and safety reporting app. Maintained in-house systems.",
+      "projects": [
+        {
+          "name": "APROS Electronic Collaboration System",
+          "client": "Sungdong Shipbuilding",
+          "period": "2014.06 - 2014.09",
+          "description": "Contract/quotation/delivery management for procurement partners. Utilized PKI authentication, Report Designer, and DaView",
+          "role": "Development",
+          "teamSize": 5,
+          "techStack": ["Java", "eGovFrame", "Nexacro 14", "HTML", "JSP", "Oracle"]
+        },
+        {
+          "name": "In-house System Maintenance",
+          "client": "Sungdong Shipbuilding",
+          "period": "2014.09 - 2017.10",
+          "description": "Maintenance of HR, recruitment, website, executive info, HSE, company-wide scheduling, groupware, and shipbuilding integrated systems",
+          "role": "Maintenance",
+          "teamSize": null,
+          "techStack": ["JSP", "jQuery", "PHP", "SharePoint", "ASP.NET", "PowerBuilder", "Oracle"]
+        },
+        {
+          "name": "Owner / Classification Society System",
+          "client": "Sungdong Shipbuilding",
+          "period": "2016.03 - 2016.05",
+          "description": "Ship owner/classification society vessel information and quality inspection personnel management system",
+          "role": "Development Standards / Common Modules / Standard Development",
+          "teamSize": 3,
+          "techStack": ["Java", "eGovFrame", "Nexacro 14", "HTML", "JSP", "Oracle"]
+        },
+        {
+          "name": "Integrated HSE Support System",
+          "client": "Sungdong Shipbuilding",
+          "period": "2016.05 - 2016.07",
+          "description": "Safety work reporting, physical therapy applications, safety training management, and health management system",
+          "role": "System Design / Development",
+          "teamSize": 4,
+          "techStack": ["Java", "eGovFrame", "Nexacro 14", "HTML", "JSP", "Oracle"]
+        },
+        {
+          "name": "Safety Reporting App",
+          "client": "Sungdong Shipbuilding",
+          "period": "2016.06 - 2016.12",
+          "description": "On-site corrective action and safety reporting mobile app",
+          "role": "System Design / Development",
+          "teamSize": 1,
+          "techStack": ["Android", "Node.js", "Oracle"]
+        },
+        {
+          "name": "Chemical Substance Management",
+          "client": "Sungdong Shipbuilding",
+          "period": "2017.01 - 2017.04",
+          "description": "Chemical substance management and material delivery restriction management system",
+          "role": "System Design / Development",
+          "teamSize": 2,
+          "techStack": ["Java", "eGovFrame", "Nexacro 14", "HTML", "JSP", "Oracle"]
+        },
+        {
+          "name": "Safety Reporting App Additional Features",
+          "client": "Sungdong Shipbuilding",
+          "period": "2017.07 - 2017.10",
+          "description": "Added on-site corrective action and self-safety activity reporting features",
+          "role": "System Design / Development",
+          "teamSize": 1,
+          "techStack": ["Android", "Node.js", "Oracle"]
+        }
+      ]
+    },
+    {
+      "company": "SGCNS",
+      "role": "Development",
+      "period": "2007.08 - 2014.03",
+      "description": "Developed multiple SI projects in shipbuilding and heavy industry including production management, quality management, and facility management.",
+      "projects": [
+        {
+          "name": "SGCNS Website Maintenance",
+          "client": "SGCNS",
+          "period": "2007.08 - 2008.01",
+          "description": "Website redesign and maintenance",
+          "role": "Maintenance / Redesign",
+          "teamSize": 1,
+          "techStack": ["HTML", "PHP", "Oracle"]
+        },
+        {
+          "name": "Shinhan Machinery Integrated Management System",
+          "client": "Shinhan Machinery",
+          "period": "2008.02 - 2010.04",
+          "description": "Production management (painting, procurement), HR, partner company management, and system management development/maintenance",
+          "role": "Development",
+          "teamSize": 5,
+          "techStack": ["Java", "Spring", "iBatis", "JSP", "JavaScript", "Oracle"]
+        },
+        {
+          "name": "DSME Partner Production Management System",
+          "client": "Daewoo Shipbuilding & Marine Engineering",
+          "period": "2010.05 - 2011.07",
+          "description": "Block process, fabrication, BOM, orders, system management, and steel outfitting development/maintenance",
+          "role": "Development",
+          "teamSize": 5,
+          "techStack": ["Java", "Spring", "iBatis", "JSP", "JavaScript", "Oracle"]
+        },
+        {
+          "name": "Samwoo Heavy Industries Production Management System",
+          "client": "Samwoo Heavy Industries",
+          "period": "2010.12 - 2011.03",
+          "description": "Block, painting, material, system management, orders, and BOM development",
+          "role": "Development",
+          "teamSize": 5,
+          "techStack": ["Java", "Spring", "iBatis", "JSP", "JavaScript", "Oracle"]
+        },
+        {
+          "name": "Daea Enterprise Production Management System",
+          "client": "Daea Enterprise",
+          "period": "2011.06 - 2011.11",
+          "description": "Block process and fabrication work management development",
+          "role": "Development",
+          "teamSize": 3,
+          "techStack": ["Java", "Spring", "myBatis", "JSP", "jQuery", "Oracle"]
+        },
+        {
+          "name": "Samwoo Heavy Industries Quality Management System",
+          "client": "Samwoo Heavy Industries",
+          "period": "2011.12 - 2012.06",
+          "description": "Quality and quality issue management development",
+          "role": "Development",
+          "teamSize": 4,
+          "techStack": ["Java", "Spring", "iBatis", "JSP", "JavaScript", "Oracle"]
+        },
+        {
+          "name": "SHI Energy Management System",
+          "client": "Samsung Heavy Industries",
+          "period": "2012.06 - 2012.07",
+          "description": "Gas facility monitoring system DB modification and report additions",
+          "role": "Development",
+          "teamSize": 5,
+          "techStack": ["HTML", "JSP", "Oracle"]
+        },
+        {
+          "name": "Janghan Integrated Management System",
+          "client": "Janghan",
+          "period": "2012.08 - 2012.12",
+          "description": "Work daily report, production progress status, and material management system development",
+          "role": "Development",
+          "teamSize": 3,
+          "techStack": ["Java", "Spring", "iBatis", "JSP", "JavaScript", "Oracle"]
+        },
+        {
+          "name": "Samwoo Heavy Industries MDB Interface",
+          "client": "Samwoo Heavy Industries",
+          "period": "2013.01 - 2013.03",
+          "description": "MDB Interface development",
+          "role": "Development",
+          "teamSize": 3,
+          "techStack": ["Java", "Spring", "iBatis", "JSP", "JavaScript", "Oracle"]
+        },
+        {
+          "name": "Samwoo Heavy Industries Facility Management System",
+          "client": "Samwoo Heavy Industries",
+          "period": "2013.04 - 2013.08",
+          "description": "Facility assets and repair development, existing system integration development",
+          "role": "Development",
+          "teamSize": 4,
+          "techStack": ["Java", "Spring", "iBatis", "JSP", "JavaScript", "Oracle"]
+        },
+        {
+          "name": "Samwoo Heavy Industries Steel Management System",
+          "client": "Samwoo Heavy Industries",
+          "period": "2013.09 - 2014.03",
+          "description": "Steel management system development",
+          "role": "Development",
+          "teamSize": 3,
+          "techStack": ["Java", "Spring", "iBatis", "JSP", "JavaScript", "Oracle"]
+        }
+      ]
+    }
+  ],
+  "skills": [
+    { "name": "Java", "level": 5, "category": "Backend" },
+    { "name": "Spring/Spring Boot", "level": 5, "category": "Backend" },
+    { "name": "React", "level": 4, "category": "Frontend" },
+    { "name": "Next.js", "level": 3, "category": "Frontend" },
+    { "name": "NestJS", "level": 4, "category": "Backend" },
+    { "name": "TypeScript", "level": 4, "category": "Frontend" },
+    { "name": "JavaScript", "level": 5, "category": "Frontend" },
+    { "name": "Tailwind CSS", "level": 4, "category": "Frontend" },
+    { "name": "Nexacro", "level": 5, "category": "Frontend" },
+    { "name": "Oracle", "level": 5, "category": "Database" },
+    { "name": "MongoDB", "level": 3, "category": "Database" },
+    { "name": "Tibero", "level": 3, "category": "Database" },
+    { "name": "Node.js", "level": 4, "category": "Backend" },
+    { "name": "JSP/JSTL", "level": 5, "category": "Backend" },
+    { "name": "Android", "level": 3, "category": "Mobile" },
+    { "name": "Git", "level": 4, "category": "Tool" },
+    { "name": "eGovFrame", "level": 5, "category": "Backend" }
+  ],
+  "contact": {
+    "email": "danji1126@naver.com",
+    "blog": "https://danji1126.tistory.com/",
+    "github": "https://github.com/needcash"
+  }
+}
