@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { GAMES } from "@/lib/constants";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { UIIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
   title: "Games",
@@ -31,7 +32,7 @@ export default function GamePage() {
               href={`/game/${game.slug}`}
               className="group flex flex-col border-b border-border/60 p-8 transition-all duration-500 ease-[cubic-bezier(0.215,0.61,0.355,1)] hover:bg-bg-secondary sm:even:border-l"
             >
-              <span className="text-3xl">{game.emoji}</span>
+              <UIIcon icon={game.icon} className="h-8 w-8" />
               <h2 className="mt-4 font-heading text-xl font-semibold tracking-[-0.01em]">
                 {game.title}
                 <span className="ml-2 inline-block text-text-muted transition-transform duration-500 group-hover:translate-x-1">

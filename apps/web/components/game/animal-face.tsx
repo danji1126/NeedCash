@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { AnimalIcon, UIIcon, type AnimalType } from "@/components/ui/icons";
 
 // @teachablemachine/image 타입 (내부 사용)
 interface TMWebcam {
@@ -30,26 +31,26 @@ const MODEL_URL = "https://teachablemachine.withgoogle.com/models/V9poYecHi/";
 
 // 동물상 데이터
 interface AnimalInfo {
-  emoji: string;
+  icon: AnimalType;
   name: string;
   description: string;
 }
 
 const ANIMAL_INFO: Record<string, AnimalInfo> = {
   dog: {
-    emoji: "\uD83D\uDC36",
+    icon: "dog",
     name: "강아지상",
     description:
       "충성스럽고 활발한 에너지! 사교적이고 따뜻한 성격으로 주변 사람들에게 사랑받는 타입",
   },
   cat: {
-    emoji: "\uD83D\uDC31",
+    icon: "cat",
     name: "고양이상",
     description:
       "독립적이고 신비로운 매력! 차분하고 우아한 분위기로 자신만의 세계가 확실한 타입",
   },
   fox: {
-    emoji: "\uD83E\uDD8A",
+    icon: "fox",
     name: "여우상",
     description:
       "영리하고 매력적인 인상! 날카로운 관찰력과 재치로 사람들의 시선을 사로잡는 타입",
@@ -78,7 +79,7 @@ interface AnimalResult {
 interface HistoryItem {
   id: number;
   animal: string;
-  emoji: string;
+  icon: AnimalType;
   name: string;
   confidence: number;
 }
@@ -86,18 +87,20 @@ interface HistoryItem {
 // 신뢰도 바 컴포넌트
 function ConfidenceBar({
   label,
-  emoji,
+  icon,
   value,
   delay,
 }: {
   label: string;
-  emoji: string;
+  icon: AnimalType;
   value: number;
   delay: number;
 }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="w-6 text-center">{emoji}</span>
+      <span className="flex w-6 justify-center">
+        <AnimalIcon animal={icon} className="h-5 w-5" />
+      </span>
       <span className="w-20 text-sm text-text-secondary">{label}</span>
       <div className="h-2 flex-1 overflow-hidden bg-border/30">
         <motion.div
@@ -371,7 +374,7 @@ export function AnimalFaceGame() {
       {
         id: prev.length + 1,
         animal: top.className,
-        emoji: info?.emoji ?? "?",
+        icon: info?.icon ?? "dog",
         name: info?.name ?? top.className,
         confidence: top.probability,
       },
@@ -438,10 +441,10 @@ export function AnimalFaceGame() {
             transition={{ ease: EASING }}
             className="flex flex-col items-center"
           >
-            <div className="flex gap-4 text-4xl">
-              <span>{ANIMAL_INFO.dog.emoji}</span>
-              <span>{ANIMAL_INFO.cat.emoji}</span>
-              <span>{ANIMAL_INFO.fox.emoji}</span>
+            <div className="flex gap-4">
+              <AnimalIcon animal="dog" className="h-10 w-10" />
+              <AnimalIcon animal="cat" className="h-10 w-10" />
+              <AnimalIcon animal="fox" className="h-10 w-10" />
             </div>
             <p className="mt-6 max-w-xs text-center text-sm text-text-secondary">
               AI가 당신의 얼굴을 분석하여
@@ -461,7 +464,7 @@ export function AnimalFaceGame() {
                   : "border-border/60 hover:border-text/50 hover:bg-bg-secondary/50"
               }`}
             >
-              <span className="text-3xl">📷</span>
+              <UIIcon icon="camera" className="h-8 w-8 text-text-muted" />
               <p className="mt-2 text-sm text-text-secondary">
                 사진을 드래그하거나 클릭하여 업로드
               </p>
@@ -477,7 +480,8 @@ export function AnimalFaceGame() {
             </div>
 
             <Button onClick={startCamera} size="lg" className="mt-4">
-              📹 카메라로 촬영
+              <UIIcon icon="video" className="mr-2 h-4 w-4" />
+              카메라로 촬영
             </Button>
           </motion.div>
         )}
@@ -496,7 +500,7 @@ export function AnimalFaceGame() {
               transition={{ duration: 1.5, repeat: Infinity }}
               className="flex h-[300px] w-[300px] flex-col items-center justify-center border border-border/60 bg-bg-secondary"
             >
-              <span className="text-4xl">🤖</span>
+              <UIIcon icon="robot" className="h-10 w-10 text-text-muted" />
               <p className="mt-4 text-sm text-text-muted">
                 {modelLoaded ? "준비중..." : "AI 모델을 로딩중..."}
               </p>
@@ -515,7 +519,8 @@ export function AnimalFaceGame() {
           >
             <div className="mt-8 flex gap-4">
               <Button onClick={captureFromCamera} size="lg">
-                📸 촬영하기
+                <UIIcon icon="capture" className="mr-2 h-4 w-4" />
+                촬영하기
               </Button>
               <Button onClick={restart} size="lg" variant="outline">
                 취소
@@ -546,7 +551,8 @@ export function AnimalFaceGame() {
             </div>
             <div className="mt-8 flex gap-4">
               <Button onClick={analyzeUploadedImage} size="lg">
-                🔍 분석하기
+                <UIIcon icon="search" className="mr-2 h-4 w-4" />
+                분석하기
               </Button>
               <Button onClick={restart} size="lg" variant="outline">
                 다른 사진
@@ -575,7 +581,7 @@ export function AnimalFaceGame() {
               </div>
             ) : (
               <div className="flex h-[300px] w-[300px] items-center justify-center border border-border/60 bg-bg-secondary opacity-70">
-                <span className="text-4xl">📸</span>
+                <UIIcon icon="capture" className="h-10 w-10 text-text-muted" />
               </div>
             )}
             <div className="mt-6 flex items-center gap-2">
@@ -598,14 +604,13 @@ export function AnimalFaceGame() {
             exit={{ opacity: 0 }}
             className="flex w-full max-w-xs flex-col items-center"
           >
-            <motion.span
+            <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: [0, 1.2, 1] }}
               transition={{ duration: 0.6, ease: EASING }}
-              className="text-7xl"
             >
-              {resultInfo.emoji}
-            </motion.span>
+              <AnimalIcon animal={resultInfo.icon} className="h-20 w-20" />
+            </motion.div>
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -628,7 +633,7 @@ export function AnimalFaceGame() {
                   return (
                     <ConfidenceBar
                       key={pred.className}
-                      emoji={info?.emoji ?? "?"}
+                      icon={info?.icon ?? "dog"}
                       label={info?.name ?? pred.className}
                       value={pred.probability}
                       delay={0.3 + i * 0.1}
@@ -669,7 +674,7 @@ export function AnimalFaceGame() {
             exit={{ opacity: 0, y: -10 }}
             className="mt-8 flex flex-col items-center rounded border border-border/60 bg-bg-secondary p-6"
           >
-            <span className="text-2xl">⚠️</span>
+            <UIIcon icon="warning" className="h-8 w-8 text-yellow-500" />
             <p className="mt-3 max-w-xs text-center text-sm text-text-secondary">
               {error}
             </p>
@@ -701,7 +706,7 @@ export function AnimalFaceGame() {
               >
                 <span className="text-text-muted">#{item.id}</span>
                 <span className="flex items-center gap-2">
-                  <span>{item.emoji}</span>
+                  <AnimalIcon animal={item.icon} className="h-5 w-5" />
                   <span>{item.name}</span>
                 </span>
                 <span className="font-bold">

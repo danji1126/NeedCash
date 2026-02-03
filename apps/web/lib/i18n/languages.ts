@@ -5,11 +5,11 @@ export const DEFAULT_LANG: Lang = "ko";
 
 export const LANGUAGE_META: Record<
   Lang,
-  { name: string; nativeName: string; flag: string }
+  { name: string; nativeName: string }
 > = {
-  ko: { name: "Korean", nativeName: "한국어", flag: "🇰🇷" },
-  en: { name: "English", nativeName: "English", flag: "🇺🇸" },
-  th: { name: "Thai", nativeName: "ไทย", flag: "🇹🇭" },
-  vi: { name: "Vietnamese", nativeName: "Tiếng Việt", flag: "🇻🇳" },
-  ja: { name: "Japanese", nativeName: "日本語", flag: "🇯🇵" },
+  ko: { name: "Korean", nativeName: "한국어" },
+  en: { name: "English", nativeName: "English" },
+  th: { name: "Thai", nativeName: "ไทย" },
+  vi: { name: "Vietnamese", nativeName: "Tiếng Việt" },
+  ja: { name: "Japanese", nativeName: "日本語" },
 };

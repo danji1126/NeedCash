@@ -13,11 +13,13 @@ export const NAV_LINKS = [
 
 // ── 게임 데이터 ──
 
+import type { UIIconType } from "@/components/ui/icons";
+
 export interface Game {
   slug: string;
   title: string;
   description: string;
-  emoji: string;
+  icon: UIIconType;
 }
 
 export const GAMES: Game[] = [
@@ -25,19 +27,19 @@ export const GAMES: Game[] = [
     slug: "dice",
     title: "Dice Roller",
     description: "주사위 2개를 굴려 운을 시험하세요",
-    emoji: "🎲",
+    icon: "dice",
   },
   {
     slug: "lotto",
     title: "Lotto Pick",
     description: "행운의 로또번호를 뽑아보세요",
-    emoji: "🍀",
+    icon: "clover",
   },
   {
     slug: "animal-face",
     title: "동물상 찾기",
     description: "카메라로 셀카를 찍으면 당신의 동물상을 알려드려요",
-    emoji: "🐾",
+    icon: "paw",
   },
 ];
 

@@ -6,6 +6,7 @@ import {
   LANGUAGE_META,
   type Lang,
 } from "@/lib/i18n/languages";
+import { FlagIcon } from "@/components/ui/icons";
 
 interface LanguageSwitcherProps {
   currentLang: Lang;
@@ -23,13 +24,14 @@ export function LanguageSwitcher({ currentLang }: LanguageSwitcherProps) {
           <Link
             key={lang}
             href={href}
-            className={`rounded-sm px-2.5 py-1 text-[13px] transition-opacity hover:opacity-70 ${
+            className={`flex items-center gap-1.5 rounded-sm px-2.5 py-1 text-[13px] transition-opacity hover:opacity-70 ${
               isActive
                 ? "bg-text text-bg font-medium"
                 : "text-text-muted"
             }`}
           >
-            {meta.flag} {meta.nativeName}
+            <FlagIcon lang={lang} className="h-3 w-4" />
+            {meta.nativeName}
           </Link>
         );
       })}

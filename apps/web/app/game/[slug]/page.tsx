@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { GAMES } from "@/lib/constants";
 import { AdBanner } from "@/components/ads/ad-banner";
+import { UIIcon } from "@/components/ui/icons";
 
 const DiceGame = dynamic(() =>
   import("@/components/game/dice-game").then((m) => m.DiceGame),
@@ -60,7 +61,9 @@ export default async function GameDetailPage({ params }: Props) {
         <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
           Game
         </p>
-        <span className="mt-4 inline-block text-4xl">{game.emoji}</span>
+        <span className="mt-4 inline-block">
+          <UIIcon icon={game.icon} className="h-10 w-10" />
+        </span>
         <h1 className="mt-3 font-heading text-3xl font-bold tracking-[-0.03em]">
           {game.title}
         </h1>
