@@ -52,11 +52,13 @@ export interface Heading {
   id: string;
 }
 
+const HEADING_REGEX = /^(#{2,3})\s+(.+)$/gm;
+
 export function extractHeadings(content: string): Heading[] {
-  const headingRegex = /^(#{2,3})\s+(.+)$/gm;
+  HEADING_REGEX.lastIndex = 0;
   const headings: Heading[] = [];
   let match;
-  while ((match = headingRegex.exec(content)) !== null) {
+  while ((match = HEADING_REGEX.exec(content)) !== null) {
     headings.push({
       level: match[1].length,
       text: match[2],

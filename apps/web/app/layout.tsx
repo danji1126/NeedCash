@@ -50,14 +50,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <head>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7452986546914975"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-      </head>
       <body
         className={`${pretendard.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} antialiased`}
       >
@@ -66,6 +58,12 @@ export default function RootLayout({
           <main className="min-h-[calc(100vh-3.5rem)]">{children}</main>
           <Footer />
         </ThemeProvider>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7452986546914975"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

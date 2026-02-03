@@ -51,7 +51,15 @@
   --code-bg: #1a1a1a;
 }
 
-* {
+/* Theme transition - scoped to key elements instead of * selector */
+body,
+header,
+main,
+footer,
+nav,
+a,
+button,
+.prose-custom {
   transition: background-color 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
     color 0.4s cubic-bezier(0.215, 0.61, 0.355, 1),
     border-color 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -148,4 +156,10 @@ body {
 
 .prose-custom li {
   margin-bottom: 0.5em;
+}
+
+/* Offscreen rendering optimization for list items */
+.list-item-offscreen {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 80px;
 }

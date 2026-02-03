@@ -20,6 +20,8 @@ const DOT_POSITIONS: Record<number, number[]> = {
   6: [0, 2, 3, 5, 6, 8],
 };
 
+const GRID_INDICES = Array.from({ length: 9 }, (_, i) => i);
+
 function DiceFace({ value, rolling }: { value: number; rolling: boolean }) {
   return (
     <motion.div
@@ -31,7 +33,7 @@ function DiceFace({ value, rolling }: { value: number; rolling: boolean }) {
       }
       transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
     >
-      {Array.from({ length: 9 }).map((_, i) => (
+      {GRID_INDICES.map((i) => (
         <div key={i} className="flex items-center justify-center">
           {DOT_POSITIONS[value]?.includes(i) && (
             <div className="h-3.5 w-3.5 rounded-full bg-text sm:h-4 sm:w-4" />

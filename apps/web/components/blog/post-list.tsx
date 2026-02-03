@@ -20,14 +20,11 @@ export function PostList({ posts }: PostListProps) {
   }, [posts]);
 
   const filtered = useMemo(() => {
-    let result = posts;
-    if (activeCategory !== "All") {
-      result = result.filter((p) => p.category === activeCategory);
-    }
-    if (activeTag) {
-      result = result.filter((p) => p.tags.includes(activeTag));
-    }
-    return result;
+    return posts.filter((p) => {
+      if (activeCategory !== "All" && p.category !== activeCategory) return false;
+      if (activeTag && !p.tags.includes(activeTag)) return false;
+      return true;
+    });
   }, [posts, activeCategory, activeTag]);
 
   const visibleTags = useMemo(() => {
@@ -86,7 +83,7 @@ export function PostList({ posts }: PostListProps) {
 
       <div className="mt-4">
         {filtered.map((post, i) => (
-          <ScrollReveal key={post.slug} delay={i * 0.05}>
+          <ScrollReveal key={post.slug} delay={i * 0.05} className="list-item-offscreen">
             <Link
               href={`/blog/${post.slug}`}
               className="group flex items-baseline justify-between border-b border-border/60 py-5 transition-all duration-500 ease-[cubic-bezier(0.215,0.61,0.355,1)] hover:bg-bg-secondary hover:px-4"

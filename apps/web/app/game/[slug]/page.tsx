@@ -1,10 +1,16 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { GAMES } from "@/lib/constants";
-import { DiceGame } from "@/components/game/dice-game";
-import { LottoGame } from "@/components/game/lotto-game";
 import { AdBanner } from "@/components/ads/ad-banner";
+
+const DiceGame = dynamic(() =>
+  import("@/components/game/dice-game").then((m) => m.DiceGame),
+);
+const LottoGame = dynamic(() =>
+  import("@/components/game/lotto-game").then((m) => m.LottoGame),
+);
 
 const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   dice: DiceGame,

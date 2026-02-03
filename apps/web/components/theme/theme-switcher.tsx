@@ -1,13 +1,19 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+const emptySubscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
+
+function useIsMounted() {
+  return useSyncExternalStore(emptySubscribe, getSnapshot, getServerSnapshot);
+}
 
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const mounted = useIsMounted();
 
   if (!mounted) {
     return <div className="h-8 w-8" />;
