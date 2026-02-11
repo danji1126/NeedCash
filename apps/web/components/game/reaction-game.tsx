@@ -19,11 +19,14 @@ interface HistoryItem {
   average: number;
   grade: Grade;
   title: string;
+  rounds: number;
 }
 
 // ── Constants ──
 
-const TOTAL_ROUNDS = 5;
+const DEFAULT_ROUNDS = 5;
+const MIN_ROUNDS = 1;
+const MAX_ROUNDS = 20;
 const EASING: [number, number, number, number] = [0.215, 0.61, 0.355, 1];
 
 const GRADES: { grade: Grade; title: string; max: number }[] = [
@@ -51,6 +54,8 @@ const BG_COLORS: Record<string, string> = {
 
 export function ReactionGame() {
   const [phase, setPhase] = useState<Phase>("idle");
+  const [totalRounds, setTotalRounds] = useState(DEFAULT_ROUNDS);
+  const [roundInput, setRoundInput] = useState(String(DEFAULT_ROUNDS));
   const [round, setRound] = useState(0);
   const [rounds, setRounds] = useState<RoundResult[]>([]);
   const [currentTime, setCurrentTime] = useState(0);
@@ -80,12 +85,16 @@ export function ReactionGame() {
 
   const resetGame = useCallback(() => {
     clearTimer();
+    const parsed = parseInt(roundInput, 10);
+    const clamped = Math.min(MAX_ROUNDS, Math.max(MIN_ROUNDS, isNaN(parsed) ? DEFAULT_ROUNDS : parsed));
+    setTotalRounds(clamped);
+    setRoundInput(String(clamped));
     setRound(0);
     setRounds([]);
     setCurrentTime(0);
     roundRef.current = 0;
     startRound();
-  }, [clearTimer, startRound]);
+  }, [clearTimer, startRound, roundInput]);
 
   const handleExit = useCallback(() => {
     clearTimer();
@@ -118,13 +127,13 @@ export function ReactionGame() {
       setRound(newRound);
       roundRef.current = newRound;
 
-      if (newRound >= TOTAL_ROUNDS) {
+      if (newRound >= totalRounds) {
         const times = newRounds.map((r) => r.time);
         const average = Math.round(times.reduce((a, b) => a + b, 0) / times.length);
         const { grade, title } = getGrade(average);
 
         setHistory((prev) => [
-          { id: prev.length + 1, average, grade, title },
+          { id: prev.length + 1, average, grade, title, rounds: totalRounds },
           ...prev.slice(0, 9),
         ]);
         setPhase("result");
@@ -141,7 +150,7 @@ export function ReactionGame() {
       clearTimer();
       startRound();
     }
-  }, [phase, rounds, clearTimer, startRound]);
+  }, [phase, rounds, totalRounds, clearTimer, startRound]);
 
   useEffect(() => {
     return () => clearTimer();
@@ -156,10 +165,51 @@ export function ReactionGame() {
           <br />
           최대한 빠르게 클릭하세요!
         </p>
+        <div className="mt-6 flex items-center gap-3">
+          <label htmlFor="round-input" className="text-sm text-text-muted">
+            측정 횟수
+          </label>
+          <div className="flex items-center">
+            <button
+              onClick={() => {
+                const v = Math.max(MIN_ROUNDS, (parseInt(roundInput, 10) || DEFAULT_ROUNDS) - 1);
+                setRoundInput(String(v));
+              }}
+              className="flex h-9 w-9 items-center justify-center rounded-l-md border border-border/60 text-text-secondary transition-colors hover:bg-surface-hover"
+              aria-label="횟수 줄이기"
+            >
+              -
+            </button>
+            <input
+              id="round-input"
+              type="number"
+              min={MIN_ROUNDS}
+              max={MAX_ROUNDS}
+              value={roundInput}
+              onChange={(e) => setRoundInput(e.target.value)}
+              onBlur={() => {
+                const parsed = parseInt(roundInput, 10);
+                const clamped = Math.min(MAX_ROUNDS, Math.max(MIN_ROUNDS, isNaN(parsed) ? DEFAULT_ROUNDS : parsed));
+                setRoundInput(String(clamped));
+              }}
+              className="h-9 w-12 border-y border-border/60 bg-transparent text-center text-sm font-bold outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            />
+            <button
+              onClick={() => {
+                const v = Math.min(MAX_ROUNDS, (parseInt(roundInput, 10) || DEFAULT_ROUNDS) + 1);
+                setRoundInput(String(v));
+              }}
+              className="flex h-9 w-9 items-center justify-center rounded-r-md border border-border/60 text-text-secondary transition-colors hover:bg-surface-hover"
+              aria-label="횟수 늘리기"
+            >
+              +
+            </button>
+          </div>
+        </div>
         <p className="mt-3 text-sm text-text-muted">
-          {TOTAL_ROUNDS}번 측정한 평균으로 등급을 매겨드려요.
+          {parseInt(roundInput, 10) || DEFAULT_ROUNDS}번 측정한 평균으로 등급을 매겨드려요.
         </p>
-        <Button onClick={resetGame} size="lg" className="mt-8">
+        <Button onClick={resetGame} size="lg" className="mt-6">
           시작하기
         </Button>
       </div>
@@ -213,7 +263,7 @@ export function ReactionGame() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.4 }}
-          className="mt-6 grid w-full max-w-xs grid-cols-5 gap-2"
+          className="mt-6 flex w-full max-w-xs flex-wrap justify-center gap-2"
         >
           {rounds.map((r, i) => (
             <motion.div
@@ -221,7 +271,7 @@ export function ReactionGame() {
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 + i * 0.05, ease: EASING }}
-              className="flex flex-col items-center border border-border/60 py-2"
+              className="flex w-14 flex-col items-center border border-border/60 py-2"
             >
               <span className="text-[11px] text-text-muted">R{r.round}</span>
               <span className="text-sm font-bold">{r.time}</span>
@@ -247,6 +297,7 @@ export function ReactionGame() {
                   <span className="text-text-muted">#{item.id}</span>
                   <span className="font-bold">{item.grade}</span>
                   <span className="text-text-secondary">{item.title}</span>
+                  <span className="text-text-muted">{item.rounds}R</span>
                   <span>{item.average}ms</span>
                 </div>
               ))}
@@ -290,7 +341,7 @@ export function ReactionGame() {
             className="flex flex-col items-center text-white"
           >
             <p className="text-lg text-white/60">
-              Round {round + 1} / {TOTAL_ROUNDS}
+              Round {round + 1} / {totalRounds}
             </p>
             <p className="mt-6 text-2xl font-bold sm:text-3xl">
               초록색이 되면 클릭!
@@ -340,7 +391,7 @@ export function ReactionGame() {
             className="flex flex-col items-center text-white"
           >
             <p className="text-lg text-white/60">
-              Round {round} / {TOTAL_ROUNDS}
+              Round {round} / {totalRounds}
             </p>
             <motion.p
               initial={{ scale: 0.5 }}

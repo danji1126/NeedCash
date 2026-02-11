@@ -14,7 +14,7 @@
 | 완료일 | 2026-02-11 |
 | Match Rate | **95%** (PASS) |
 | 반복 횟수 | 0 (첫 구현에서 통과) |
-| FR 달성률 | 11/11 (100%) |
+| FR 달성률 | 12/12 (100%) |
 | NFR 달성률 | 5/6 (83%) |
 | 빌드 | PASS |
 | 린트 | PASS |
@@ -36,8 +36,9 @@
 | FR-09 | 히스토리 기능 (최근 10건) | MEDIUM | ✅ | `reaction-game.tsx:117-120,227-246` |
 | FR-10 | 모바일 전체화면 터치 | HIGH | ✅ | `reaction-game.tsx:253-255` |
 | FR-11 | 게임 중 강제 종료 | HIGH | ✅ | `reaction-game.tsx:90-96,270-281` |
+| FR-12 | 측정 횟수 사용자 설정 | HIGH | ✅ | `reaction-game.tsx:55-56,85-91,170-200` |
 
-**CRITICAL 3/3, HIGH 6/6, MEDIUM 1/1** - 전체 달성
+**CRITICAL 3/3, HIGH 7/7, MEDIUM 1/1** - 전체 달성
 
 ---
 

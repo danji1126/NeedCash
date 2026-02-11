@@ -71,7 +71,9 @@ interface HistoryItem {
 
 // Component State
 const [phase, setPhase] = useState<Phase>("idle");
-const [round, setRound] = useState(0);             // 현재 라운드 (0~5)
+const [totalRounds, setTotalRounds] = useState(DEFAULT_ROUNDS); // 사용자 설정 라운드 수
+const [roundInput, setRoundInput] = useState(String(DEFAULT_ROUNDS)); // 입력 필드 값
+const [round, setRound] = useState(0);             // 현재 라운드 (0~totalRounds)
 const [rounds, setRounds] = useState<RoundResult[]>([]);
 const [currentTime, setCurrentTime] = useState(0);  // 이번 라운드 ms
 const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -552,6 +554,7 @@ const GAME_COMPONENTS: Record<string, React.ComponentType> = {
 | FR-09 히스토리 | 2.2, 5.6 | `components/game/reaction-game.tsx` |
 | FR-10 모바일 전체화면 | 7 | `components/game/reaction-game.tsx` |
 | FR-11 게임 중 강제 종료 | 7.3 | `components/game/reaction-game.tsx` |
+| FR-12 측정 횟수 사용자 설정 | 2.2, 5.1 | `components/game/reaction-game.tsx` |
 
 ---
 

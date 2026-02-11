@@ -28,7 +28,7 @@
 
 | 카테고리 | 점수 | 상태 |
 |----------|:----:|:----:|
-| FR (기능 요구사항) | 100% (11/11) | PASS |
+| FR (기능 요구사항) | 100% (12/12) | PASS |
 | NFR (비기능 요구사항) | 83% | WARN |
 | Architecture Compliance | 100% | PASS |
 | Convention Compliance | 100% | PASS |
@@ -36,7 +36,7 @@
 
 ---
 
-## 3. FR (기능 요구사항) 분석 - 11/11 PASS
+## 3. FR (기능 요구사항) 분석 - 12/12 PASS
 
 | FR | 요구사항 | 결과 | 비고 |
 |----|---------|:----:|------|
@@ -46,11 +46,12 @@
 | FR-04 | 3단계 화면 전환 | MATCH | Phase type 6종, 전환 로직 일치 |
 | FR-05 | ms 정밀 측정 | MATCH | performance.now() + Math.round() |
 | FR-06 | Too Early 페널티 | MATCH | 1.5초 후 자동 재시도 |
-| FR-07 | 5회 측정 결과 | MATCH | TOTAL_ROUNDS 상수 사용 (개선) |
+| FR-07 | N회 측정 결과 | MATCH | totalRounds 상태 변수 사용 (동적) |
 | FR-08 | 등급/칭호 시스템 | MATCH | S~F 6등급, 동물 칭호 일치 |
-| FR-09 | 히스토리 기능 | MATCH | 최근 10건, FIFO 패턴 일치 |
+| FR-09 | 히스토리 기능 | MATCH | 최근 10건, FIFO 패턴, 라운드 수 표시 |
 | FR-10 | 모바일 전체화면 터치 | MATCH | fixed inset-0 z-50, onPointerDown |
 | FR-11 | 게임 중 강제 종료 | MATCH | 우상단 X 버튼, stopPropagation + handleExit |
+| FR-12 | 측정 횟수 사용자 설정 | MATCH | 기본 5회, 1~20회 +/- 입력 UI, onBlur clamp |
 
 ---
 
