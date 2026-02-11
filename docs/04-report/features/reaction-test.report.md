@@ -14,7 +14,7 @@
 | 완료일 | 2026-02-11 |
 | Match Rate | **95%** (PASS) |
 | 반복 횟수 | 0 (첫 구현에서 통과) |
-| FR 달성률 | 10/10 (100%) |
+| FR 달성률 | 11/11 (100%) |
 | NFR 달성률 | 5/6 (83%) |
 | 빌드 | PASS |
 | 린트 | PASS |
@@ -35,8 +35,9 @@
 | FR-08 | 등급/칭호 시스템 (S~F) | HIGH | ✅ | `reaction-game.tsx:29-41` |
 | FR-09 | 히스토리 기능 (최근 10건) | MEDIUM | ✅ | `reaction-game.tsx:117-120,227-246` |
 | FR-10 | 모바일 전체화면 터치 | HIGH | ✅ | `reaction-game.tsx:253-255` |
+| FR-11 | 게임 중 강제 종료 | HIGH | ✅ | `reaction-game.tsx:90-96,270-281` |
 
-**CRITICAL 3/3, HIGH 5/5, MEDIUM 1/1** - 전체 달성
+**CRITICAL 3/3, HIGH 6/6, MEDIUM 1/1** - 전체 달성
 
 ---
 
@@ -76,11 +77,17 @@ Design 문서에서 "인라인 서브 컴포넌트로 구성, 별도 파일 불�
 
 ```
 idle ──[시작]──▶ waiting ──[2~5초]──▶ go ──[클릭]──▶ roundResult ──[다음]──▶ waiting
-                   │                                      │
-                   │ [Too Early]                           │ [5회 완료]
-                   ▼                                      ▼
+                   │                  │                   │
+                   │ [Too Early]      │ [X 종료]           │ [5회 완료]
+                   ▼                  ▼                   ▼
                 tooEarly ──[1.5초]──▶ waiting           result ──[재도전]──▶ waiting
+                   │
+                   │ [X 종료]
+                   ▼
+                  idle
 ```
+
+모든 게임 phase(waiting, go, tooEarly, roundResult)에서 우상단 X 버튼으로 idle 복귀 가능.
 
 6개 phase를 단일 `useState<Phase>`로 관리. 모든 전환은 `handleClick` 콜백 내에서 현재 phase에 따라 분기 처리.
 

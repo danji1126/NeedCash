@@ -118,7 +118,8 @@
         "FR-07",
         "FR-08",
         "FR-09",
-        "FR-10"
+        "FR-10",
+        "FR-11"
       ],
       "documents": {
         "plan": "docs/01-plan/features/reaction-test.plan.md",

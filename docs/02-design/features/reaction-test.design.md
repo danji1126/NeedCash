@@ -418,6 +418,14 @@ const BG_COLORS: Record<string, string> = {
 - `cursor-pointer select-none` 으로 텍스트 선택 방지
 - `onPointerDown` 사용 (onClick보다 빠름, 터치 디바이스 최적)
 
+### 7.3 게임 중 강제 종료
+
+- 전체화면 오버레이 우상단에 X(닫기) 버튼 배치
+- `e.stopPropagation()`으로 `handleClick` 전파 방지
+- 클릭 시 타이머 정리 + 모든 상태 초기화 + `idle` 복귀
+- `handleExit` 함수: `clearTimer()` → state reset → `setPhase("idle")`
+- 스타일: `text-white/40 hover:text-white/80`, 반투명으로 게임 방해 최소화
+
 ### 7.2 모바일 대응
 
 | 항목 | 대응 |
@@ -543,6 +551,7 @@ const GAME_COMPONENTS: Record<string, React.ComponentType> = {
 | FR-08 등급/칭호 시스템 | 3 | `components/game/reaction-game.tsx` |
 | FR-09 히스토리 | 2.2, 5.6 | `components/game/reaction-game.tsx` |
 | FR-10 모바일 전체화면 | 7 | `components/game/reaction-game.tsx` |
+| FR-11 게임 중 강제 종료 | 7.3 | `components/game/reaction-game.tsx` |
 
 ---
 

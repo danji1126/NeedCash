@@ -28,7 +28,7 @@
 
 | 카테고리 | 점수 | 상태 |
 |----------|:----:|:----:|
-| FR (기능 요구사항) | 100% | PASS |
+| FR (기능 요구사항) | 100% (11/11) | PASS |
 | NFR (비기능 요구사항) | 83% | WARN |
 | Architecture Compliance | 100% | PASS |
 | Convention Compliance | 100% | PASS |
@@ -36,7 +36,7 @@
 
 ---
 
-## 3. FR (기능 요구사항) 분석 - 10/10 PASS
+## 3. FR (기능 요구사항) 분석 - 11/11 PASS
 
 | FR | 요구사항 | 결과 | 비고 |
 |----|---------|:----:|------|
@@ -50,6 +50,7 @@
 | FR-08 | 등급/칭호 시스템 | MATCH | S~F 6등급, 동물 칭호 일치 |
 | FR-09 | 히스토리 기능 | MATCH | 최근 10건, FIFO 패턴 일치 |
 | FR-10 | 모바일 전체화면 터치 | MATCH | fixed inset-0 z-50, onPointerDown |
+| FR-11 | 게임 중 강제 종료 | MATCH | 우상단 X 버튼, stopPropagation + handleExit |
 
 ---
 

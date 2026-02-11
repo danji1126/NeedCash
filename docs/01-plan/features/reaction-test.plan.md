@@ -51,6 +51,7 @@
 | FR-08 | 등급/칭호 시스템 | HIGH | S(<200ms)~F(>500ms) 6단계, 동물 비유 칭호 |
 | FR-09 | 히스토리 기능 | MEDIUM | 최근 10건 평균 기록 저장, 기존 게임 패턴 동일 |
 | FR-10 | 모바일 전체화면 터치 | HIGH | 전체 영역 터치 가능, 한 손 조작 최적화 |
+| FR-11 | 게임 중 강제 종료 | HIGH | 전체화면 오버레이에서 X 버튼으로 idle로 복귀 |
 
 ### Non-Functional Requirements
 
@@ -93,8 +94,8 @@ idle → [시작 클릭] → waiting → [랜덤 2~5초] → go → [사용자 �
 | `idle` | 기본 테마 | "시작하기" 클릭 | → waiting |
 | `waiting` | 빨강 계열 | 화면 클릭 | → tooEarly (페널티) |
 | `go` | 초록 계열 | 화면 클릭 | → roundResult (ms 기록) |
-| `tooEarly` | 노랑 계열 | 자동 (1.5초 후) | → waiting (재시도) |
-| `roundResult` | 기본 테마 | 자동 (1.5초 후) / 클릭 | → waiting (다음 라운드) 또는 → result (5회 완료) |
+| `tooEarly` | 노랑 계열 | 자동 (1.5초 후) / X 버튼 | → waiting (재시도) / → idle (종료) |
+| `roundResult` | 기본 테마 | 자동 (1.5초 후) / 클릭 / X 버튼 | → waiting (다음 라운드) 또는 → result (5회 완료) / → idle (종료) |
 | `result` | 기본 테마 | "다시 도전" 클릭 | → waiting (새 세션) |
 
 ### 등급 시스템

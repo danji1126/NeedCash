@@ -87,6 +87,15 @@ export function ReactionGame() {
     startRound();
   }, [clearTimer, startRound]);
 
+  const handleExit = useCallback(() => {
+    clearTimer();
+    setPhase("idle");
+    setRound(0);
+    setRounds([]);
+    setCurrentTime(0);
+    roundRef.current = 0;
+  }, [clearTimer]);
+
   const handleClick = useCallback(() => {
     if (phase === "idle" || phase === "result") return;
 
@@ -256,6 +265,20 @@ export function ReactionGame() {
       animate={{ backgroundColor: BG_COLORS[phase] ?? "#1e293b" }}
       transition={{ duration: 0.15 }}
     >
+      <button
+        onPointerDown={(e) => {
+          e.stopPropagation();
+          handleExit();
+        }}
+        className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full text-white/40 transition-colors hover:bg-white/10 hover:text-white/80 sm:right-6 sm:top-6"
+        aria-label="게임 종료"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
+
       <AnimatePresence mode="wait">
         {phase === "waiting" && (
           <motion.div
