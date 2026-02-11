@@ -47,6 +47,12 @@ export const GAMES: Game[] = [
     description: "당신의 반응속도는 몇 ms? 지금 테스트하세요",
     icon: "bolt",
   },
+  {
+    slug: "color-sense",
+    title: "Color Sense Test",
+    description: "남들과 다른 색을 찾아보세요! 당신의 색감 능력은?",
+    icon: "eye",
+  },
 ];
 
 // ── 이력서 데이터 ──

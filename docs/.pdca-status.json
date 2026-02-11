@@ -6,9 +6,10 @@
     "web",
     "react-best-practices",
     "animal-face",
-    "reaction-test"
+    "reaction-test",
+    "color-sense"
   ],
-  "primaryFeature": "reaction-test",
+  "primaryFeature": "color-sense",
   "features": {
     "project-init": {
       "phase": "completed",
@@ -138,6 +139,41 @@
         "do": "completed",
         "check": "completed",
         "report": "completed"
+      }
+    },
+    "color-sense": {
+      "phase": "check",
+      "phaseNumber": 4,
+      "matchRate": 95,
+      "iterationCount": 0,
+      "requirements": [
+        "FR-01",
+        "FR-02",
+        "FR-03",
+        "FR-04",
+        "FR-05",
+        "FR-06",
+        "FR-07",
+        "FR-08",
+        "FR-09",
+        "FR-10",
+        "FR-11",
+        "FR-12"
+      ],
+      "documents": {
+        "plan": "docs/01-plan/features/color-sense.plan.md",
+        "design": "docs/02-design/features/color-sense.design.md",
+        "analysis": "docs/03-analysis/color-sense.analysis.md"
+      },
+      "timestamps": {
+        "started": "2026-02-11T10:00:00.000Z",
+        "lastUpdated": "2026-02-11T11:00:00.000Z"
+      },
+      "tasks": {
+        "plan": "completed",
+        "design": "completed",
+        "do": "completed",
+        "check": "completed"
       }
     }
   },
