@@ -15,11 +15,15 @@ const LottoGame = dynamic(() =>
 const AnimalFaceGame = dynamic(() =>
   import("@/components/game/animal-face").then((m) => m.AnimalFaceGame),
 );
+const ReactionGame = dynamic(() =>
+  import("@/components/game/reaction-game").then((m) => m.ReactionGame),
+);
 
 const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   dice: DiceGame,
   lotto: LottoGame,
   "animal-face": AnimalFaceGame,
+  reaction: ReactionGame,
 };
 
 interface Props {

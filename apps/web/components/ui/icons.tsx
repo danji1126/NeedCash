@@ -160,7 +160,7 @@ export function AnimalIcon({ animal, className = "w-6 h-6" }: AnimalIconProps) {
 // UI 아이콘
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type UIIconType = "camera" | "video" | "capture" | "search" | "robot" | "warning" | "dice" | "clover" | "paw";
+export type UIIconType = "camera" | "video" | "capture" | "search" | "robot" | "warning" | "dice" | "clover" | "paw" | "bolt";
 
 interface UIIconProps extends IconProps {
   icon: UIIconType;
@@ -230,6 +230,11 @@ export function UIIcon({ icon, className = "w-6 h-6" }: UIIconProps) {
         <circle cx="18" cy="10" r="2.5" />
         <circle cx="8.5" cy="5.5" r="2" />
         <circle cx="15.5" cy="5.5" r="2" />
+      </svg>
+    ),
+    bolt: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-label="번개">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
       </svg>
     ),
   };

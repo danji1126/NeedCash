@@ -1,13 +1,14 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-02-03T04:40:07.471Z",
+  "lastUpdated": "2026-02-11T00:18:38.295Z",
   "activeFeatures": [
     "project-init",
     "web",
     "react-best-practices",
-    "animal-face"
+    "animal-face",
+    "reaction-test"
   ],
-  "primaryFeature": "animal-face",
+  "primaryFeature": "reaction-test",
   "features": {
     "project-init": {
       "phase": "completed",
@@ -63,9 +64,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-02T05:09:06.184Z",
-        "lastUpdated": "2026-02-03T04:40:07.471Z"
+        "lastUpdated": "2026-02-11T00:18:38.295Z"
       },
-      "lastFile": "/Users/jiinbae/dev/eduProjects/NeedCash/apps/web/components/game/animal-face.tsx"
+      "lastFile": "/Users/jiinbae/dev/eduProjects/NeedCash/apps/web/components/game/reaction-game.tsx"
     },
     "animal-face": {
       "phase": "completed",
@@ -93,6 +94,41 @@
       "timestamps": {
         "started": "2026-02-03T14:00:00.000Z",
         "lastUpdated": "2026-02-03T16:30:00.000Z"
+      },
+      "tasks": {
+        "plan": "completed",
+        "design": "completed",
+        "do": "completed",
+        "check": "completed",
+        "report": "completed"
+      }
+    },
+    "reaction-test": {
+      "phase": "completed",
+      "phaseNumber": 6,
+      "matchRate": 95,
+      "iterationCount": 0,
+      "requirements": [
+        "FR-01",
+        "FR-02",
+        "FR-03",
+        "FR-04",
+        "FR-05",
+        "FR-06",
+        "FR-07",
+        "FR-08",
+        "FR-09",
+        "FR-10"
+      ],
+      "documents": {
+        "plan": "docs/01-plan/features/reaction-test.plan.md",
+        "design": "docs/02-design/features/reaction-test.design.md",
+        "analysis": "docs/03-analysis/reaction-test.analysis.md",
+        "report": "docs/04-report/features/reaction-test.report.md"
+      },
+      "timestamps": {
+        "started": "2026-02-11T00:00:00.000Z",
+        "lastUpdated": "2026-02-11T01:00:00.000Z"
       },
       "tasks": {
         "plan": "completed",
@@ -142,7 +178,7 @@
   "session": {
     "startedAt": "2026-02-02T04:21:43.612Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-02-03T04:40:07.471Z"
+    "lastActivity": "2026-02-11T00:18:38.295Z"
   },
   "history": [
     {
@@ -639,6 +675,186 @@
     },
     {
       "timestamp": "2026-02-03T04:40:07.471Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:04:43.397Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:11:39.069Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:11:52.295Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:12:07.097Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:12:21.163Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:12:37.467Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:12:48.103Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:13:03.058Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:13:14.765Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:13:25.927Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:13:36.473Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:13:47.127Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:13:58.399Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:14:08.328Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:14:18.516Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:14:29.169Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:14:39.700Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:14:50.904Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:15:02.928Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:15:13.890Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:15:37.016Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:16:08.092Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:16:19.125Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:16:56.571Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-03T07:17:06.217Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-11T00:17:31.899Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-11T00:17:40.351Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-11T00:17:46.857Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-11T00:17:53.873Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-11T00:18:38.295Z",
       "feature": "web",
       "phase": "do",
       "action": "updated"

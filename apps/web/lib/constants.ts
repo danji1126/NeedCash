@@ -41,6 +41,12 @@ export const GAMES: Game[] = [
     description: "카메라로 셀카를 찍으면 당신의 동물상을 알려드려요",
     icon: "paw",
   },
+  {
+    slug: "reaction",
+    title: "Reaction Test",
+    description: "당신의 반응속도는 몇 ms? 지금 테스트하세요",
+    icon: "bolt",
+  },
 ];
 
 // ── 이력서 데이터 ──
