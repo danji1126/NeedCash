@@ -36,8 +36,19 @@ apps/
     public/                     # 정적 파일 (이미지, 폰트)
   mobile/
     needcash_app/               # Flutter 앱 (차후)
-doc/                            # AI 작업 문서 및 출력물
+docs/
+  01-plan/                      # 기획 문서
+  02-design/                    # 설계 문서
+  03-analysis/                  # 분석 문서
+  04-report/                    # 보고서
+  brainstorm/                   # 브레인스토밍 문서 (아이디어, 회의록)
 ```
+
+## 문서 규칙
+
+- **브레인스토밍/아이디어 문서**: `docs/brainstorm/` 폴더에 생성
+- **PDCA 문서**: `docs/01-plan/`, `docs/02-design/`, `docs/03-analysis/`, `docs/04-report/`에 각각 생성
+- 브레인스토밍 문서 네이밍: `{주제}.brainstorm.md` (예: `multi-design.brainstorm.md`)
 
 ## 디자인 가이드
 

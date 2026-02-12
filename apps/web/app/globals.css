@@ -19,39 +19,230 @@
   --color-code-bg: var(--code-bg);
 }
 
-/* Light theme (default) - Warren Mahoney inspired */
+/* ══════════════════════════════════════
+   THEME LAYER: Color tokens (data-theme)
+   ══════════════════════════════════════ */
+
+/* ── Default (fallback before JS sets data-theme) ── */
+
 :root {
-  --bg: #ffffff;
-  --bg-secondary: #f7f7f7;
-  --bg-tertiary: #ececec;
-  --text: #0a0a0a;
-  --text-secondary: #555555;
-  --text-muted: #999999;
-  --border: #e0e0e0;
-  --accent: #0a0a0a;
-  --accent-hover: #333333;
-  --card-bg: #ffffff;
-  --card-border: #ececec;
-  --code-bg: #f5f5f5;
+  --bg: #0A0E0A; --bg-secondary: #0F150F; --bg-tertiary: #151D15;
+  --text: #D0F0D0; --text-secondary: #7AB87A; --text-muted: #3D6A3D;
+  --border: #1A2A1A; --accent: #33FF33; --accent-hover: #66FF66;
+  --card-bg: #0D120D; --card-border: #1A2A1A; --code-bg: #0F150F;
 }
 
-/* Dark theme */
-[data-theme="dark"] {
-  --bg: #0a0a0a;
-  --bg-secondary: #141414;
-  --bg-tertiary: #1e1e1e;
-  --text: #f0f0f0;
-  --text-secondary: #a0a0a0;
-  --text-muted: #666666;
-  --border: #222222;
-  --accent: #f0f0f0;
-  --accent-hover: #cccccc;
-  --card-bg: #111111;
-  --card-border: #1e1e1e;
-  --code-bg: #1a1a1a;
+/* ── Editorial themes ── */
+
+[data-theme="editorial-light"] {
+  --bg: #ffffff; --bg-secondary: #f7f7f7; --bg-tertiary: #ececec;
+  --text: #0a0a0a; --text-secondary: #555555; --text-muted: #999999;
+  --border: #e0e0e0; --accent: #0a0a0a; --accent-hover: #333333;
+  --card-bg: #ffffff; --card-border: #ececec; --code-bg: #f5f5f5;
 }
 
-/* Theme transition - scoped to key elements instead of * selector */
+[data-theme="editorial-dark"] {
+  --bg: #0a0a0a; --bg-secondary: #141414; --bg-tertiary: #1e1e1e;
+  --text: #f0f0f0; --text-secondary: #a0a0a0; --text-muted: #666666;
+  --border: #222222; --accent: #f0f0f0; --accent-hover: #cccccc;
+  --card-bg: #111111; --card-border: #1e1e1e; --code-bg: #1a1a1a;
+}
+
+[data-theme="editorial-cream"] {
+  --bg: #FAF7F2; --bg-secondary: #F0EBE1; --bg-tertiary: #E6DFD1;
+  --text: #2C2014; --text-secondary: #6B5B4A; --text-muted: #A09181;
+  --border: #DDD4C4; --accent: #8A5025; --accent-hover: #A46332;
+  --card-bg: #FAF7F2; --card-border: #E6DFD1; --code-bg: #F0EBE1;
+}
+
+[data-theme="editorial-ink"] {
+  --bg: #0B1929; --bg-secondary: #0F2340; --bg-tertiary: #152D50;
+  --text: #D4E5F5; --text-secondary: #8AACC8; --text-muted: #4A7090;
+  --border: #1A3555; --accent: #C9A84C; --accent-hover: #D9BC6E;
+  --card-bg: #0D1E35; --card-border: #1A3555; --code-bg: #0F2340;
+}
+
+/* ── Bento themes ── */
+
+[data-theme="bento-clean"] {
+  --bg: #F0F2F5; --bg-secondary: #E4E7EB; --bg-tertiary: #D5D9E0;
+  --text: #1A1A2E; --text-secondary: #4A4A6A; --text-muted: #8888A8;
+  --border: #D0D4DC; --accent: #0066CC; --accent-hover: #0055AA;
+  --card-bg: #FFFFFF; --card-border: #E8EBF0; --code-bg: #F5F6F8;
+}
+
+[data-theme="bento-night"] {
+  --bg: #111113; --bg-secondary: #1A1A1F; --bg-tertiary: #242430;
+  --text: #E8E8F0; --text-secondary: #9898B0; --text-muted: #5A5A78;
+  --border: #2A2A38; --accent: #00D4AA; --accent-hover: #00E8BB;
+  --card-bg: #1A1A1F; --card-border: #2A2A38; --code-bg: #1E1E28;
+}
+
+[data-theme="bento-pastel"] {
+  --bg: #F0EEFA; --bg-secondary: #E6E0F5; --bg-tertiary: #DAD2EF;
+  --text: #2A2040; --text-secondary: #5A4E78; --text-muted: #9088B0;
+  --border: #D0C8E8; --accent: #6C5CE7; --accent-hover: #7D6FF0;
+  --card-bg: #FFFFFF; --card-border: #E8E2F5; --code-bg: #F5F0FF;
+}
+
+[data-theme="bento-sunset"] {
+  --bg: #FFF8F0; --bg-secondary: #FFF0E0; --bg-tertiary: #FFE8D0;
+  --text: #2A1A10; --text-secondary: #6A4A30; --text-muted: #A08868;
+  --border: #F0D8C0; --accent: #E8633A; --accent-hover: #F07040;
+  --card-bg: #FFFFFF; --card-border: #F5E8DA; --code-bg: #FFF5EE;
+}
+
+/* ── Brutalist themes ── */
+
+[data-theme="brutal-terminal"] {
+  --bg: #0A0E0A; --bg-secondary: #0F150F; --bg-tertiary: #151D15;
+  --text: #D0F0D0; --text-secondary: #7AB87A; --text-muted: #3D6A3D;
+  --border: #1A2A1A; --accent: #33FF33; --accent-hover: #66FF66;
+  --card-bg: #0D120D; --card-border: #1A2A1A; --code-bg: #0F150F;
+}
+
+[data-theme="brutal-paper"] {
+  --bg: #FFFFFF; --bg-secondary: #F5F5F5; --bg-tertiary: #EEEEEE;
+  --text: #000000; --text-secondary: #333333; --text-muted: #888888;
+  --border: #000000; --accent: #000000; --accent-hover: #333333;
+  --card-bg: #FFFFFF; --card-border: #000000; --code-bg: #F5F5F5;
+}
+
+[data-theme="brutal-warning"] {
+  --bg: #0A0A0A; --bg-secondary: #111111; --bg-tertiary: #1A1A1A;
+  --text: #FFD600; --text-secondary: #CCAA00; --text-muted: #887700;
+  --border: #FFD600; --accent: #FFD600; --accent-hover: #FFE640;
+  --card-bg: #0E0E0E; --card-border: #FFD600; --code-bg: #111111;
+}
+
+[data-theme="brutal-blueprint"] {
+  --bg: #0A1628; --bg-secondary: #0E1E38; --bg-tertiary: #142848;
+  --text: #E0F0FF; --text-secondary: #90B8E0; --text-muted: #4A7AA8;
+  --border: #4A9EFF; --accent: #4A9EFF; --accent-hover: #70B4FF;
+  --card-bg: #0C1A30; --card-border: #4A9EFF; --code-bg: #0E1E38;
+}
+
+/* ── Glass themes ── */
+
+[data-theme="glass-aurora"] {
+  --bg: #0A0A1A; --bg-secondary: #12122A; --bg-tertiary: #1A1A3A;
+  --text: #F0F0F0; --text-secondary: #B0B0D0; --text-muted: #6060A0;
+  --border: rgba(255,255,255,0.12); --accent: #A78BFA; --accent-hover: #B9A3FB;
+  --card-bg: rgba(255,255,255,0.06); --card-border: rgba(255,255,255,0.10);
+  --code-bg: rgba(255,255,255,0.04);
+  --gradient-1: #4C1D95; --gradient-2: #065F46; --gradient-3: #1E1B4B;
+}
+
+[data-theme="glass-frost"] {
+  --bg: #E8F0F8; --bg-secondary: #D8E8F5; --bg-tertiary: #C8D8F0;
+  --text: #0A1929; --text-secondary: #3D5A73; --text-muted: #7A97AD;
+  --border: rgba(0,0,0,0.08); --accent: #3B82F6; --accent-hover: #60A5FA;
+  --card-bg: rgba(255,255,255,0.60); --card-border: rgba(255,255,255,0.80);
+  --code-bg: rgba(255,255,255,0.40);
+  --gradient-1: #BFDBFE; --gradient-2: #E0E7FF; --gradient-3: #DBEAFE;
+}
+
+[data-theme="glass-rose"] {
+  --bg: #12090C; --bg-secondary: #1A0F13; --bg-tertiary: #24161B;
+  --text: #F0E0E4; --text-secondary: #B09098; --text-muted: #704858;
+  --border: rgba(255,255,255,0.10); --accent: #D4919C; --accent-hover: #E0A5AE;
+  --card-bg: rgba(255,255,255,0.05); --card-border: rgba(255,255,255,0.08);
+  --code-bg: rgba(255,255,255,0.03);
+  --gradient-1: #831843; --gradient-2: #78350F; --gradient-3: #1C0A10;
+}
+
+[data-theme="glass-ocean"] {
+  --bg: #0A1628; --bg-secondary: #0F1D32; --bg-tertiary: #15253D;
+  --text: #D4E5F5; --text-secondary: #7A97AD; --text-muted: #3D5A73;
+  --border: rgba(255,255,255,0.10); --accent: #06B6D4; --accent-hover: #22D3EE;
+  --card-bg: rgba(255,255,255,0.05); --card-border: rgba(255,255,255,0.08);
+  --code-bg: rgba(255,255,255,0.03);
+  --gradient-1: #164E63; --gradient-2: #064E3B; --gradient-3: #0A1628;
+}
+
+/* ══════════════════════════════════════
+   DESIGN LAYER: Structure tokens (data-design)
+   ══════════════════════════════════════ */
+
+[data-design="editorial"] {
+  --radius-card: 0px;
+  --radius-button: 0px;
+  --card-shadow: none;
+  --border-width: 1px;
+  --transition-duration: 0.5s;
+  --font-heading-weight: 600;
+  --letter-spacing-heading: -0.02em;
+}
+
+[data-design="bento"] {
+  --radius-card: 16px;
+  --radius-button: 12px;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --border-width: 1px;
+  --transition-duration: 0.3s;
+  --font-heading-weight: 500;
+  --letter-spacing-heading: -0.02em;
+}
+
+[data-design="brutalist"] {
+  --font-heading: var(--font-jetbrains);
+  --font-body: var(--font-jetbrains);
+  --radius-card: 0px;
+  --radius-button: 0px;
+  --card-shadow: none;
+  --border-width: 2px;
+  --transition-duration: 0.05s;
+  --font-heading-weight: 700;
+  --letter-spacing-heading: 0.05em;
+}
+
+[data-design="glass"] {
+  --font-heading: var(--font-plus-jakarta);
+  --radius-card: 16px;
+  --radius-button: 999px;
+  --card-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  --border-width: 1px;
+  --transition-duration: 0.5s;
+  --font-heading-weight: 600;
+  --letter-spacing-heading: -0.01em;
+}
+
+/* ── Glass background animation ── */
+
+@keyframes glass-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+/* ── Brutalist terminal scanline ── */
+
+[data-design="brutalist"][data-theme="brutal-terminal"] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(0,255,0,0.015) 2px, rgba(0,255,0,0.015) 4px
+  );
+}
+
+[data-design="brutalist"][data-theme="brutal-terminal"] h1,
+[data-design="brutalist"][data-theme="brutal-terminal"] h2,
+[data-design="brutalist"][data-theme="brutal-terminal"] h3 {
+  text-shadow: 0 0 10px rgba(51,255,51,0.3);
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   GLOBAL STYLES
+   ══════════════════════════════════════ */
+
 body,
 header,
 main,

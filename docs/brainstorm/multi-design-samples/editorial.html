@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko" data-design="editorial" data-theme="editorial-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeedCash - Editorial Design Sample</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── Theme Variables ── */
+  :root {
+    --bg: #ffffff; --bg-secondary: #f7f7f7; --bg-tertiary: #ececec;
+    --text: #0a0a0a; --text-secondary: #555555; --text-muted: #999999;
+    --border: #e0e0e0; --accent: #0a0a0a; --accent-hover: #333333;
+    --card-bg: #ffffff; --card-border: #ececec; --code-bg: #f5f5f5;
+  }
+  [data-theme="editorial-dark"] {
+    --bg: #0a0a0a; --bg-secondary: #141414; --bg-tertiary: #1e1e1e;
+    --text: #f0f0f0; --text-secondary: #a0a0a0; --text-muted: #666666;
+    --border: #222222; --accent: #f0f0f0; --accent-hover: #cccccc;
+    --card-bg: #111111; --card-border: #1e1e1e; --code-bg: #1a1a1a;
+  }
+  [data-theme="editorial-cream"] {
+    --bg: #FAF7F2; --bg-secondary: #F0EBE1; --bg-tertiary: #E6DFD1;
+    --text: #2C2014; --text-secondary: #6B5B4A; --text-muted: #A09181;
+    --border: #DDD4C4; --accent: #8A5025; --accent-hover: #A46332;
+    --card-bg: #FAF7F2; --card-border: #E6DFD1; --code-bg: #F0EBE1;
+  }
+  [data-theme="editorial-ink"] {
+    --bg: #0B1929; --bg-secondary: #0F2340; --bg-tertiary: #152D50;
+    --text: #D4E5F5; --text-secondary: #8AACC8; --text-muted: #4A7090;
+    --border: #1A3555; --accent: #C9A84C; --accent-hover: #D9BC6E;
+    --card-bg: #0D1E35; --card-border: #1A3555; --code-bg: #0F2340;
+  }
+
+  /* ── Base ── */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Pretendard Variable', 'Plus Jakarta Sans', -apple-system, sans-serif;
+    font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s cubic-bezier(0.215,0.61,0.355,1),
+                color 0.4s cubic-bezier(0.215,0.61,0.355,1);
+  }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  /* ── Theme Picker ── */
+  .theme-picker {
+    position: fixed; bottom: 24px; right: 24px; z-index: 100;
+    display: flex; gap: 8px; padding: 12px 16px;
+    background: var(--bg-secondary); border: 1px solid var(--border);
+    border-radius: 8px; font-size: 12px;
+  }
+  .theme-btn {
+    width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border);
+    cursor: pointer; transition: transform 0.2s;
+  }
+  .theme-btn:hover { transform: scale(1.15); }
+  .theme-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+
+  /* ── Header ── */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    backdrop-filter: blur(12px);
+  }
+  header nav {
+    max-width: 72rem; margin: 0 auto; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+  }
+  .logo {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.2em; color: var(--text); text-decoration: none;
+  }
+  .logo:hover { opacity: 0.5; }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    font-size: 13px; letter-spacing: 0.04em; color: var(--text-secondary);
+    text-decoration: none; transition: opacity 0.3s;
+  }
+  .nav-links a:hover { opacity: 0.5; }
+  .header-divider {
+    height: 1px; background: color-mix(in srgb, var(--border) 40%, transparent);
+    margin: 0 2rem;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    max-width: 72rem; margin: 0 auto; padding: 0 2rem;
+    min-height: 85vh; display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-label {
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--text-muted);
+  }
+  .hero h1 {
+    margin-top: 1.5rem; font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700;
+    line-height: 1.1; letter-spacing: -0.03em;
+  }
+  .hero h1 span { color: var(--text-muted); }
+  .hero .desc {
+    margin-top: 2rem; max-width: 32rem; color: var(--text-secondary); line-height: 1.7;
+  }
+  .hero-actions { margin-top: 2.5rem; display: flex; gap: 1rem; }
+  .hero-actions a {
+    font-size: 14px; font-weight: 500; letter-spacing: 0.04em;
+    text-decoration: none; padding-bottom: 4px; transition: opacity 0.3s;
+  }
+  .hero-actions a:first-child {
+    color: var(--text); border-bottom: 1px solid var(--text);
+  }
+  .hero-actions a:last-child {
+    color: var(--text-secondary); border-bottom: 1px solid var(--text-muted);
+  }
+  .hero-actions a:hover { opacity: 0.5; }
+
+  /* ── Sections ── */
+  .sections {
+    max-width: 72rem; margin: 0 auto; padding: 0 2rem 6rem;
+  }
+  .section-label {
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--text-muted);
+  }
+  .section-divider {
+    margin-top: 0.75rem;
+    height: 1px; background: color-mix(in srgb, var(--border) 60%, transparent);
+  }
+  .section-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+  }
+  .section-card {
+    display: flex; flex-direction: column; padding: 2rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+    transition: background-color 0.5s cubic-bezier(0.215,0.61,0.355,1);
+    text-decoration: none; color: inherit; cursor: pointer;
+  }
+  .section-card:nth-child(even) {
+    border-left: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  }
+  .section-card:hover { background: var(--bg-secondary); }
+  .section-card h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .section-card h3 .arrow {
+    margin-left: 8px; color: var(--text-muted); display: inline-block;
+    transition: transform 0.5s;
+  }
+  .section-card:hover h3 .arrow { transform: translateX(4px); }
+  .section-card p {
+    margin-top: 0.5rem; font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  /* ── Posts ── */
+  .posts { max-width: 72rem; margin: 0 auto; padding: 0 2rem 6rem; }
+  .post-item {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+    transition: all 0.5s cubic-bezier(0.215,0.61,0.355,1);
+    cursor: pointer;
+  }
+  .post-item:hover { background: var(--bg-secondary); padding: 1.5rem 1rem; }
+  .post-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .post-desc { margin-top: 4px; font-size: 14px; color: var(--text-secondary); }
+  .post-date { font-size: 13px; color: var(--text-muted); white-space: nowrap; margin-left: 2rem; }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 5rem; max-width: 72rem; margin-left: auto; margin-right: auto;
+    padding: 0 2rem;
+  }
+  footer .divider {
+    height: 1px; background: color-mix(in srgb, var(--border) 40%, transparent);
+  }
+  footer .inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 2rem 0;
+  }
+  footer .copy { font-size: 13px; letter-spacing: 0.04em; color: var(--text-muted); }
+  footer .footer-links { display: flex; gap: 1rem; }
+  footer .footer-links a {
+    font-size: 13px; letter-spacing: 0.04em; color: var(--text-muted);
+    text-decoration: none; transition: opacity 0.3s;
+  }
+  footer .footer-links a:hover { opacity: 0.6; }
+
+  @media (max-width: 640px) {
+    .section-grid { grid-template-columns: 1fr; }
+    .section-card:nth-child(even) { border-left: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Theme Picker -->
+<div class="theme-picker">
+  <div class="theme-btn active" style="background:#fff;border-color:#0a0a0a" onclick="setTheme('editorial-light')" title="Light"></div>
+  <div class="theme-btn" style="background:#0a0a0a" onclick="setTheme('editorial-dark')" title="Dark"></div>
+  <div class="theme-btn" style="background:#FAF7F2" onclick="setTheme('editorial-cream')" title="Cream"></div>
+  <div class="theme-btn" style="background:#0B1929" onclick="setTheme('editorial-ink')" title="Ink"></div>
+</div>
+
+<header>
+  <nav>
+    <a href="#" class="logo">NeedCash</a>
+    <div class="nav-links">
+      <a href="#">Blog</a>
+      <a href="#">Game</a>
+      <a href="#">Ads</a>
+      <a href="#">Resume</a>
+    </div>
+  </nav>
+  <div class="header-divider"></div>
+</header>
+
+<section class="hero">
+  <p class="hero-label">Prototype Hub</p>
+  <h1>
+    Everything is possible<br>
+    <span>with Prototyping</span>
+  </h1>
+  <p class="desc">Games, blogs, ads, resumes — all in one space for rapid prototyping and creative experimentation.</p>
+  <div class="hero-actions">
+    <a href="#">Read Blog</a>
+    <a href="#">Play Games</a>
+  </div>
+</section>
+
+<section class="sections">
+  <p class="section-label">Explore</p>
+  <div class="section-divider"></div>
+  <div class="section-grid">
+    <div class="section-card">
+      <h3>Blog <span class="arrow">&rarr;</span></h3>
+      <p>Stories and thoughts on development</p>
+    </div>
+    <div class="section-card">
+      <h3>Game <span class="arrow">&rarr;</span></h3>
+      <p>A collection of simple web games</p>
+    </div>
+    <div class="section-card">
+      <h3>Ads <span class="arrow">&rarr;</span></h3>
+      <p>Landing page experiments</p>
+    </div>
+    <div class="section-card">
+      <h3>Resume <span class="arrow">&rarr;</span></h3>
+      <p>Interactive curriculum vitae</p>
+    </div>
+  </div>
+</section>
+
+<section class="posts">
+  <p class="section-label">Latest Posts</p>
+  <div class="section-divider"></div>
+  <div class="post-item">
+    <div>
+      <div class="post-title">Building a Prototype Hub with Next.js</div>
+      <div class="post-desc">How I set up a multi-section prototype project from scratch</div>
+    </div>
+    <div class="post-date">2026-02-10</div>
+  </div>
+  <div class="post-item">
+    <div>
+      <div class="post-title">Reaction Test Game Deep Dive</div>
+      <div class="post-desc">Implementing ms-precision timing with requestAnimationFrame</div>
+    </div>
+    <div class="post-date">2026-02-08</div>
+  </div>
+  <div class="post-item">
+    <div>
+      <div class="post-title">Color Sense Test: Progressive Difficulty</div>
+      <div class="post-desc">Designing a game that adapts to player skill level</div>
+    </div>
+    <div class="post-date">2026-02-05</div>
+  </div>
+</section>
+
+<footer>
+  <div class="divider"></div>
+  <div class="inner">
+    <p class="copy">&copy; 2026 NeedCash</p>
+    <nav class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+function setTheme(id) {
+  document.documentElement.setAttribute('data-theme', id);
+  document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

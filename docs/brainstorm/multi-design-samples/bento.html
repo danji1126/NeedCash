@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko" data-design="bento" data-theme="bento-clean">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeedCash - Bento Design Sample</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  /* ── Theme Variables ── */
+  :root {
+    --bg: #F0F2F5; --bg-secondary: #E4E7EB; --bg-tertiary: #D5D9E0;
+    --text: #1A1A2E; --text-secondary: #4A4A6A; --text-muted: #8888A8;
+    --border: #D0D4DC; --accent: #0066CC; --accent-hover: #0055AA;
+    --card-bg: #FFFFFF; --card-border: #E8EBF0; --code-bg: #F5F6F8;
+  }
+  [data-theme="bento-night"] {
+    --bg: #111113; --bg-secondary: #1A1A1F; --bg-tertiary: #242430;
+    --text: #E8E8F0; --text-secondary: #9898B0; --text-muted: #5A5A78;
+    --border: #2A2A38; --accent: #00D4AA; --accent-hover: #00E8BB;
+    --card-bg: #1A1A1F; --card-border: #2A2A38; --code-bg: #1E1E28;
+  }
+  [data-theme="bento-pastel"] {
+    --bg: #F0EEFA; --bg-secondary: #E6E0F5; --bg-tertiary: #DAD2EF;
+    --text: #2A2040; --text-secondary: #5A4E78; --text-muted: #9088B0;
+    --border: #D0C8E8; --accent: #6C5CE7; --accent-hover: #7D6FF0;
+    --card-bg: #FFFFFF; --card-border: #E8E2F5; --code-bg: #F5F0FF;
+  }
+  [data-theme="bento-sunset"] {
+    --bg: #FFF8F0; --bg-secondary: #FFF0E0; --bg-tertiary: #FFE8D0;
+    --text: #2A1A10; --text-secondary: #6A4A30; --text-muted: #A08868;
+    --border: #F0D8C0; --accent: #E8633A; --accent-hover: #F07040;
+    --card-bg: #FFFFFF; --card-border: #F5E8DA; --code-bg: #FFF5EE;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  ::selection { background: var(--accent); color: white; }
+
+  /* ── Theme Picker ── */
+  .theme-picker {
+    position: fixed; bottom: 24px; right: 24px; z-index: 100;
+    display: flex; gap: 8px; padding: 12px 16px;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .theme-btn {
+    width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border);
+    cursor: pointer; transition: transform 0.2s;
+  }
+  .theme-btn:hover { transform: scale(1.15); }
+  .theme-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+
+  /* ── Header ── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    padding: 1.5rem 2rem;
+  }
+  header nav {
+    max-width: 80rem; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-size: 16px; font-weight: 600; letter-spacing: -0.02em;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: var(--text-secondary);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── Main Content ── */
+  main {
+    max-width: 80rem; margin: 0 auto; padding: 7rem 2rem 4rem;
+  }
+
+  /* ── Bento Grid ── */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 16px;
+  }
+  .bento-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.3s ease;
+    cursor: pointer;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; justify-content: space-between;
+    overflow: hidden; position: relative;
+  }
+  .bento-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  }
+  .bento-card.hero-card {
+    grid-column: span 2;
+    grid-row: span 2;
+    padding: 3rem;
+  }
+  .bento-card.tall { grid-row: span 2; }
+
+  .bento-card .label {
+    font-size: 13px; font-weight: 500; color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+  .bento-card h2 {
+    font-size: clamp(1.25rem, 2vw, 1.75rem); font-weight: 600;
+    letter-spacing: -0.02em; line-height: 1.3;
+  }
+  .bento-card.hero-card h1 {
+    font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700;
+    letter-spacing: -0.03em; line-height: 1.1; margin-top: auto;
+  }
+  .bento-card.hero-card h1 span { color: var(--text-muted); }
+  .bento-card p {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+  .bento-card .arrow {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--bg); color: var(--text);
+    font-size: 18px; margin-top: auto; align-self: flex-end;
+    transition: background 0.2s, color 0.2s;
+  }
+  .bento-card:hover .arrow { background: var(--accent); color: white; }
+
+  .bento-card .accent-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); margin-bottom: 1rem;
+  }
+  .hero-actions {
+    display: flex; gap: 12px; margin-top: 2rem;
+  }
+  .hero-actions a {
+    padding: 10px 24px; border-radius: 12px; font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .hero-actions a.primary {
+    background: var(--accent); color: white;
+  }
+  .hero-actions a.primary:hover { opacity: 0.85; }
+  .hero-actions a.secondary {
+    background: var(--bg-secondary); color: var(--text);
+  }
+  .hero-actions a.secondary:hover { background: var(--bg-tertiary); }
+
+  /* ── Posts Section ── */
+  .posts-card {
+    grid-column: span 3;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 20px; padding: 2rem;
+  }
+  .posts-card .label {
+    font-size: 13px; font-weight: 500; color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .posts-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
+  .post-mini {
+    padding: 1.25rem; border-radius: 14px;
+    background: var(--bg); border: 1px solid var(--card-border);
+    transition: transform 0.2s, box-shadow 0.2s; cursor: pointer;
+  }
+  .post-mini:hover {
+    transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  }
+  .post-mini .title {
+    font-size: 14px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .post-mini .date {
+    font-size: 12px; color: var(--text-muted); margin-top: 0.5rem;
+  }
+
+  /* ── Footer ── */
+  footer {
+    max-width: 80rem; margin: 2rem auto 0; padding: 2rem;
+    text-align: center;
+  }
+  footer p { font-size: 13px; color: var(--text-muted); }
+
+  @media (max-width: 768px) {
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-card.hero-card, .posts-card { grid-column: span 1; }
+    .bento-card.tall { grid-row: span 1; }
+    .posts-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="theme-picker">
+  <div class="theme-btn active" style="background:#F0F2F5" onclick="setTheme('bento-clean')" title="Clean"></div>
+  <div class="theme-btn" style="background:#111113" onclick="setTheme('bento-night')" title="Night"></div>
+  <div class="theme-btn" style="background:#F0EEFA" onclick="setTheme('bento-pastel')" title="Pastel"></div>
+  <div class="theme-btn" style="background:#FFF8F0" onclick="setTheme('bento-sunset')" title="Sunset"></div>
+</div>
+
+<header>
+  <nav>
+    <a href="#" class="logo">NeedCash</a>
+    <div class="nav-links">
+      <a href="#">Blog</a>
+      <a href="#">Game</a>
+      <a href="#">Ads</a>
+      <a href="#">Resume</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="bento-grid">
+    <!-- Hero (span 2x2) -->
+    <div class="bento-card hero-card">
+      <p class="label">Prototype Hub</p>
+      <h1>
+        Everything is<br>possible with<br><span>Prototyping</span>
+      </h1>
+      <div class="hero-actions">
+        <a href="#" class="primary">Read Blog</a>
+        <a href="#" class="secondary">Play Games</a>
+      </div>
+    </div>
+
+    <!-- Blog -->
+    <div class="bento-card">
+      <div class="accent-dot"></div>
+      <h2>Blog</h2>
+      <p>Stories and thoughts on development</p>
+      <div class="arrow">&nearr;</div>
+    </div>
+
+    <!-- Game -->
+    <div class="bento-card">
+      <div class="accent-dot"></div>
+      <h2>Game</h2>
+      <p>A collection of simple web games</p>
+      <div class="arrow">&nearr;</div>
+    </div>
+
+    <!-- Ads -->
+    <div class="bento-card">
+      <div class="accent-dot"></div>
+      <h2>Ads</h2>
+      <p>Landing page experiments</p>
+      <div class="arrow">&nearr;</div>
+    </div>
+
+    <!-- Resume -->
+    <div class="bento-card">
+      <div class="accent-dot"></div>
+      <h2>Resume</h2>
+      <p>Interactive curriculum vitae</p>
+      <div class="arrow">&nearr;</div>
+    </div>
+
+    <!-- Posts -->
+    <div class="posts-card">
+      <p class="label">Latest Posts</p>
+      <div class="posts-grid">
+        <div class="post-mini">
+          <div class="title">Building a Prototype Hub with Next.js</div>
+          <div class="date">2026-02-10</div>
+        </div>
+        <div class="post-mini">
+          <div class="title">Reaction Test Game Deep Dive</div>
+          <div class="date">2026-02-08</div>
+        </div>
+        <div class="post-mini">
+          <div class="title">Color Sense Test: Progressive Difficulty</div>
+          <div class="date">2026-02-05</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><p>&copy; 2026 NeedCash</p></footer>
+
+<script>
+function setTheme(id) {
+  document.documentElement.setAttribute('data-theme', id);
+  document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

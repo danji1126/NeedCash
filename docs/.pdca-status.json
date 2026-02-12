@@ -1,15 +1,16 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-02-11T00:18:38.295Z",
+  "lastUpdated": "2026-02-12T10:00:00.000Z",
   "activeFeatures": [
     "project-init",
     "web",
     "react-best-practices",
     "animal-face",
     "reaction-test",
-    "color-sense"
+    "color-sense",
+    "multi-design"
   ],
-  "primaryFeature": "color-sense",
+  "primaryFeature": "multi-design",
   "features": {
     "project-init": {
       "phase": "completed",
@@ -142,8 +143,8 @@
       }
     },
     "color-sense": {
-      "phase": "check",
-      "phaseNumber": 4,
+      "phase": "completed",
+      "phaseNumber": 6,
       "matchRate": 95,
       "iterationCount": 0,
       "requirements": [
@@ -163,17 +164,48 @@
       "documents": {
         "plan": "docs/01-plan/features/color-sense.plan.md",
         "design": "docs/02-design/features/color-sense.design.md",
-        "analysis": "docs/03-analysis/color-sense.analysis.md"
+        "analysis": "docs/03-analysis/color-sense.analysis.md",
+        "report": "docs/04-report/features/color-sense.report.md"
       },
       "timestamps": {
         "started": "2026-02-11T10:00:00.000Z",
-        "lastUpdated": "2026-02-11T11:00:00.000Z"
+        "lastUpdated": "2026-02-11T12:00:00.000Z"
       },
       "tasks": {
         "plan": "completed",
         "design": "completed",
         "do": "completed",
-        "check": "completed"
+        "check": "completed",
+        "report": "completed"
+      }
+    },
+    "multi-design": {
+      "phase": "completed",
+      "phaseNumber": 6,
+      "matchRate": 97,
+      "iterationCount": 1,
+      "requirements": [
+        "FR-01", "FR-02", "FR-03", "FR-04", "FR-05", "FR-06",
+        "FR-07", "FR-08", "FR-09", "FR-10", "FR-11", "FR-12",
+        "FR-13", "FR-14", "FR-15", "FR-16", "FR-17"
+      ],
+      "documents": {
+        "plan": "docs/01-plan/features/multi-design.plan.md",
+        "design": "docs/02-design/features/multi-design.design.md",
+        "analysis": "docs/03-analysis/multi-design.analysis.md",
+        "report": "docs/04-report/features/multi-design.report.md"
+      },
+      "timestamps": {
+        "started": "2026-02-12T10:00:00.000Z",
+        "lastUpdated": "2026-02-12T15:30:00.000Z"
+      },
+      "tasks": {
+        "plan": "completed",
+        "design": "completed",
+        "do": "completed",
+        "check": "completed",
+        "act": "completed",
+        "report": "completed"
       }
     }
   },
