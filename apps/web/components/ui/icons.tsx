@@ -160,7 +160,7 @@ export function AnimalIcon({ animal, className = "w-6 h-6" }: AnimalIconProps) {
 // UI 아이콘
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type UIIconType = "camera" | "video" | "capture" | "search" | "robot" | "warning" | "dice" | "clover" | "paw" | "bolt" | "eye";
+export type UIIconType = "camera" | "video" | "capture" | "search" | "robot" | "warning" | "dice" | "clover" | "paw" | "bolt" | "eye" | "brain";
 
 interface UIIconProps extends IconProps {
   icon: UIIconType;
@@ -241,6 +241,14 @@ export function UIIcon({ icon, className = "w-6 h-6" }: UIIconProps) {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-label="눈">
         <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
         <circle cx="12" cy="12" r="3" />
+      </svg>
+    ),
+    brain: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-label="두뇌">
+        <path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0-4 4c0 1.5.8 2.8 2 3.4-.2.6-.3 1.2-.3 1.8a4 4 0 0 0 4 4h.5a4 4 0 0 0 3.8-3h0a4 4 0 0 0 3.8 3h.5a4 4 0 0 0 4-4c0-.6-.1-1.2-.3-1.8a4 4 0 0 0 2-3.4 4 4 0 0 0-4-4V6a4 4 0 0 0-4-4z" />
+        <path d="M12 2v20" />
+        <path d="M8 6h.01" />
+        <path d="M16 6h.01" />
       </svg>
     ),
   };

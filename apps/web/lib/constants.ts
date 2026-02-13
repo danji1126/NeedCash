@@ -53,6 +53,12 @@ export const GAMES: Game[] = [
     description: "남들과 다른 색을 찾아보세요! 당신의 색감 능력은?",
     icon: "eye",
   },
+  {
+    slug: "color-memory",
+    title: "Color Memory",
+    description: "색상 순서를 기억하고 따라해보세요! 당신의 기억력은?",
+    icon: "brain",
+  },
 ];
 
 // ── 이력서 데이터 ──

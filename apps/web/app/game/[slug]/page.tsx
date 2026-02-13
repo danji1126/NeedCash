@@ -21,6 +21,9 @@ const ReactionGame = dynamic(() =>
 const ColorSenseGame = dynamic(() =>
   import("@/components/game/color-sense-game").then((m) => m.ColorSenseGame),
 );
+const ColorMemoryGame = dynamic(() =>
+  import("@/components/game/color-memory-game").then((m) => m.ColorMemoryGame),
+);
 
 const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   dice: DiceGame,
@@ -28,6 +31,7 @@ const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   "animal-face": AnimalFaceGame,
   reaction: ReactionGame,
   "color-sense": ColorSenseGame,
+  "color-memory": ColorMemoryGame,
 };
 
 interface Props {
