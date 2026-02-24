@@ -7,6 +7,7 @@ import { getAllPosts, getPostBySlug, extractHeadings } from "@/lib/mdx";
 import { mdxComponents } from "@/components/blog/mdx-components";
 import { TableOfContents } from "@/components/blog/toc";
 import { MobileToc } from "@/components/blog/mobile-toc";
+import { ArticleJsonLd } from "@/components/seo/json-ld";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -23,6 +24,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.meta.title,
     description: post.meta.description,
+    openGraph: {
+      title: post.meta.title,
+      description: post.meta.description,
+      type: "article",
+      publishedTime: post.meta.date,
+      url: `/blog/${slug}`,
+      tags: post.meta.tags,
+    },
   };
 }
 
@@ -33,6 +42,13 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article className="mx-auto max-w-4xl px-8 py-20">
+      <ArticleJsonLd
+        title={post.meta.title}
+        description={post.meta.description}
+        url={`/blog/${slug}`}
+        datePublished={post.meta.date}
+        tags={post.meta.tags}
+      />
       <Link
         href="/blog"
         className="text-[13px] tracking-wide text-text-muted transition-opacity hover:opacity-50"

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { GAMES } from "@/lib/constants";
 import { UIIcon } from "@/components/ui/icons";
+import { GameJsonLd } from "@/components/seo/json-ld";
 
 const DiceGame = dynamic(() =>
   import("@/components/game/dice-game").then((m) => m.DiceGame),
@@ -48,6 +49,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: game.title,
     description: game.description,
+    openGraph: {
+      title: `${game.title} | NeedCash`,
+      description: game.description,
+      url: `/game/${slug}`,
+    },
   };
 }
 
@@ -61,6 +67,11 @@ export default async function GameDetailPage({ params }: Props) {
 
   return (
     <div className="mx-auto max-w-3xl px-8 py-20">
+      <GameJsonLd
+        name={game.title}
+        description={game.description}
+        url={`/game/${slug}`}
+      />
       <Link
         href="/game"
         className="text-[13px] tracking-wide text-text-muted transition-opacity hover:opacity-50"

@@ -7,13 +7,21 @@ import { ResumeContent } from "@/components/resume/resume-content";
 export const metadata: Metadata = {
   title: "Resume",
   description: "Interactive curriculum vitae",
+  openGraph: {
+    title: "Resume | NeedCash",
+    description: "Interactive curriculum vitae",
+    url: "/resume",
+  },
   alternates: {
-    languages: Object.fromEntries(
-      SUPPORTED_LANGUAGES.map((l) => [
-        l,
-        l === DEFAULT_LANG ? "/resume" : `/resume/${l}`,
-      ]),
-    ),
+    languages: {
+      ...Object.fromEntries(
+        SUPPORTED_LANGUAGES.map((l) => [
+          l,
+          l === DEFAULT_LANG ? "/resume" : `/resume/${l}`,
+        ]),
+      ),
+      "x-default": "/resume",
+    },
   },
 };
 

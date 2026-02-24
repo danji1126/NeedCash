@@ -6,6 +6,11 @@ import { PostList } from "@/components/blog/post-list";
 export const metadata: Metadata = {
   title: "Blog",
   description: "Stories and thoughts on development",
+  openGraph: {
+    title: "Blog | NeedCash",
+    description: "Stories and thoughts on development",
+    url: "/blog",
+  },
 };
 
 export default function BlogPage() {

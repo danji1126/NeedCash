@@ -6,6 +6,7 @@ import { GlassBackground } from "@/components/design/glass-background";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { SITE } from "@/lib/constants";
+import { WebSiteJsonLd } from "@/components/seo/json-ld";
 import Script from "next/script";
 import "./globals.css";
 
@@ -34,11 +35,25 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
   title: {
     default: SITE.name,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: SITE.name,
+    title: SITE.name,
+    description: SITE.description,
+    url: SITE.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.name,
+    description: SITE.description,
+  },
   other: {
     "google-adsense-account": "ca-pub-7452986546914975",
   },
@@ -61,6 +76,7 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <WebSiteJsonLd />
         <DesignProvider>
           <GlassBackground />
           <Header />

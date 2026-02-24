@@ -30,13 +30,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Resume (${meta.nativeName})`,
     description: `Interactive curriculum vitae - ${meta.name}`,
+    openGraph: {
+      title: `Resume (${meta.nativeName}) | NeedCash`,
+      description: `Interactive curriculum vitae - ${meta.name}`,
+      url: `/resume/${langParam}`,
+    },
     alternates: {
-      languages: Object.fromEntries(
-        SUPPORTED_LANGUAGES.map((l) => [
-          l,
-          l === DEFAULT_LANG ? "/resume" : `/resume/${l}`,
-        ]),
-      ),
+      languages: {
+        ...Object.fromEntries(
+          SUPPORTED_LANGUAGES.map((l) => [
+            l,
+            l === DEFAULT_LANG ? "/resume" : `/resume/${l}`,
+          ]),
+        ),
+        "x-default": "/resume",
+      },
     },
   };
 }

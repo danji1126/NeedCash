@@ -7,6 +7,11 @@ import { UIIcon } from "@/components/ui/icons";
 export const metadata: Metadata = {
   title: "Games",
   description: "A collection of simple web games",
+  openGraph: {
+    title: "Games | NeedCash",
+    description: "A collection of simple web games",
+    url: "/game",
+  },
 };
 
 export default function GamePage() {
