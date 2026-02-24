@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "lastUpdated": "2026-02-12T10:00:00.000Z",
+  "lastUpdated": "2026-02-24T07:35:52.659Z",
   "activeFeatures": [
     "project-init",
     "web",
@@ -8,9 +8,10 @@
     "animal-face",
     "reaction-test",
     "color-sense",
-    "multi-design"
+    "multi-design",
+    "adsense-harmful-removal"
   ],
-  "primaryFeature": "multi-design",
+  "primaryFeature": "adsense-harmful-removal",
   "features": {
     "project-init": {
       "phase": "completed",
@@ -66,9 +67,9 @@
       "documents": {},
       "timestamps": {
         "started": "2026-02-02T05:09:06.184Z",
-        "lastUpdated": "2026-02-11T00:18:38.295Z"
+        "lastUpdated": "2026-02-24T07:35:52.659Z"
       },
-      "lastFile": "/Users/jiinbae/dev/eduProjects/NeedCash/apps/web/components/game/reaction-game.tsx"
+      "lastFile": "/Users/jiinbae/dev/eduProjects/NeedCash/apps/web/components/ui/scroll-reveal.tsx"
     },
     "animal-face": {
       "phase": "completed",
@@ -185,9 +186,23 @@
       "matchRate": 97,
       "iterationCount": 1,
       "requirements": [
-        "FR-01", "FR-02", "FR-03", "FR-04", "FR-05", "FR-06",
-        "FR-07", "FR-08", "FR-09", "FR-10", "FR-11", "FR-12",
-        "FR-13", "FR-14", "FR-15", "FR-16", "FR-17"
+        "FR-01",
+        "FR-02",
+        "FR-03",
+        "FR-04",
+        "FR-05",
+        "FR-06",
+        "FR-07",
+        "FR-08",
+        "FR-09",
+        "FR-10",
+        "FR-11",
+        "FR-12",
+        "FR-13",
+        "FR-14",
+        "FR-15",
+        "FR-16",
+        "FR-17"
       ],
       "documents": {
         "plan": "docs/01-plan/features/multi-design.plan.md",
@@ -205,6 +220,37 @@
         "do": "completed",
         "check": "completed",
         "act": "completed",
+        "report": "completed"
+      }
+    },
+    "adsense-harmful-removal": {
+      "phase": "completed",
+      "phaseNumber": 6,
+      "matchRate": 100,
+      "iterationCount": 0,
+      "requirements": [
+        "FR-01",
+        "FR-02",
+        "FR-03",
+        "FR-04",
+        "FR-05",
+        "FR-06"
+      ],
+      "documents": {
+        "plan": "docs/01-plan/features/adsense-harmful-removal.plan.md",
+        "design": "docs/02-design/features/adsense-harmful-removal.design.md",
+        "analysis": "docs/03-analysis/adsense-harmful-removal.analysis.md",
+        "report": "docs/04-report/features/adsense-harmful-removal.report.md"
+      },
+      "timestamps": {
+        "started": "2026-02-24T10:00:00.000Z",
+        "lastUpdated": "2026-02-24T11:15:00.000Z"
+      },
+      "tasks": {
+        "plan": "completed",
+        "design": "completed",
+        "do": "completed",
+        "check": "completed",
         "report": "completed"
       }
     }
@@ -248,7 +294,7 @@
   "session": {
     "startedAt": "2026-02-02T04:21:43.612Z",
     "onboardingCompleted": true,
-    "lastActivity": "2026-02-11T00:18:38.295Z"
+    "lastActivity": "2026-02-24T07:35:52.659Z"
   },
   "history": [
     {
@@ -925,6 +971,114 @@
     },
     {
       "timestamp": "2026-02-11T00:18:38.295Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-13T04:59:12.429Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-13T04:59:15.420Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-13T04:59:27.733Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-13T04:59:31.201Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-13T05:00:31.074Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-13T05:01:01.190Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-13T05:12:10.002Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-13T05:12:15.435Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-24T07:05:31.358Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-24T07:05:36.424Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-24T07:05:47.495Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-24T07:05:52.577Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-24T07:05:57.656Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-24T07:06:02.739Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-24T07:06:16.977Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-24T07:06:22.055Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-24T07:06:27.121Z",
+      "feature": "web",
+      "phase": "do",
+      "action": "updated"
+    },
+    {
+      "timestamp": "2026-02-24T07:35:52.659Z",
       "feature": "web",
       "phase": "do",
       "action": "updated"

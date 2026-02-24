@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { GAMES } from "@/lib/constants";
-import { AdBanner } from "@/components/ads/ad-banner";
 import { UIIcon } from "@/components/ui/icons";
 
 const DiceGame = dynamic(() =>
@@ -83,13 +82,10 @@ export default async function GameDetailPage({ params }: Props) {
         <div className="mx-auto mt-6 h-px max-w-xs bg-border/60" />
       </div>
 
-      <AdBanner className="mt-10" />
-
       <div className="mt-12">
         <GameComponent />
       </div>
 
-      <AdBanner className="mt-12" />
     </div>
   );
 }

@@ -1,13 +1,12 @@
 export const SITE = {
   name: "NeedCash",
-  description: "프로토타입 허브 - 게임, 블로그, 광고, 이력서를 하나의 공간에서.",
+  description: "프로토타입 허브 - 게임, 블로그, 이력서를 하나의 공간에서.",
   url: "https://needcash.dev",
 } as const;
 
 export const NAV_LINKS = [
   { href: "/blog", label: "Blog" },
   { href: "/game", label: "Game" },
-  { href: "/ads", label: "Ads" },
   { href: "/resume", label: "Resume" },
 ] as const;
 

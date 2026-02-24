@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { type ReactNode } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 
 const OFFSETS = {
   up: { y: 30, x: 0 },
@@ -22,13 +22,41 @@ export function ScrollReveal({
   direction = "up",
   className,
 }: ScrollRevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -60px 0px" },
+    );
+
+    // 약간의 지연으로 네비게이션 후 스크롤 복원을 기다림
+    const timer = setTimeout(() => {
+      observer.observe(el);
+    }, 50);
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, ...OFFSETS[direction] }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      animate={isVisible ? { opacity: 1, x: 0, y: 0 } : undefined}
       transition={{
-        duration: 0.8,
+        duration: 0.6,
         delay,
         ease: [0.215, 0.61, 0.355, 1],
       }}
