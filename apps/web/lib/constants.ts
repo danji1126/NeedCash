@@ -10,6 +10,36 @@ export const NAV_LINKS = [
   { href: "/resume", label: "Resume" },
 ] as const;
 
+export const FOOTER_SECTIONS = [
+  {
+    title: "콘텐츠",
+    links: [
+      { href: "/blog", label: "Blog" },
+      { href: "/game", label: "Game" },
+      { href: "/resume", label: "Resume" },
+    ],
+  },
+  {
+    title: "게임",
+    links: [
+      { href: "/game/dice", label: "Dice Roller" },
+      { href: "/game/lotto", label: "Lotto Pick" },
+      { href: "/game/animal-face", label: "동물상 찾기" },
+      { href: "/game/reaction", label: "Reaction Test" },
+      { href: "/game/color-sense", label: "Color Sense" },
+      { href: "/game/color-memory", label: "Color Memory" },
+    ],
+  },
+  {
+    title: "정보",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/privacy", label: "Privacy" },
+      { href: "/terms", label: "Terms" },
+    ],
+  },
+] as const;
+
 // ── 게임 데이터 ──
 
 import type { UIIconType } from "@/components/ui/icons";

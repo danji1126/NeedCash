@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/mdx";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { PostList } from "@/components/blog/post-list";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -18,6 +19,12 @@ export default function BlogPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-8 py-20">
+      <Breadcrumb
+        items={[
+          { label: "홈", href: "/" },
+          { label: "블로그" },
+        ]}
+      />
       <ScrollReveal>
         <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
           Journal

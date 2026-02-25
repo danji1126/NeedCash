@@ -95,3 +95,34 @@ export function GameJsonLd({ name, description, url }: GameJsonLdProps) {
     />
   );
 }
+
+// ── BreadcrumbList JSON-LD ──
+
+interface BreadcrumbJsonLdItem {
+  name: string;
+  href: string;
+}
+
+interface BreadcrumbJsonLdProps {
+  items: BreadcrumbJsonLdItem[];
+}
+
+export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: `${SITE.url}${item.href}`,
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}

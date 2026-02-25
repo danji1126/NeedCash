@@ -1,10 +1,15 @@
-import Link from "next/link";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { GAMES } from "@/lib/constants";
 import { UIIcon } from "@/components/ui/icons";
-import { GameJsonLd } from "@/components/seo/json-ld";
+import { GameJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { getGameContent } from "@/lib/game-content";
+import {
+  GameContentSection,
+  RelatedGames,
+} from "@/components/game/game-content-section";
 
 const DiceGame = dynamic(() =>
   import("@/components/game/dice-game").then((m) => m.DiceGame),
@@ -65,6 +70,8 @@ export default async function GameDetailPage({ params }: Props) {
   const GameComponent = GAME_COMPONENTS[slug];
   if (!GameComponent) notFound();
 
+  const content = getGameContent(slug);
+
   return (
     <div className="mx-auto max-w-3xl px-8 py-20">
       <GameJsonLd
@@ -72,12 +79,20 @@ export default async function GameDetailPage({ params }: Props) {
         description={game.description}
         url={`/game/${slug}`}
       />
-      <Link
-        href="/game"
-        className="text-[13px] tracking-wide text-text-muted transition-opacity hover:opacity-50"
-      >
-        &larr; Back
-      </Link>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "홈", href: "/" },
+          { name: "게임", href: "/game" },
+          { name: game.title, href: `/game/${slug}` },
+        ]}
+      />
+      <Breadcrumb
+        items={[
+          { label: "홈", href: "/" },
+          { label: "게임", href: "/game" },
+          { label: game.title },
+        ]}
+      />
 
       <div className="mt-10 text-center">
         <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
@@ -97,6 +112,8 @@ export default async function GameDetailPage({ params }: Props) {
         <GameComponent />
       </div>
 
+      {content && <GameContentSection content={content} />}
+      <RelatedGames currentSlug={slug} />
     </div>
   );
 }

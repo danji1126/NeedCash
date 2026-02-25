@@ -3,6 +3,7 @@ import Link from "next/link";
 import { GAMES } from "@/lib/constants";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { UIIcon } from "@/components/ui/icons";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = {
   title: "Games",
@@ -17,6 +18,12 @@ export const metadata: Metadata = {
 export default function GamePage() {
   return (
     <div className="mx-auto max-w-6xl px-8 py-20">
+      <Breadcrumb
+        items={[
+          { label: "홈", href: "/" },
+          { label: "게임" },
+        ]}
+      />
       <ScrollReveal>
         <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
           Playground

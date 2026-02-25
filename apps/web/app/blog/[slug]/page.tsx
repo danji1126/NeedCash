@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -7,7 +6,9 @@ import { getAllPosts, getPostBySlug, extractHeadings } from "@/lib/mdx";
 import { mdxComponents } from "@/components/blog/mdx-components";
 import { TableOfContents } from "@/components/blog/toc";
 import { MobileToc } from "@/components/blog/mobile-toc";
-import { ArticleJsonLd } from "@/components/seo/json-ld";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
+import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { RelatedPosts } from "@/components/blog/related-posts";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -49,12 +50,20 @@ export default async function BlogPostPage({ params }: Props) {
         datePublished={post.meta.date}
         tags={post.meta.tags}
       />
-      <Link
-        href="/blog"
-        className="text-[13px] tracking-wide text-text-muted transition-opacity hover:opacity-50"
-      >
-        &larr; Back
-      </Link>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "홈", href: "/" },
+          { name: "블로그", href: "/blog" },
+          { name: post.meta.title, href: `/blog/${slug}` },
+        ]}
+      />
+      <Breadcrumb
+        items={[
+          { label: "홈", href: "/" },
+          { label: "블로그", href: "/blog" },
+          { label: post.meta.title },
+        ]}
+      />
 
       <header className="mt-10">
         <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
@@ -103,6 +112,7 @@ export default async function BlogPostPage({ params }: Props) {
         </aside>
       </div>
 
+      <RelatedPosts currentSlug={slug} />
     </article>
   );
 }
