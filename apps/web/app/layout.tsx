@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { DesignProvider } from "@/components/design/design-provider";
@@ -7,13 +7,13 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { SITE } from "@/lib/constants";
 import { WebSiteJsonLd } from "@/components/seo/json-ld";
-import Script from "next/script";
+import { CookieConsent } from "@/components/ui/cookie-consent";
 import "./globals.css";
 
 const pretendard = localFont({
   src: [
     {
-      path: "../public/fonts/PretendardVariable.woff2",
+      path: "../public/fonts/PretendardVariable.subset.woff2",
       style: "normal",
     },
   ],
@@ -54,9 +54,24 @@ export const metadata: Metadata = {
     title: SITE.name,
     description: SITE.description,
   },
+  alternates: {
+    canonical: "./",
+  },
   other: {
     "google-adsense-account": "ca-pub-7452986546914975",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -76,19 +91,20 @@ export default function RootLayout({
       <body
         className={`${pretendard.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-bg focus:outline-none"
+        >
+          본문으로 건너뛰기
+        </a>
         <WebSiteJsonLd />
         <DesignProvider>
           <GlassBackground />
           <Header />
-          <main className="min-h-[calc(100vh-3.5rem)]">{children}</main>
+          <main id="main-content" className="min-h-[calc(100vh-3.5rem)]">{children}</main>
           <Footer />
         </DesignProvider>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7452986546914975"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        <CookieConsent />
       </body>
     </html>
   );

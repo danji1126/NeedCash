@@ -32,6 +32,24 @@ pnpm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Playwright MCP
+.playwright-mcp/
+
+# debug screenshots
+*.check.png
+*-check.png
+*-switch.png
+*-fixed.png
+*-fixed2.png
+
+# error logs
+docs/error-log/
+
+# PDCA screenshots
+docs/.pdca-snapshots/*.png
+color-memory-*.png
+color-memory-*.png
+
 # misc
 *.pem
 .vercel

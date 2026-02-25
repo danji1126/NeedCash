@@ -15,6 +15,11 @@ export interface GameContent {
     question: string;
     answer: string;
   }[];
+  relatedBlog?: {
+    slug: string;
+    title: string;
+    description: string;
+  };
 }
 
 const GAME_CONTENTS: GameContent[] = [
@@ -221,6 +226,12 @@ const GAME_CONTENTS: GameContent[] = [
           "터치스크린과 마우스 클릭의 입력 지연 시간이 다르며, 디스플레이 주사율에 따른 화면 갱신 차이도 있습니다. 일반적으로 PC에서 더 빠른 결과가 나옵니다.",
       },
     ],
+    relatedBlog: {
+      slug: "reaction-speed-science",
+      title: "반응 속도의 과학: 당신의 뇌는 얼마나 빠를까?",
+      description:
+        "인간의 반응 속도는 어떻게 결정될까? 신경과학의 관점에서 반응 속도의 원리를 알아보고, 직접 테스트해보세요.",
+    },
   },
   {
     slug: "color-sense",
@@ -273,6 +284,12 @@ const GAME_CONTENTS: GameContent[] = [
           "네, 모니터의 색역(Color Gamut), 밝기, 캘리브레이션 상태에 따라 결과가 달라질 수 있습니다. 정확한 측정을 위해 sRGB 이상의 색역을 지원하는 모니터를 권장합니다.",
       },
     ],
+    relatedBlog: {
+      slug: "color-sense-guide",
+      title: "색감 테스트로 알아보는 색각의 세계",
+      description:
+        "인간의 눈은 얼마나 많은 색을 구별할 수 있을까? 색각의 과학과 색감 능력을 알아보고, 직접 테스트해보세요.",
+    },
   },
   {
     slug: "color-memory",
@@ -326,6 +343,12 @@ const GAME_CONTENTS: GameContent[] = [
           "작업 기억 용량은 20대에 최고점에 도달하고 이후 서서히 감소합니다. 그러나 꾸준한 인지 훈련을 통해 감소 속도를 늦출 수 있으며, 패턴 인식 능력은 경험으로 보완됩니다.",
       },
     ],
+    relatedBlog: {
+      slug: "color-memory-science",
+      title: "기억력과 패턴 인식: 사이먼 게임의 인지과학",
+      description:
+        "작업 기억은 어떻게 작동할까? 인지과학의 관점에서 기억력의 원리를 알아보고, 색상 기억력 게임으로 직접 훈련해보세요.",
+    },
   },
 ];
 

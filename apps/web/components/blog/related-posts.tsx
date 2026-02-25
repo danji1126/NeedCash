@@ -3,12 +3,17 @@ import { getAllPosts } from "@/lib/mdx";
 
 interface RelatedPostsProps {
   currentSlug: string;
+  category?: string;
 }
 
-export function RelatedPosts({ currentSlug }: RelatedPostsProps) {
-  const posts = getAllPosts()
-    .filter((p) => p.slug !== currentSlug)
-    .slice(0, 3);
+export function RelatedPosts({ currentSlug, category }: RelatedPostsProps) {
+  const allPosts = getAllPosts().filter((p) => p.slug !== currentSlug);
+
+  const sameCategory = category
+    ? allPosts.filter((p) => p.category === category)
+    : [];
+  const otherPosts = allPosts.filter((p) => !sameCategory.includes(p));
+  const posts = [...sameCategory, ...otherPosts].slice(0, 3);
 
   if (posts.length === 0) return null;
 

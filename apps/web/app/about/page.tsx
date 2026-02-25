@@ -34,6 +34,22 @@ export default function AboutPage() {
 
         <section>
           <h2 className="font-heading text-xl font-semibold text-text-primary">
+            운영자 소개
+          </h2>
+          <p className="mt-3">
+            안녕하세요, NeedCash를 운영하는 Jiinbae입니다. 7년차 풀스택 개발자로
+            웹 프론트엔드, 모바일 앱, 서버 개발 경험을 가지고 있습니다. 새로운
+            기술을 탐구하고 실험하는 것을 좋아하며, 그 과정에서 배운 것들을 이
+            사이트에 기록하고 있습니다.
+          </p>
+          <p className="mt-3">
+            주짓수를 즐기는 취미 운동인이기도 하며, 도복 리뷰와 같은 라이프스타일
+            콘텐츠도 함께 다루고 있습니다.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-heading text-xl font-semibold text-text-primary">
             제공 서비스
           </h2>
           <ul className="mt-3 list-disc space-y-2 pl-6">

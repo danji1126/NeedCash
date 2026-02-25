@@ -9,6 +9,7 @@ import { MobileToc } from "@/components/blog/mobile-toc";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/json-ld";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { RelatedPosts } from "@/components/blog/related-posts";
+import { AuthorProfile } from "@/components/blog/author-profile";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -74,6 +75,12 @@ export default async function BlogPostPage({ params }: Props) {
         </h1>
         <div className="mt-4 flex flex-wrap gap-3 text-[13px] text-text-muted">
           <time>{post.meta.date}</time>
+          {post.meta.updatedAt && (
+            <>
+              <span>&middot;</span>
+              <time>(수정: {post.meta.updatedAt})</time>
+            </>
+          )}
           <span>&middot;</span>
           <span>{post.meta.readingTime} min read</span>
         </div>
@@ -112,7 +119,8 @@ export default async function BlogPostPage({ params }: Props) {
         </aside>
       </div>
 
-      <RelatedPosts currentSlug={slug} />
+      <AuthorProfile />
+      <RelatedPosts currentSlug={slug} category={post.meta.category} />
     </article>
   );
 }

@@ -67,6 +67,17 @@ export const mdxComponents: Record<string, React.ComponentType<any>> = {
       {...props}
     />
   ),
+  img: ({ alt, ...rest }: any) => (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      alt={alt ?? ""}
+      {...rest}
+      loading="lazy"
+      decoding="async"
+      className="rounded-lg"
+      style={{ maxWidth: "100%", height: "auto" }}
+    />
+  ),
   hr: () => <hr className="my-10 border-border/40" />,
 };
 

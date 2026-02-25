@@ -16,6 +16,7 @@ export function GlassBackground() {
           top: "10%",
           left: "15%",
           animation: "glass-float 20s ease-in-out infinite",
+          willChange: "transform",
         }}
       />
       <div
@@ -25,6 +26,7 @@ export function GlassBackground() {
           top: "50%",
           right: "10%",
           animation: "glass-float 20s ease-in-out infinite 6.6s",
+          willChange: "transform",
         }}
       />
       <div
@@ -34,6 +36,7 @@ export function GlassBackground() {
           bottom: "10%",
           left: "40%",
           animation: "glass-float 20s ease-in-out infinite 13.3s",
+          willChange: "transform",
         }}
       />
     </div>

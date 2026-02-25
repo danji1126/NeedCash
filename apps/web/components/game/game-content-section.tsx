@@ -85,6 +85,28 @@ export function GameContentSection({ content }: GameContentSectionProps) {
           ))}
         </div>
       </div>
+
+      {content.relatedBlog && (
+        <div>
+          <h2 className="font-heading text-xl font-semibold tracking-[-0.01em]">
+            더 알아보기
+          </h2>
+          <Link
+            href={`/blog/${content.relatedBlog.slug}`}
+            className="group mt-3 block rounded-lg border border-border/60 p-5 transition-colors hover:bg-bg-secondary"
+          >
+            <p className="font-heading text-sm font-semibold tracking-[-0.01em]">
+              {content.relatedBlog.title}
+              <span className="ml-1 inline-block text-text-muted transition-transform duration-500 group-hover:translate-x-1">
+                &rarr;
+              </span>
+            </p>
+            <p className="mt-1 text-sm leading-relaxed text-text-secondary">
+              {content.relatedBlog.description}
+            </p>
+          </Link>
+        </div>
+      )}
     </section>
   );
 }

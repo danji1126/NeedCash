@@ -9,6 +9,7 @@ export interface PostMeta {
   title: string;
   description: string;
   date: string;
+  updatedAt?: string;
   category: string;
   tags: string[];
   published: boolean;
@@ -34,6 +35,7 @@ export function getAllPosts(): PostMeta[] {
         title: data.title ?? slug,
         description: data.description ?? "",
         date: data.date ?? "",
+        updatedAt: data.updatedAt ?? undefined,
         category: data.category ?? "etc",
         tags: data.tags ?? [],
         published: data.published !== false,
@@ -84,6 +86,7 @@ export function getPostBySlug(slug: string) {
       title: data.title ?? slug,
       description: data.description ?? "",
       date: data.date ?? "",
+      updatedAt: data.updatedAt ?? undefined,
       category: data.category ?? "etc",
       tags: data.tags ?? [],
       published: data.published !== false,
