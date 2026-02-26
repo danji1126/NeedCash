@@ -3,9 +3,9 @@ import { getAllPosts } from "@/lib/mdx";
 import { GAMES, SITE } from "@/lib/constants";
 import { SUPPORTED_LANGUAGES, DEFAULT_LANG } from "@/lib/i18n/languages";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE.url;
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const blogPages: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+  const blogPages: MetadataRoute.Sitemap = (await getAllPosts()).map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,

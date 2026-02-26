@@ -82,6 +82,10 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var d=localStorage.getItem('needcash-design')||'brutalist';var t=localStorage.getItem('needcash-theme')||'brutal-terminal';document.documentElement.setAttribute('data-design',d);document.documentElement.setAttribute('data-theme',t)}catch(e){}})()`,

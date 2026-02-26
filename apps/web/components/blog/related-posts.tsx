@@ -6,8 +6,8 @@ interface RelatedPostsProps {
   category?: string;
 }
 
-export function RelatedPosts({ currentSlug, category }: RelatedPostsProps) {
-  const allPosts = getAllPosts().filter((p) => p.slug !== currentSlug);
+export async function RelatedPosts({ currentSlug, category }: RelatedPostsProps) {
+  const allPosts = (await getAllPosts()).filter((p) => p.slug !== currentSlug);
 
   const sameCategory = category
     ? allPosts.filter((p) => p.category === category)

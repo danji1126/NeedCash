@@ -3,11 +3,17 @@ node_modules/
 
 # build output
 .next/
+.open-next/
+.wrangler/
 out/
 build/
 
+# generated files
+apps/web/lib/generated/
+
 # environment
 .env*
+.dev.vars
 
 # OS
 .DS_Store

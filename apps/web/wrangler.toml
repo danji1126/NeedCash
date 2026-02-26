@@ -1,0 +1,16 @@
+name = "needcash-hub"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+main = ".open-next/worker.js"
+routes = [
+  { pattern = "needcash.dev", custom_domain = true },
+]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "needcash-blog"
+database_id = "3cc1a2e8-ee84-4e7d-95b4-e0b5895395d8"

@@ -4,6 +4,8 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { PostList } from "@/components/blog/post-list";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Blog",
   description: "Stories and thoughts on development",
@@ -14,8 +16,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export default async function BlogPage() {
+  const posts = await getAllPosts();
 
   return (
     <div className="mx-auto max-w-3xl px-8 py-20">
