@@ -87,6 +87,11 @@ export default function RootLayout({
             __html: `(function(){try{var d=localStorage.getItem('needcash-design')||'brutalist';var t=localStorage.getItem('needcash-theme')||'brutal-terminal';document.documentElement.setAttribute('data-design',d);document.documentElement.setAttribute('data-theme',t)}catch(e){}})()`,
           }}
         />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7452986546914975"
+          crossOrigin="anonymous"
+        />
       </head>
       <body
         className={`${pretendard.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} antialiased`}
