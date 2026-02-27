@@ -13,6 +13,7 @@ apps/web/lib/generated/
 
 # environment
 .env*
+!**/.env.development
 .dev.vars
 
 # OS
