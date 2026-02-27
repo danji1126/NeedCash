@@ -36,6 +36,7 @@ export const FOOTER_SECTIONS = [
       { href: "/about", label: "About" },
       { href: "/privacy", label: "Privacy" },
       { href: "/terms", label: "Terms" },
+      { href: "/admin", label: "Admin" },
     ],
   },
 ] as const;

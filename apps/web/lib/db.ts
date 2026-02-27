@@ -1,5 +1,3 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
-
 export interface PostMeta {
   slug: string;
   title: string;
@@ -58,6 +56,13 @@ function rowToFull(row: PostRow): PostFull {
 }
 
 function getDB(): D1Database {
+  if (process.env.USE_LOCAL_DB === "true") {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getLocalDB } = require("./local-db");
+    return getLocalDB() as unknown as D1Database;
+  }
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getCloudflareContext } = require("@opennextjs/cloudflare");
   const { env } = getCloudflareContext();
   return env.DB;
 }
