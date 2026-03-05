@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ShareResult } from "@/components/game/share-result";
 
 interface HistoryItem {
   id: number;
@@ -101,6 +102,16 @@ export function DiceGame() {
       <Button onClick={roll} disabled={rolling} size="lg" className="mt-8">
         Roll Dice
       </Button>
+
+      {!rolling && history.length > 0 && (
+        <ShareResult
+          game="dice"
+          title="Dice Roller"
+          lines={[
+            `🎲 ${dice[0]} + ${dice[1]} = ${sum}${dice[0] === dice[1] ? " (Double!)" : ""}`,
+          ]}
+        />
+      )}
 
       {history.length > 0 && (
         <div className="mt-12 w-full max-w-xs">

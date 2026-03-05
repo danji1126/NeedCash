@@ -7,6 +7,7 @@ export const SITE = {
 export const NAV_LINKS = [
   { href: "/blog", label: "Blog" },
   { href: "/game", label: "Game" },
+  { href: "/tools", label: "Tools" },
   { href: "/resume", label: "Resume" },
 ] as const;
 
@@ -16,6 +17,7 @@ export const FOOTER_SECTIONS = [
     links: [
       { href: "/blog", label: "Blog" },
       { href: "/game", label: "Game" },
+      { href: "/tools", label: "Tools" },
       { href: "/resume", label: "Resume" },
     ],
   },
@@ -28,6 +30,18 @@ export const FOOTER_SECTIONS = [
       { href: "/game/reaction", label: "Reaction Test" },
       { href: "/game/color-sense", label: "Color Sense" },
       { href: "/game/color-memory", label: "Color Memory" },
+      { href: "/game/typing", label: "Typing Speed" },
+      { href: "/game/math", label: "Math Game" },
+      { href: "/game/quiz", label: "Personality Quiz" },
+    ],
+  },
+  {
+    title: "도구",
+    links: [
+      { href: "/tools/json-formatter", label: "JSON Formatter" },
+      { href: "/tools/base64", label: "Base64" },
+      { href: "/tools/color-palette", label: "Color Palette" },
+      { href: "/tools/sort-visualizer", label: "Sort Visualizer" },
     ],
   },
   {
@@ -88,6 +102,24 @@ export const GAMES: Game[] = [
     title: "Color Memory",
     description: "색상 순서를 기억하고 따라해보세요! 당신의 기억력은?",
     icon: "brain",
+  },
+  {
+    slug: "typing",
+    title: "Typing Speed",
+    description: "60초 동안 얼마나 빠르게 타이핑할 수 있을까요?",
+    icon: "keyboard",
+  },
+  {
+    slug: "math",
+    title: "Math Game",
+    description: "60초 암산 챌린지! 당신의 계산 속도는?",
+    icon: "calculator",
+  },
+  {
+    slug: "quiz",
+    title: "Personality Quiz",
+    description: "15개 질문으로 알아보는 나의 성격 유형은?",
+    icon: "sparkles",
   },
 ];
 
@@ -158,3 +190,40 @@ const RESUME_BY_LANG: Record<Lang, ResumeData> = {
 export function getResumeByLang(lang: Lang): ResumeData {
   return RESUME_BY_LANG[lang] ?? RESUME_BY_LANG.ko;
 }
+
+// ── 도구 데이터 ──
+
+export interface Tool {
+  slug: string;
+  title: string;
+  description: string;
+  icon: UIIconType;
+  relatedBlog?: string;
+}
+
+export const TOOLS: Tool[] = [
+  {
+    slug: "json-formatter",
+    title: "JSON Formatter",
+    description: "JSON 데이터를 포맷, 검증, 압축하는 도구",
+    icon: "braces",
+  },
+  {
+    slug: "base64",
+    title: "Base64 Encoder/Decoder",
+    description: "텍스트를 Base64로 인코딩/디코딩",
+    icon: "code",
+  },
+  {
+    slug: "color-palette",
+    title: "Color Palette",
+    description: "HSL 기반 색상 팔레트 생성기",
+    icon: "palette",
+  },
+  {
+    slug: "sort-visualizer",
+    title: "Sort Visualizer",
+    description: "정렬 알고리즘 시각화 (버블/퀵/병합)",
+    icon: "chart-bar",
+  },
+];

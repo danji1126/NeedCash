@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ShareResult } from "@/components/game/share-result";
 
 // ── Types ──
 
@@ -282,6 +283,15 @@ export function ReactionGame() {
         <Button onClick={resetGame} size="lg" className="mt-8">
           다시 도전
         </Button>
+
+        <ShareResult
+          game="reaction"
+          title="Reaction Test"
+          lines={[
+            `등급: ${grade} · ${title}`,
+            `평균: ${average}ms`,
+          ]}
+        />
 
         {history.length > 0 && (
           <div className="mt-12 w-full max-w-xs">

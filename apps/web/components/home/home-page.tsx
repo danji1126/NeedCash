@@ -5,6 +5,7 @@ import { EditorialHome } from "./editorial-home";
 import { BentoHome } from "./bento-home";
 import { BrutalistHome } from "./brutalist-home";
 import { GlassHome } from "./glass-home";
+import { DailyChallenge } from "./daily-challenge";
 
 interface Post {
   slug: string;
@@ -27,14 +28,27 @@ export interface HomeProps {
 export function HomePage({ sections, recentPosts }: HomeProps) {
   const { design } = useDesign();
 
+  let content: React.ReactNode;
   switch (design) {
     case "bento":
-      return <BentoHome sections={sections} recentPosts={recentPosts} />;
+      content = <BentoHome sections={sections} recentPosts={recentPosts} />;
+      break;
     case "brutalist":
-      return <BrutalistHome sections={sections} recentPosts={recentPosts} />;
+      content = <BrutalistHome sections={sections} recentPosts={recentPosts} />;
+      break;
     case "glass":
-      return <GlassHome sections={sections} recentPosts={recentPosts} />;
+      content = <GlassHome sections={sections} recentPosts={recentPosts} />;
+      break;
     default:
-      return <EditorialHome sections={sections} recentPosts={recentPosts} />;
+      content = <EditorialHome sections={sections} recentPosts={recentPosts} />;
   }
+
+  return (
+    <>
+      {content}
+      <div className="mx-auto max-w-3xl px-8 pb-20">
+        <DailyChallenge />
+      </div>
+    </>
+  );
 }

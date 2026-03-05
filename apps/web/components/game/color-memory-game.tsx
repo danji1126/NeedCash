@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ShareResult } from "@/components/game/share-result";
 
 // ── Types ──
 
@@ -256,6 +257,15 @@ export function ColorMemoryGame() {
         <Button onClick={startGame} size="lg" className="mt-8">
           다시 도전
         </Button>
+
+        <ShareResult
+          game="color-memory"
+          title="Color Memory"
+          lines={[
+            `등급: ${resultGrade} · ${resultTitle}`,
+            `${resultRound}라운드 도달`,
+          ]}
+        />
 
         {history.length > 0 && (
           <div className="mt-12 w-full max-w-xs">

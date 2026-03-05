@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/mdx";
-import { GAMES, SITE } from "@/lib/constants";
+import { GAMES, TOOLS, SITE } from "@/lib/constants";
 import { SUPPORTED_LANGUAGES, DEFAULT_LANG } from "@/lib/i18n/languages";
 
 export const dynamic = "force-dynamic";
@@ -32,6 +32,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
+  const toolsPages: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
+    ...TOOLS.map((tool) => ({
+      url: `${baseUrl}/tools/${tool.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
+  ];
+
   const resumePages: MetadataRoute.Sitemap = SUPPORTED_LANGUAGES
     .filter((lang) => lang !== DEFAULT_LANG)
     .map((lang) => ({
@@ -41,5 +51,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     }));
 
-  return [...staticPages, ...blogPages, ...gamePages, ...resumePages];
+  return [...staticPages, ...blogPages, ...gamePages, ...toolsPages, ...resumePages];
 }

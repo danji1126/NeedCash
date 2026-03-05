@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ShareResult } from "@/components/game/share-result";
 import { AnimalIcon, UIIcon, type AnimalType } from "@/components/ui/icons";
 
 // @teachablemachine/image 타입 (내부 사용)
@@ -651,7 +652,16 @@ export function AnimalFaceGame() {
               {resultInfo.description}
             </motion.p>
 
-            <div className="mt-8 flex gap-4">
+            <ShareResult
+              game="animal-face"
+              title="동물상 찾기"
+              lines={[
+                `${resultInfo.name} (${Math.round(result.confidence * 100)}%)`,
+                `"${resultInfo.description}"`,
+              ]}
+            />
+
+            <div className="mt-4 flex gap-4">
               <Button onClick={restart} size="lg">
                 다시 하기
               </Button>

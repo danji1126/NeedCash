@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { ShareResult } from "@/components/game/share-result";
 
 interface HistoryItem {
   id: number;
@@ -121,6 +122,16 @@ export function LottoGame() {
       <Button onClick={draw} disabled={drawing} size="lg" className="mt-8">
         Draw Numbers
       </Button>
+
+      {!drawing && result && (
+        <ShareResult
+          game="lotto"
+          title="Lotto Pick"
+          lines={[
+            `🎱 ${result.numbers.join(", ")} + ${result.bonus}`,
+          ]}
+        />
+      )}
 
       {history.length > 0 && (
         <div className="mt-12 w-full max-w-md">

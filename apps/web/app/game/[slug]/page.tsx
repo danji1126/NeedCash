@@ -29,6 +29,15 @@ const ColorSenseGame = dynamic(() =>
 const ColorMemoryGame = dynamic(() =>
   import("@/components/game/color-memory-game").then((m) => m.ColorMemoryGame),
 );
+const TypingGame = dynamic(() =>
+  import("@/components/game/typing-game").then((m) => m.TypingGame),
+);
+const MathGame = dynamic(() =>
+  import("@/components/game/math-game").then((m) => m.MathGame),
+);
+const PersonalityQuiz = dynamic(() =>
+  import("@/components/game/personality-quiz").then((m) => m.PersonalityQuiz),
+);
 
 const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   dice: DiceGame,
@@ -37,6 +46,9 @@ const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   reaction: ReactionGame,
   "color-sense": ColorSenseGame,
   "color-memory": ColorMemoryGame,
+  typing: TypingGame,
+  math: MathGame,
+  quiz: PersonalityQuiz,
 };
 
 interface Props {
