@@ -50,6 +50,18 @@ export default function AdminBlogPage() {
     fetchPosts();
   }
 
+  async function handleTogglePublish(slug: string, published: boolean) {
+    await fetch(`/api/posts/${slug}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({ published }),
+    });
+    fetchPosts();
+  }
+
   if (!isAuthenticated) return null;
 
   const filtered = posts.filter((p) => {
@@ -97,7 +109,7 @@ export default function AdminBlogPage() {
       {loading ? (
         <p className="text-text-secondary">Loading...</p>
       ) : (
-        <PostTable posts={filtered} onDelete={handleDelete} />
+        <PostTable posts={filtered} onDelete={handleDelete} onTogglePublish={handleTogglePublish} />
       )}
     </div>
   );

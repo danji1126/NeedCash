@@ -12,9 +12,10 @@ interface PostFull extends PostMeta {
 interface PostTableProps {
   posts: PostFull[];
   onDelete: (slug: string) => void;
+  onTogglePublish?: (slug: string, published: boolean) => void;
 }
 
-export function PostTable({ posts, onDelete }: PostTableProps) {
+export function PostTable({ posts, onDelete, onTogglePublish }: PostTableProps) {
   if (posts.length === 0) {
     return <p className="mt-4 text-center text-text-muted">No posts found.</p>;
   }
@@ -39,15 +40,17 @@ export function PostTable({ posts, onDelete }: PostTableProps) {
               <td className="py-3 pr-4 text-text-muted">{post.slug}</td>
               <td className="py-3 pr-4 text-text-muted">{post.category}</td>
               <td className="py-3 pr-4">
-                <span
-                  className={`rounded-full px-2 py-0.5 text-xs ${
+                <button
+                  onClick={() => onTogglePublish?.(post.slug, !post.published)}
+                  className={`rounded-full px-2 py-0.5 text-xs transition-colors ${
                     post.published
-                      ? "bg-green-500/10 text-green-500"
-                      : "bg-yellow-500/10 text-yellow-500"
+                      ? "bg-green-500/10 text-green-500 hover:bg-green-500/20"
+                      : "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20"
                   }`}
+                  title={post.published ? "클릭하면 비공개" : "클릭하면 공개"}
                 >
                   {post.published ? "Published" : "Draft"}
-                </span>
+                </button>
               </td>
               <td className="py-3 pr-4 text-text-muted">{post.date}</td>
               <td className="py-3">
