@@ -3,7 +3,8 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ShareResult } from "@/components/game/share-result";
+import { GameResultPanel } from "@/components/game/game-result-panel";
+import { addGameHistory } from "@/lib/game-history";
 
 // ── Types ──
 
@@ -13,14 +14,6 @@ type Grade = "S" | "A" | "B" | "C" | "D" | "F";
 interface RoundResult {
   round: number;
   score: number;
-}
-
-interface HistoryItem {
-  id: number;
-  totalScore: number;
-  grade: Grade;
-  title: string;
-  rounds: number;
 }
 
 interface ColorData {
@@ -98,7 +91,6 @@ export function ColorSenseGame() {
     gridSize: 2,
   });
   const [lastRoundScore, setLastRoundScore] = useState(0);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const feedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -139,16 +131,13 @@ export function ColorSenseGame() {
           const currentScore = scoreRef.current;
           const currentRoundNum = roundRef.current;
           const { grade, title } = getGrade(currentScore);
-          setHistory((prev) => [
-            {
-              id: prev.length + 1,
-              totalScore: currentScore,
-              grade,
-              title,
-              rounds: currentRoundNum - 1,
-            },
-            ...prev.slice(0, 9),
-          ]);
+          addGameHistory({
+            game: "color-sense",
+            score: currentScore,
+            grade,
+            title,
+            metadata: { rounds: currentRoundNum - 1 },
+          });
           setPhase("timeout");
         }
       }, 100);
@@ -188,16 +177,13 @@ export function ColorSenseGame() {
         feedbackTimerRef.current = setTimeout(() => {
           if (roundRef.current >= TOTAL_ROUNDS) {
             const { grade, title } = getGrade(newScore);
-            setHistory((prev) => [
-              {
-                id: prev.length + 1,
-                totalScore: newScore,
-                grade,
-                title,
-                rounds: TOTAL_ROUNDS,
-              },
-              ...prev.slice(0, 9),
-            ]);
+            addGameHistory({
+              game: "color-sense",
+              score: newScore,
+              grade,
+              title,
+              metadata: { rounds: TOTAL_ROUNDS },
+            });
             setPhase("result");
           } else {
             const nextRound = roundRef.current + 1;
@@ -210,16 +196,13 @@ export function ColorSenseGame() {
         const currentScore = scoreRef.current;
         const currentRound = roundRef.current;
         const { grade, title } = getGrade(currentScore);
-        setHistory((prev) => [
-          {
-            id: prev.length + 1,
-            totalScore: currentScore,
-            grade,
-            title,
-            rounds: currentRound - 1,
-          },
-          ...prev.slice(0, 9),
-        ]);
+        addGameHistory({
+          game: "color-sense",
+          score: currentScore,
+          grade,
+          title,
+          metadata: { rounds: currentRound - 1 },
+        });
         setPhase("wrong");
       }
     },
@@ -311,36 +294,16 @@ export function ColorSenseGame() {
           다시 도전
         </Button>
 
-        <ShareResult
+        <GameResultPanel
           game="color-sense"
-          title="Color Sense Test"
-          lines={[
+          score={score}
+          grade={grade}
+          title={title}
+          shareLines={[
             `등급: ${grade} · ${title}`,
             `점수: ${score}점`,
           ]}
         />
-
-        {history.length > 0 && (
-          <div className="mt-12 w-full max-w-xs">
-            <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
-              History
-            </p>
-            <div className="mt-3">
-              {history.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between border-b border-border/60 py-2.5 text-sm"
-                >
-                  <span className="text-text-muted">#{item.id}</span>
-                  <span className="font-bold">{item.grade}</span>
-                  <span className="text-text-secondary">{item.title}</span>
-                  <span className="text-text-muted">{item.rounds}R</span>
-                  <span>{item.totalScore}점</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     );
   }
@@ -399,27 +362,16 @@ export function ColorSenseGame() {
           다시 도전
         </Button>
 
-        {history.length > 0 && (
-          <div className="mt-12 w-full max-w-xs">
-            <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
-              History
-            </p>
-            <div className="mt-3">
-              {history.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between border-b border-border/60 py-2.5 text-sm"
-                >
-                  <span className="text-text-muted">#{item.id}</span>
-                  <span className="font-bold">{item.grade}</span>
-                  <span className="text-text-secondary">{item.title}</span>
-                  <span className="text-text-muted">{item.rounds}R</span>
-                  <span>{item.totalScore}점</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        <GameResultPanel
+          game="color-sense"
+          score={score}
+          grade={grade}
+          title={title}
+          shareLines={[
+            `등급: ${grade} · ${title}`,
+            `점수: ${score}점`,
+          ]}
+        />
       </div>
     );
   }

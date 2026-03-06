@@ -3,7 +3,8 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ShareResult } from "@/components/game/share-result";
+import { GameResultPanel } from "@/components/game/game-result-panel";
+import { addGameHistory } from "@/lib/game-history";
 
 // ── Types ──
 
@@ -15,13 +16,6 @@ interface RoundResult {
   time: number;
 }
 
-interface HistoryItem {
-  id: number;
-  average: number;
-  grade: Grade;
-  title: string;
-  rounds: number;
-}
 
 // ── Constants ──
 
@@ -60,8 +54,6 @@ export function ReactionGame() {
   const [round, setRound] = useState(0);
   const [rounds, setRounds] = useState<RoundResult[]>([]);
   const [currentTime, setCurrentTime] = useState(0);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
-
   const startTimeRef = useRef(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const roundRef = useRef(0);
@@ -133,10 +125,13 @@ export function ReactionGame() {
         const average = Math.round(times.reduce((a, b) => a + b, 0) / times.length);
         const { grade, title } = getGrade(average);
 
-        setHistory((prev) => [
-          { id: prev.length + 1, average, grade, title, rounds: totalRounds },
-          ...prev.slice(0, 9),
-        ]);
+        addGameHistory({
+          game: "reaction",
+          score: average,
+          grade,
+          title,
+          metadata: { rounds: totalRounds, best: Math.min(...times), worst: Math.max(...times) },
+        });
         setPhase("result");
       } else {
         setPhase("roundResult");
@@ -284,36 +279,16 @@ export function ReactionGame() {
           다시 도전
         </Button>
 
-        <ShareResult
+        <GameResultPanel
           game="reaction"
-          title="Reaction Test"
-          lines={[
+          score={average}
+          grade={grade}
+          title={title}
+          shareLines={[
             `등급: ${grade} · ${title}`,
             `평균: ${average}ms`,
           ]}
         />
-
-        {history.length > 0 && (
-          <div className="mt-12 w-full max-w-xs">
-            <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
-              History
-            </p>
-            <div className="mt-3">
-              {history.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between border-b border-border/60 py-2.5 text-sm"
-                >
-                  <span className="text-text-muted">#{item.id}</span>
-                  <span className="font-bold">{item.grade}</span>
-                  <span className="text-text-secondary">{item.title}</span>
-                  <span className="text-text-muted">{item.rounds}R</span>
-                  <span>{item.average}ms</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     );
   }

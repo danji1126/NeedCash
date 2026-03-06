@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/footer";
 import { SITE } from "@/lib/constants";
 import { WebSiteJsonLd } from "@/components/seo/json-ld";
 import { CookieConsent } from "@/components/ui/cookie-consent";
+import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 import "./globals.css";
 
 const pretendard = localFont({
@@ -109,6 +110,7 @@ export default function RootLayout({
           <Footer />
         </DesignProvider>
         <CookieConsent />
+        <PageViewTracker />
       </body>
     </html>
   );

@@ -3,19 +3,13 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ShareResult } from "@/components/game/share-result";
+import { GameResultPanel } from "@/components/game/game-result-panel";
+import { addGameHistory } from "@/lib/game-history";
 
 // ── Types ──
 
 type Phase = "idle" | "showing" | "input" | "correct" | "wrong" | "result";
 type Grade = "S" | "A" | "B" | "C" | "D" | "F";
-
-interface HistoryItem {
-  id: number;
-  round: number;
-  grade: Grade;
-  title: string;
-}
 
 // ── Constants ──
 
@@ -68,8 +62,6 @@ export function ColorMemoryGame() {
   const [sequence, setSequence] = useState<number[]>([]);
   const [playerInput, setPlayerInput] = useState<number[]>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
-
   const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
   const feedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const roundRef = useRef(1);
@@ -138,10 +130,13 @@ export function ColorMemoryGame() {
         const currentRound = roundRef.current;
         const clearedRound = currentRound - 1;
         const { grade, title } = getGrade(clearedRound);
-        setHistory((prev) => [
-          { id: prev.length + 1, round: clearedRound, grade, title },
-          ...prev.slice(0, 9),
-        ]);
+        addGameHistory({
+          game: "color-memory",
+          score: clearedRound,
+          grade,
+          title,
+          metadata: { sequenceLength: sequence.length },
+        });
         setPhase("wrong");
 
         feedbackTimerRef.current = setTimeout(() => {
@@ -173,12 +168,15 @@ export function ColorMemoryGame() {
     const currentRound = roundRef.current;
     const clearedRound = phase === "correct" ? currentRound : currentRound - 1;
     const { grade, title } = getGrade(clearedRound);
-    setHistory((prev) => [
-      { id: prev.length + 1, round: clearedRound, grade, title },
-      ...prev.slice(0, 9),
-    ]);
+    addGameHistory({
+      game: "color-memory",
+      score: clearedRound,
+      grade,
+      title,
+      metadata: { sequenceLength: sequence.length },
+    });
     setPhase("result");
-  }, [phase, clearAllTimeouts, clearFeedbackTimer]);
+  }, [phase, sequence, clearAllTimeouts, clearFeedbackTimer]);
 
   useEffect(() => {
     return () => {
@@ -218,10 +216,8 @@ export function ColorMemoryGame() {
 
   // ── result ──
   if (phase === "result") {
-    const latestHistory = history[0];
-    const resultGrade = latestHistory ? latestHistory.grade : getGrade(round - 1).grade;
-    const resultTitle = latestHistory ? latestHistory.title : getGrade(round - 1).title;
-    const resultRound = latestHistory ? latestHistory.round : round - 1;
+    const { grade: resultGrade, title: resultTitle } = getGrade(round - 1);
+    const resultRound = round - 1;
 
     return (
       <div className="flex flex-col items-center">
@@ -258,35 +254,16 @@ export function ColorMemoryGame() {
           다시 도전
         </Button>
 
-        <ShareResult
+        <GameResultPanel
           game="color-memory"
+          score={resultRound}
+          grade={resultGrade}
           title="Color Memory"
-          lines={[
+          shareLines={[
             `등급: ${resultGrade} · ${resultTitle}`,
             `${resultRound}라운드 도달`,
           ]}
         />
-
-        {history.length > 0 && (
-          <div className="mt-12 w-full max-w-xs">
-            <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
-              History
-            </p>
-            <div className="mt-3">
-              {history.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between border-b border-border/60 py-2.5 text-sm"
-                >
-                  <span className="text-text-muted">#{item.id}</span>
-                  <span className="font-bold">{item.grade}</span>
-                  <span className="text-text-secondary">{item.title}</span>
-                  <span className="text-text-muted">{item.round}R</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     );
   }

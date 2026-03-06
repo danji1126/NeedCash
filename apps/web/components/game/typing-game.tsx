@@ -3,21 +3,14 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ShareResult } from "@/components/game/share-result";
+import { GameResultPanel } from "@/components/game/game-result-panel";
+import { addGameHistory } from "@/lib/game-history";
 
 // ── Types ──
 
 type Phase = "idle" | "countdown" | "playing" | "result";
 type Grade = "S" | "A" | "B" | "C" | "D" | "F";
 type Lang = "ko" | "en";
-
-interface HistoryItem {
-  id: number;
-  wpm: number;
-  grade: Grade;
-  title: string;
-  lang: Lang;
-}
 
 // ── Constants ──
 
@@ -68,8 +61,6 @@ export function TypingGame() {
   const [totalCorrect, setTotalCorrect] = useState(0);
   const [totalTyped, setTotalTyped] = useState(0);
   const [completedTexts, setCompletedTexts] = useState(0);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
-
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const countdownRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const startTimeRef = useRef(0);
@@ -106,16 +97,13 @@ export function TypingGame() {
     const accuracy = typed > 0 ? Math.round((correct / typed) * 100) : 0;
     const { grade, title } = getGrade(wpm);
 
-    setHistory((prev) => [
-      {
-        id: prev.length + 1,
-        wpm,
-        grade,
-        title,
-        lang,
-      },
-      ...prev.slice(0, 9),
-    ]);
+    addGameHistory({
+      game: "typing",
+      score: wpm,
+      grade,
+      title,
+      metadata: { accuracy, lang },
+    });
     setPhase("result");
   }, [clearAllTimers, lang]);
 
@@ -278,29 +266,6 @@ export function TypingGame() {
           시작하기
         </Button>
 
-        {history.length > 0 && (
-          <div className="mt-12 w-full max-w-xs">
-            <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
-              History
-            </p>
-            <div className="mt-3">
-              {history.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between border-b border-border/60 py-2.5 text-sm"
-                >
-                  <span className="text-text-muted">#{item.id}</span>
-                  <span className="font-bold">{item.grade}</span>
-                  <span className="text-text-secondary">{item.title}</span>
-                  <span className="text-text-muted">
-                    {item.lang === "ko" ? "한" : "EN"}
-                  </span>
-                  <span>{item.wpm} WPM</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     );
   }
@@ -371,10 +336,12 @@ export function TypingGame() {
           </p>
         </motion.div>
 
-        <ShareResult
-          game="Typing Speed Test"
+        <GameResultPanel
+          game="typing"
+          score={wpm}
+          grade={grade}
           title={title}
-          lines={[
+          shareLines={[
             `등급: ${grade} · ${title}`,
             `WPM: ${wpm}`,
             `정확도: ${accuracy}%`,
@@ -384,30 +351,6 @@ export function TypingGame() {
         <Button onClick={handleRestart} size="lg" className="mt-8">
           다시 도전
         </Button>
-
-        {history.length > 0 && (
-          <div className="mt-12 w-full max-w-xs">
-            <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
-              History
-            </p>
-            <div className="mt-3">
-              {history.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between border-b border-border/60 py-2.5 text-sm"
-                >
-                  <span className="text-text-muted">#{item.id}</span>
-                  <span className="font-bold">{item.grade}</span>
-                  <span className="text-text-secondary">{item.title}</span>
-                  <span className="text-text-muted">
-                    {item.lang === "ko" ? "한" : "EN"}
-                  </span>
-                  <span>{item.wpm} WPM</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     );
   }

@@ -10,6 +10,7 @@ import {
   GameContentSection,
   RelatedGames,
 } from "@/components/game/game-content-section";
+import { GameLeaderboardSection } from "@/components/game/game-leaderboard-section";
 
 const DiceGame = dynamic(() =>
   import("@/components/game/dice-game").then((m) => m.DiceGame),
@@ -123,6 +124,8 @@ export default async function GameDetailPage({ params }: Props) {
       <div className="mt-12">
         <GameComponent />
       </div>
+
+      <GameLeaderboardSection game={slug} />
 
       {content && <GameContentSection content={content} />}
       <RelatedGames currentSlug={slug} />

@@ -3,7 +3,8 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ShareResult } from "@/components/game/share-result";
+import { GameResultPanel } from "@/components/game/game-result-panel";
+import { addGameHistory } from "@/lib/game-history";
 
 // ── Types ──
 
@@ -16,14 +17,6 @@ interface Problem {
   b: number;
   operator: string;
   answer: number;
-}
-
-interface HistoryItem {
-  id: number;
-  score: number;
-  grade: Grade;
-  title: string;
-  difficulty: Difficulty;
 }
 
 // ── Constants ──
@@ -119,8 +112,6 @@ export function MathGame() {
   const [timeLeft, setTimeLeft] = useState(TIME_LIMIT);
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
   const [streak, setStreak] = useState(0);
-  const [history, setHistory] = useState<HistoryItem[]>([]);
-
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const countdownRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const feedbackRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -165,16 +156,16 @@ export function MathGame() {
     setCorrectCount(finalCorrect);
 
     const { grade, title } = getGrade(finalScore);
-    setHistory((prev) => [
-      {
-        id: prev.length + 1,
-        score: finalScore,
-        grade,
-        title,
+    addGameHistory({
+      game: "math",
+      score: finalScore,
+      grade,
+      title,
+      metadata: {
         difficulty,
+        accuracy: finalAttempts > 0 ? Math.round((finalCorrect / finalAttempts) * 100) : 0,
       },
-      ...prev.slice(0, 9),
-    ]);
+    });
     setPhase("result");
   }, [clearAllTimers, difficulty]);
 
@@ -207,16 +198,16 @@ export function MathGame() {
           setCorrectCount(finalCorrect);
 
           const { grade, title } = getGrade(finalScore);
-          setHistory((prev) => [
-            {
-              id: prev.length + 1,
-              score: finalScore,
-              grade,
-              title,
+          addGameHistory({
+            game: "math",
+            score: finalScore,
+            grade,
+            title,
+            metadata: {
               difficulty: diff,
+              accuracy: finalAttempts > 0 ? Math.round((finalCorrect / finalAttempts) * 100) : 0,
             },
-            ...prev.slice(0, 9),
-          ]);
+          });
           setPhase("result");
         }
       }, 100);
@@ -317,29 +308,6 @@ export function MathGame() {
           시작하기
         </Button>
 
-        {history.length > 0 && (
-          <div className="mt-12 w-full max-w-xs">
-            <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
-              History
-            </p>
-            <div className="mt-3">
-              {history.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between border-b border-border/60 py-2.5 text-sm"
-                >
-                  <span className="text-text-muted">#{item.id}</span>
-                  <span className="font-bold">{item.grade}</span>
-                  <span className="text-text-secondary">{item.title}</span>
-                  <span className="text-text-muted">
-                    {DIFFICULTY_CONFIG[item.difficulty].label}
-                  </span>
-                  <span>{item.score}문제</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     );
   }
@@ -406,10 +374,12 @@ export function MathGame() {
           </p>
         </motion.div>
 
-        <ShareResult
-          game="암산 게임"
+        <GameResultPanel
+          game="math"
+          score={score}
+          grade={grade}
           title={title}
-          lines={[
+          shareLines={[
             `등급: ${grade} · ${title}`,
             `점수: ${score}문제 (${DIFFICULTY_CONFIG[difficulty].label})`,
             `정확도: ${accuracy}%`,
@@ -423,30 +393,6 @@ export function MathGame() {
         >
           다시 도전
         </Button>
-
-        {history.length > 0 && (
-          <div className="mt-12 w-full max-w-xs">
-            <p className="text-[13px] uppercase tracking-[0.2em] text-text-muted">
-              History
-            </p>
-            <div className="mt-3">
-              {history.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center justify-between border-b border-border/60 py-2.5 text-sm"
-                >
-                  <span className="text-text-muted">#{item.id}</span>
-                  <span className="font-bold">{item.grade}</span>
-                  <span className="text-text-secondary">{item.title}</span>
-                  <span className="text-text-muted">
-                    {DIFFICULTY_CONFIG[item.difficulty].label}
-                  </span>
-                  <span>{item.score}문제</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     );
   }

@@ -12,3 +12,10 @@ binding = "ASSETS"
 binding = "DB"
 database_name = "needcash-blog"
 database_id = "3cc1a2e8-ee84-4e7d-95b4-e0b5895395d8"
+
+[[kv_namespaces]]
+binding = "SITE_CONFIG"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"

@@ -56,6 +56,16 @@ class LocalD1Database {
     return new LocalD1PreparedStatement(this.db, sql);
   }
 
+  async batch(
+    statements: LocalD1PreparedStatement[]
+  ): Promise<{ results: unknown[] }> {
+    const results: unknown[] = [];
+    for (const stmt of statements) {
+      results.push(await stmt.run());
+    }
+    return { results };
+  }
+
   exec(sql: string): void {
     this.db.exec(sql);
   }
