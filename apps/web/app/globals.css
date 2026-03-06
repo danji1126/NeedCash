@@ -378,6 +378,39 @@ body {
   margin-bottom: 0.5em;
 }
 
+.prose-custom table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.95em;
+}
+
+.prose-custom thead {
+  border-bottom: 2px solid var(--border);
+}
+
+.prose-custom th {
+  padding: 0.75em 1em;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.prose-custom td {
+  padding: 0.75em 1em;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border, rgba(128, 128, 128, 0.15));
+}
+
+.prose-custom tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose-custom tbody tr:hover td {
+  background-color: var(--bg-secondary);
+}
+
 /* Offscreen rendering optimization for list items */
 .list-item-offscreen {
   content-visibility: auto;
