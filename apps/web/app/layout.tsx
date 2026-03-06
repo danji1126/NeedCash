@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   },
   other: {
     "google-adsense-account": "ca-pub-7452986546914975",
-    "apple-mobile-web-app-capable": "yes",
+    "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
   },
 };
