@@ -1,4 +1,9 @@
-import { getPostBySlug, updatePost, deletePost } from "@/lib/db";
+import {
+  getPostBySlug,
+  getPostBySlugAdmin,
+  updatePost,
+  deletePost,
+} from "@/lib/db";
 import { compileMarkdown, calculateReadingTime } from "@/lib/compile-markdown";
 import { verifyAdminAuth, unauthorizedResponse } from "@/lib/auth";
 
@@ -6,9 +11,12 @@ interface Params {
   params: Promise<{ slug: string }>;
 }
 
-export async function GET(_request: Request, { params }: Params) {
+export async function GET(request: Request, { params }: Params) {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const isAdmin = verifyAdminAuth(request);
+  const post = isAdmin
+    ? await getPostBySlugAdmin(slug)
+    : await getPostBySlug(slug);
   if (!post) return Response.json({ error: "Not found" }, { status: 404 });
   return Response.json(post);
 }

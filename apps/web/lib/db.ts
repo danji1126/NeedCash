@@ -90,6 +90,17 @@ export async function getPostBySlug(slug: string): Promise<PostFull | null> {
   return row ? rowToFull(row) : null;
 }
 
+export async function getPostBySlugAdmin(
+  slug: string
+): Promise<PostFull | null> {
+  const db = getDB();
+  const row = await db
+    .prepare(`SELECT * FROM posts WHERE slug = ?`)
+    .bind(slug)
+    .first<PostRow>();
+  return row ? rowToFull(row) : null;
+}
+
 export async function getPostsByCategory(
   category: string
 ): Promise<PostMeta[]> {
