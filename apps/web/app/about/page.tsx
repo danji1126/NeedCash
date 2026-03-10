@@ -76,12 +76,12 @@ export default function AboutPage() {
             본 사이트는 다음 기술로 제작되었습니다.
           </p>
           <ul className="mt-3 list-disc space-y-1 pl-6">
-            <li>Next.js 15 (App Router, Static Export)</li>
+            <li>Next.js 16 (App Router)</li>
             <li>TypeScript 5</li>
             <li>Tailwind CSS 4</li>
-            <li>MDX (블로그 콘텐츠)</li>
+            <li>Cloudflare D1 (블로그 데이터베이스)</li>
             <li>Framer Motion (애니메이션)</li>
-            <li>Cloudflare Pages (호스팅)</li>
+            <li>Cloudflare Workers (호스팅)</li>
           </ul>
         </section>
 

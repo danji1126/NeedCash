@@ -362,10 +362,10 @@ export function TypingGame() {
   return (
     <div className="flex w-full flex-col items-center">
       <div className="flex w-full max-w-lg items-center justify-between text-sm">
-        <span className="text-text-muted">
+        <span className="text-text-muted" aria-live="polite" aria-atomic="true">
           {Math.ceil(timeLeft)}초
         </span>
-        <span className="font-bold">
+        <span className="font-bold" aria-live="polite" aria-atomic="true">
           {currentWpm}
           <span className="ml-1 text-text-muted">WPM</span>
         </span>

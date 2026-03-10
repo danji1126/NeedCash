@@ -7,15 +7,17 @@ export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE.url;
+  // 사이트맵 날짜를 고정하여 불필요한 크롤링 방지
+  const SITEMAP_DATE = new Date("2026-03-10");
 
   const staticPages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/game`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/resume`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+    { url: baseUrl, lastModified: SITEMAP_DATE, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${baseUrl}/blog`, lastModified: SITEMAP_DATE, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/game`, lastModified: SITEMAP_DATE, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/resume`, lastModified: SITEMAP_DATE, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/about`, lastModified: SITEMAP_DATE, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${baseUrl}/privacy`, lastModified: SITEMAP_DATE, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/terms`, lastModified: SITEMAP_DATE, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const blogPages: MetadataRoute.Sitemap = (await getAllPosts()).map((post) => ({
@@ -27,16 +29,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const gamePages: MetadataRoute.Sitemap = GAMES.map((game) => ({
     url: `${baseUrl}/game/${game.slug}`,
-    lastModified: new Date(),
+    lastModified: SITEMAP_DATE,
     changeFrequency: "monthly" as const,
     priority: 0.5,
   }));
 
   const toolsPages: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
+    { url: `${baseUrl}/tools`, lastModified: SITEMAP_DATE, changeFrequency: "monthly" as const, priority: 0.7 },
     ...TOOLS.map((tool) => ({
       url: `${baseUrl}/tools/${tool.slug}`,
-      lastModified: new Date(),
+      lastModified: SITEMAP_DATE,
       changeFrequency: "monthly" as const,
       priority: 0.5,
     })),
@@ -46,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .filter((lang) => lang !== DEFAULT_LANG)
     .map((lang) => ({
       url: `${baseUrl}/resume/${lang}`,
-      lastModified: new Date(),
+      lastModified: SITEMAP_DATE,
       changeFrequency: "monthly" as const,
       priority: 0.6,
     }));

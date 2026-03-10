@@ -1,3 +1,5 @@
+import { getDB, getKV } from "./env";
+
 export async function isAnalyticsEnabled(): Promise<boolean> {
   const kv = getKV();
   const enabled = await kv.get("analytics_enabled");
@@ -84,32 +86,3 @@ export async function setThreshold(threshold: number): Promise<void> {
   await kv.put("analytics_threshold", String(threshold));
 }
 
-let localKVStore: Map<string, string> | null = null;
-
-function getKV(): KVNamespace {
-  if (process.env.USE_LOCAL_DB === "true") {
-    if (!localKVStore) localKVStore = new Map<string, string>();
-    return {
-      get: async (key: string) => localKVStore!.get(key) ?? null,
-      put: async (key: string, value: string) => {
-        localKVStore!.set(key, value);
-      },
-    } as unknown as KVNamespace;
-  }
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { getCloudflareContext } = require("@opennextjs/cloudflare");
-  const { env } = getCloudflareContext();
-  return env.SITE_CONFIG;
-}
-
-function getDB(): D1Database {
-  if (process.env.USE_LOCAL_DB === "true") {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { getLocalDB } = require("./local-db");
-    return getLocalDB() as unknown as D1Database;
-  }
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { getCloudflareContext } = require("@opennextjs/cloudflare");
-  const { env } = getCloudflareContext();
-  return env.DB;
-}

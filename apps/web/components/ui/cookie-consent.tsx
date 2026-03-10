@@ -51,9 +51,15 @@ export function CookieConsent() {
       )}
 
       {consent === null && (
-        <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-bg/95 backdrop-blur-sm">
+        <div
+          role="alertdialog"
+          aria-modal="false"
+          aria-label="쿠키 사용 동의"
+          aria-describedby="cookie-consent-desc"
+          className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-bg/95 backdrop-blur-sm"
+        >
           <div className="mx-auto flex max-w-4xl flex-col gap-3 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-text-secondary">
+            <p id="cookie-consent-desc" className="text-sm text-text-secondary">
               이 사이트는 서비스 개선과 맞춤 광고를 위해 쿠키를 사용합니다.{" "}
               <Link
                 href="/privacy"

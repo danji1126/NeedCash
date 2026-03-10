@@ -270,6 +270,63 @@ function getDB(): D1Database {
 - **Admin 토글**: `/admin/analytics` → KV 기반 ON/OFF + D1 카운터 + 자동 차단 (90% 임계치)
 - **Cloudflare 바인딩**: D1 (`DB`), KV (`SITE_CONFIG`), Analytics Engine (`ANALYTICS`)
 
+## 개발 규칙
+
+### TDD (Test-Driven Development)
+
+새로운 기능을 구현하거나 버그를 수정할 때 반드시 테스트 코드를 먼저 작성한다.
+
+1. **테스트 먼저 작성**: 구현 전에 기대 동작을 검증하는 테스트 코드를 작성 (Red)
+2. **구현**: 테스트를 통과하는 최소한의 코드를 작성 (Green)
+3. **확인**: 작성한 테스트를 실행하여 구현을 검증
+4. **리팩토링**: 테스트가 통과하는 상태에서 코드를 개선 (Refactor)
+
+```bash
+# 테스트 실행
+cd apps/web && pnpm test
+
+# 특정 파일 테스트
+cd apps/web && pnpm test -- {테스트파일경로}
+
+# watch 모드
+cd apps/web && pnpm test -- --watch
+```
+
+- **테스트 위치**: `lib/__tests__/`, `components/__tests__/` 등 소스 근처 `__tests__` 폴더
+- **테스트 파일 네이밍**: `{모듈명}.test.ts` 또는 `{컴포넌트명}.test.tsx`
+- **테스트 도구**: Vitest (`vitest.config.ts` 설정 참고)
+- **UI가 아닌 로직**(유틸, 서비스, 검증 등)은 반드시 단위 테스트 작성
+- **구현 완료 확인 시** 수동 테스트 대신 작성한 테스트 코드 실행으로 검증
+
+## Tools 시스템
+
+`/tools` 경로에서 개발자 유틸리티 도구를 제공합니다.
+
+### 도구 목록
+
+| slug | title | 설명 | 컴포넌트 |
+|------|-------|------|----------|
+| json-formatter | JSON Formatter | JSON 포맷, 검증, 압축 | `app/tools/json-formatter/page.tsx` |
+| base64 | Base64 Encoder/Decoder | Base64 인코딩/디코딩 | `app/tools/base64/page.tsx` |
+| color-palette | Color Palette | HSL 기반 색상 팔레트 생성 | `app/tools/color-palette/page.tsx` |
+| sort-visualizer | Sort Visualizer | 정렬 알고리즘 시각화 | `app/tools/sort-visualizer/page.tsx` |
+
+### 도구 추가 절차
+
+1. `icons.tsx`에 아이콘 추가 (필요시)
+2. `constants.ts`의 `TOOLS` 배열에 등록
+3. `app/tools/[slug]/page.tsx` 생성 (클라이언트 컴포넌트)
+4. `components/` 아래 구현체 작성
+
+### 특징
+
+- 모든 도구는 **클라이언트 사이드 전용** ("use client") — 서버 연동 불필요
+- 도구 데이터는 `lib/constants.ts`의 `TOOLS` 배열에서 관리
+- 메인 도구 목록: `app/tools/page.tsx` (SSG 가능)
+- 네비게이션: `NAV_LINKS`에 `/tools` 포함
+
+---
+
 ## 제약 사항
 
 - 게임은 클라이언트 사이드 렌더링 ("use client")

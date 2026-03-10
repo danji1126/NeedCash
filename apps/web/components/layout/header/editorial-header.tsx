@@ -1,13 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { NAV_LINKS, SITE } from "@/lib/constants";
 import { DesignPicker } from "@/components/design/design-picker";
 import { cn } from "@/lib/utils";
 
 export function EditorialHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 bg-bg/90 backdrop-blur-md">
@@ -20,15 +31,22 @@ export function EditorialHeader() {
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[13px] tracking-wide text-text-secondary transition-opacity hover:opacity-50"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "text-[13px] tracking-wide transition-opacity hover:opacity-50",
+                  isActive ? "text-text font-medium" : "text-text-secondary"
+                )}
+                {...(isActive ? { "aria-current": "page" as const } : {})}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <DesignPicker />
         </div>
 
@@ -37,7 +55,9 @@ export function EditorialHeader() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="flex h-8 w-8 items-center justify-center text-text-secondary transition-opacity hover:opacity-50"
-            aria-label="Menu"
+            aria-expanded={menuOpen}
+            aria-controls="editorial-mobile-menu"
+            aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
               {menuOpen ? (
@@ -59,22 +79,32 @@ export function EditorialHeader() {
       <div className="mx-8 h-px bg-border/40" />
 
       <div
+        id="editorial-mobile-menu"
+        role="navigation"
+        aria-label="모바일 메뉴"
         className={cn(
           "overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.215,0.61,0.355,1)] md:hidden",
           menuOpen ? "max-h-60" : "max-h-0"
         )}
       >
         <div className="flex flex-col gap-1 px-8 py-4">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="py-2.5 text-[13px] tracking-wide text-text-secondary transition-opacity hover:opacity-50"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "py-2.5 text-[13px] tracking-wide transition-opacity hover:opacity-50",
+                  isActive ? "text-text font-medium" : "text-text-secondary"
+                )}
+                {...(isActive ? { "aria-current": "page" as const } : {})}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </header>

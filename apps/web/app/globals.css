@@ -27,7 +27,7 @@
 
 :root {
   --bg: #0A0E0A; --bg-secondary: #0F150F; --bg-tertiary: #151D15;
-  --text: #D0F0D0; --text-secondary: #7AB87A; --text-muted: #3D6A3D;
+  --text: #D0F0D0; --text-secondary: #7AB87A; --text-muted: #6BAF6B;
   --border: #1A2A1A; --accent: #33FF33; --accent-hover: #66FF66;
   --card-bg: #0D120D; --card-border: #1A2A1A; --code-bg: #0F150F;
 }
@@ -43,7 +43,7 @@
 
 [data-theme="editorial-dark"] {
   --bg: #0a0a0a; --bg-secondary: #141414; --bg-tertiary: #1e1e1e;
-  --text: #f0f0f0; --text-secondary: #a0a0a0; --text-muted: #666666;
+  --text: #f0f0f0; --text-secondary: #a0a0a0; --text-muted: #8a8a8a;
   --border: #222222; --accent: #f0f0f0; --accent-hover: #cccccc;
   --card-bg: #111111; --card-border: #1e1e1e; --code-bg: #1a1a1a;
 }
@@ -92,11 +92,22 @@
   --card-bg: #FFFFFF; --card-border: #F5E8DA; --code-bg: #FFF5EE;
 }
 
+/* ── gradient 변수 기본값 (glass 테마 외에서 transparent 처리) ── */
+
+:root,
+[data-theme^="editorial-"],
+[data-theme^="bento-"],
+[data-theme^="brutal-"] {
+  --gradient-1: transparent;
+  --gradient-2: transparent;
+  --gradient-3: transparent;
+}
+
 /* ── Brutalist themes ── */
 
 [data-theme="brutal-terminal"] {
   --bg: #0A0E0A; --bg-secondary: #0F150F; --bg-tertiary: #151D15;
-  --text: #D0F0D0; --text-secondary: #7AB87A; --text-muted: #3D6A3D;
+  --text: #D0F0D0; --text-secondary: #7AB87A; --text-muted: #6BAF6B;
   --border: #1A2A1A; --accent: #33FF33; --accent-hover: #66FF66;
   --card-bg: #0D120D; --card-border: #1A2A1A; --code-bg: #0F150F;
 }
@@ -126,7 +137,7 @@
 
 [data-theme="glass-aurora"] {
   --bg: #0A0A1A; --bg-secondary: #12122A; --bg-tertiary: #1A1A3A;
-  --text: #F0F0F0; --text-secondary: #B0B0D0; --text-muted: #6060A0;
+  --text: #F0F0F0; --text-secondary: #B0B0D0; --text-muted: #8888CC;
   --border: rgba(255,255,255,0.12); --accent: #A78BFA; --accent-hover: #B9A3FB;
   --card-bg: rgba(255,255,255,0.06); --card-border: rgba(255,255,255,0.10);
   --code-bg: rgba(255,255,255,0.04);
@@ -153,7 +164,7 @@
 
 [data-theme="glass-ocean"] {
   --bg: #0A1628; --bg-secondary: #0F1D32; --bg-tertiary: #15253D;
-  --text: #D4E5F5; --text-secondary: #7A97AD; --text-muted: #3D5A73;
+  --text: #D4E5F5; --text-secondary: #7A97AD; --text-muted: #6B90AD;
   --border: rgba(255,255,255,0.10); --accent: #06B6D4; --accent-hover: #22D3EE;
   --card-bg: rgba(255,255,255,0.05); --card-border: rgba(255,255,255,0.08);
   --code-bg: rgba(255,255,255,0.03);

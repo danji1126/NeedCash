@@ -1,3 +1,5 @@
+import { getDB } from "./env";
+
 export interface PostMeta {
   slug: string;
   title: string;
@@ -55,19 +57,7 @@ function rowToFull(row: PostRow): PostFull {
   };
 }
 
-function getDB(): D1Database {
-  if (process.env.USE_LOCAL_DB === "true") {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { getLocalDB } = require("./local-db");
-    return getLocalDB() as unknown as D1Database;
-  }
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { getCloudflareContext } = require("@opennextjs/cloudflare");
-  const { env } = getCloudflareContext();
-  return env.DB;
-}
-
-export async function getAllPosts(): Promise<PostMeta[]> {
+export async function getAllPosts(offset = 0, limit = 50): Promise<PostMeta[]> {
   const db = getDB();
   const { results } = await db
     .prepare(
@@ -75,8 +65,10 @@ export async function getAllPosts(): Promise<PostMeta[]> {
               published, reading_time, created_at
        FROM posts
        WHERE published = 1
-       ORDER BY date DESC`
+       ORDER BY date DESC
+       LIMIT ? OFFSET ?`
     )
+    .bind(limit, offset)
     .all<PostRow>();
   return results.map(rowToMeta);
 }
@@ -126,6 +118,19 @@ export async function getAllPostsAdmin(): Promise<PostFull[]> {
   return results.map(rowToFull);
 }
 
+export async function getAllPostsAdminList(): Promise<PostMeta[]> {
+  const db = getDB();
+  const { results } = await db
+    .prepare(
+      `SELECT id, slug, title, description, date, updated_at, category, tags,
+              published, reading_time, created_at
+       FROM posts
+       ORDER BY date DESC`
+    )
+    .all<PostRow>();
+  return results.map(rowToMeta);
+}
+
 export async function createPost(data: {
   slug: string;
   title: string;
@@ -158,7 +163,8 @@ export async function createPost(data: {
       data.html
     )
     .first<PostRow>();
-  return rowToFull(row!);
+  if (!row) throw new Error("Failed to create post");
+  return rowToFull(row);
 }
 
 export async function updatePost(

@@ -16,8 +16,17 @@ export function DesignPicker() {
         setOpen(false);
       }
     }
-    if (open) document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    if (open) {
+      document.addEventListener("mousedown", handleClick);
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [open]);
 
   return (
@@ -26,6 +35,8 @@ export function DesignPicker() {
         onClick={() => setOpen(!open)}
         className="flex h-8 w-8 items-center justify-center rounded-full text-text-secondary transition-colors hover:text-text"
         aria-label="디자인 변경"
+        aria-expanded={open}
+        aria-controls="design-picker-panel"
       >
         <svg
           width="18"
@@ -43,7 +54,7 @@ export function DesignPicker() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-xl border border-border bg-bg p-4 shadow-lg">
+        <div id="design-picker-panel" role="listbox" aria-label="디자인 및 테마 선택" className="absolute right-0 top-full z-50 mt-2 w-64 rounded-xl border border-border bg-bg p-4 shadow-lg">
           {/* Design selection */}
           <p className="mb-2 text-[11px] uppercase tracking-[0.15em] text-text-muted">
             Design

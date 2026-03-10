@@ -1,10 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useDesign } from "@/lib/design/use-design";
-import { EditorialHome } from "./editorial-home";
-import { BentoHome } from "./bento-home";
-import { BrutalistHome } from "./brutalist-home";
-import { GlassHome } from "./glass-home";
 import { DailyChallenge } from "./daily-challenge";
 
 interface Post {
@@ -24,6 +21,11 @@ export interface HomeProps {
   sections: Section[];
   recentPosts: Post[];
 }
+
+const EditorialHome = dynamic(() => import("./editorial-home").then(m => ({ default: m.EditorialHome })));
+const BentoHome = dynamic(() => import("./bento-home").then(m => ({ default: m.BentoHome })));
+const BrutalistHome = dynamic(() => import("./brutalist-home").then(m => ({ default: m.BrutalistHome })));
+const GlassHome = dynamic(() => import("./glass-home").then(m => ({ default: m.GlassHome })));
 
 export function HomePage({ sections, recentPosts }: HomeProps) {
   const { design } = useDesign();

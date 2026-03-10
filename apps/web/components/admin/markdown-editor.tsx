@@ -2,6 +2,7 @@
 
 import { useRef, useMemo, useCallback } from "react";
 import { marked } from "marked";
+import DOMPurify from "dompurify";
 
 interface MarkdownEditorProps {
   value: string;
@@ -31,7 +32,8 @@ export function MarkdownEditor({ value, onChange, showPreview }: MarkdownEditorP
 
   const preview = useMemo(() => {
     if (!showPreview || !value) return "";
-    return marked.parse(value) as string;
+    const raw = marked.parse(value) as string;
+    return DOMPurify.sanitize(raw);
   }, [value, showPreview]);
 
   const insertMarkdown = useCallback(

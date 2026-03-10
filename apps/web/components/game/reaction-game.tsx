@@ -297,7 +297,16 @@ export function ReactionGame() {
   return (
     <motion.div
       className="fixed inset-0 z-50 flex cursor-pointer select-none flex-col items-center justify-center"
-      onPointerDown={handleClick}
+      onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleClick();
+        }
+      }}
+      tabIndex={0}
+      role="button"
+      aria-label="반응 테스트 영역 - 클릭 또는 Enter/Space로 반응"
       animate={{ backgroundColor: BG_COLORS[phase] ?? "#1e293b" }}
       transition={{ duration: 0.15 }}
     >
@@ -375,7 +384,7 @@ export function ReactionGame() {
             transition={{ duration: 0.2 }}
             className="flex flex-col items-center text-white"
           >
-            <p className="text-lg text-white/60">
+            <p className="text-lg text-white/60" aria-live="polite" aria-atomic="true">
               Round {round} / {totalRounds}
             </p>
             <motion.p
@@ -383,6 +392,8 @@ export function ReactionGame() {
               animate={{ scale: [0.5, 1.1, 1] }}
               transition={{ duration: 0.4, ease: EASING }}
               className="mt-4 text-6xl font-bold font-heading sm:text-8xl"
+              aria-live="polite"
+              aria-atomic="true"
             >
               {currentTime}
               <span className="ml-2 text-2xl text-white/60 sm:text-3xl">ms</span>

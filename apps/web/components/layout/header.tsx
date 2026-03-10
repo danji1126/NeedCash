@@ -1,10 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useDesign } from "@/lib/design/use-design";
-import { EditorialHeader } from "./header/editorial-header";
-import { BentoHeader } from "./header/bento-header";
-import { BrutalistHeader } from "./header/brutalist-header";
-import { GlassHeader } from "./header/glass-header";
+
+const EditorialHeader = dynamic(() => import("./header/editorial-header").then(m => ({ default: m.EditorialHeader })));
+const BentoHeader = dynamic(() => import("./header/bento-header").then(m => ({ default: m.BentoHeader })));
+const BrutalistHeader = dynamic(() => import("./header/brutalist-header").then(m => ({ default: m.BrutalistHeader })));
+const GlassHeader = dynamic(() => import("./header/glass-header").then(m => ({ default: m.GlassHeader })));
 
 export function Header() {
   const { design } = useDesign();

@@ -86,15 +86,29 @@ function runMigrations(db: LocalD1Database): void {
 
   if (!fs.existsSync(migrationsDir)) return;
 
+  // _migrations 추적 테이블 생성 (멱등)
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS _migrations (
+      name TEXT PRIMARY KEY,
+      applied_at TEXT NOT NULL DEFAULT (datetime('now'))
+    )
+  `);
+
   const files = fs
     .readdirSync(migrationsDir)
     .filter((f) => f.endsWith(".sql"))
     .sort();
 
   for (const file of files) {
+    // 이미 적용된 마이그레이션 스킵 (better-sqlite3 직접 접근으로 동기 확인)
+    const dbRaw = (db as unknown as { db: import("better-sqlite3").Database }).db;
+    const already = dbRaw.prepare("SELECT name FROM _migrations WHERE name = ?").get(file);
+    if (already) continue;
+
     const sql = fs.readFileSync(path.join(migrationsDir, file), "utf-8");
     try {
       db.exec(sql);
+      dbRaw.prepare("INSERT INTO _migrations (name) VALUES (?)").run(file);
     } catch {
       // 이미 존재하는 테이블/데이터는 무시 (CREATE IF NOT EXISTS, UNIQUE 충돌)
     }

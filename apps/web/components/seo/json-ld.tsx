@@ -1,6 +1,6 @@
 import { SITE } from "@/lib/constants";
 
-// ── WebSite JSON-LD (사이트 전체) ──
+// ── WebSite JSON-LD (사이트 전체, SearchAction 포함) ──
 
 export function WebSiteJsonLd() {
   const jsonLd = {
@@ -9,6 +9,14 @@ export function WebSiteJsonLd() {
     name: SITE.name,
     description: SITE.description,
     url: SITE.url,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE.url}/blog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 
   return (
@@ -26,7 +34,9 @@ interface ArticleJsonLdProps {
   description: string;
   url: string;
   datePublished: string;
+  dateModified?: string;
   tags?: string[];
+  image?: string;
 }
 
 export function ArticleJsonLd({
@@ -34,8 +44,11 @@ export function ArticleJsonLd({
   description,
   url,
   datePublished,
+  dateModified,
   tags,
+  image,
 }: ArticleJsonLdProps) {
+  const imageUrl = image ?? `${SITE.url}/opengraph-image`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -43,6 +56,8 @@ export function ArticleJsonLd({
     description,
     url: `${SITE.url}${url}`,
     datePublished,
+    dateModified: dateModified || datePublished,
+    image: imageUrl,
     author: {
       "@type": "Person",
       name: "NeedCash",
@@ -86,6 +101,41 @@ export function GameJsonLd({ name, description, url }: GameJsonLdProps) {
       price: "0",
       priceCurrency: "KRW",
     },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
+// ── Person JSON-LD (이력서 페이지용) ──
+
+interface PersonJsonLdProps {
+  name: string;
+  url?: string;
+  jobTitle?: string;
+  description?: string;
+  sameAs?: string[];
+}
+
+export function PersonJsonLd({
+  name,
+  url,
+  jobTitle,
+  description,
+  sameAs,
+}: PersonJsonLdProps) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name,
+    url: url ?? SITE.url,
+    ...(jobTitle && { jobTitle }),
+    ...(description && { description }),
+    ...(sameAs?.length && { sameAs }),
   };
 
   return (

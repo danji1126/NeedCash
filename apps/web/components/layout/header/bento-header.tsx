@@ -1,13 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { NAV_LINKS, SITE } from "@/lib/constants";
 import { DesignPicker } from "@/components/design/design-picker";
 import { cn } from "@/lib/utils";
 
 export function BentoHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 bg-bg/80 backdrop-blur-xl">
@@ -20,15 +31,22 @@ export function BentoHeader() {
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-text-secondary transition-colors hover:text-text"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-text",
+                  isActive ? "text-text" : "text-text-secondary"
+                )}
+                {...(isActive ? { "aria-current": "page" as const } : {})}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <DesignPicker />
         </div>
 
@@ -37,7 +55,9 @@ export function BentoHeader() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="flex h-8 w-8 items-center justify-center text-text-secondary"
-            aria-label="Menu"
+            aria-expanded={menuOpen}
+            aria-controls="bento-mobile-menu"
+            aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               {menuOpen ? (
@@ -57,22 +77,32 @@ export function BentoHeader() {
       </nav>
 
       <div
+        id="bento-mobile-menu"
+        role="navigation"
+        aria-label="모바일 메뉴"
         className={cn(
           "overflow-hidden transition-all duration-300 md:hidden",
           menuOpen ? "max-h-60" : "max-h-0"
         )}
       >
         <div className="flex flex-col gap-1 px-8 py-4">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="rounded-lg py-2.5 text-sm font-medium text-text-secondary hover:bg-bg-secondary hover:px-3"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "rounded-lg py-2.5 text-sm font-medium hover:bg-bg-secondary hover:px-3",
+                  isActive ? "text-text" : "text-text-secondary"
+                )}
+                {...(isActive ? { "aria-current": "page" as const } : {})}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </header>

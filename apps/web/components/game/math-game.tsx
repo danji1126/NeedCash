@@ -406,11 +406,11 @@ export function MathGame() {
         <span className="text-text-muted">
           {DIFFICULTY_CONFIG[difficulty].label}
         </span>
-        <span className="font-bold">
+        <span className="font-bold" aria-live="polite" aria-atomic="true">
           {score}
           <span className="ml-1 text-text-muted">문제</span>
         </span>
-        <span className="tabular-nums text-text-muted">
+        <span className="tabular-nums text-text-muted" aria-live="polite" aria-atomic="true">
           {Math.ceil(timeLeft)}초
         </span>
       </div>

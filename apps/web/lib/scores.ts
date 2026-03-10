@@ -1,5 +1,6 @@
 import type { RankableGame } from "./score-validation";
 import { SCORE_ORDER, getScoreType } from "./score-validation";
+import { getDB } from "./env";
 
 export interface ScoreEntry {
   id: number;
@@ -52,7 +53,8 @@ export async function submitScore(data: {
     )
     .first<{ id: number }>();
 
-  return { id: row!.id };
+  if (!row) throw new Error("Failed to submit score");
+  return { id: row.id };
 }
 
 export async function getLeaderboard(
@@ -79,24 +81,27 @@ export async function getLeaderboard(
     rank: i + 1,
   }));
 
-  const countRow = await db
-    .prepare(
-      `SELECT COUNT(DISTINCT visitor_id) as total FROM game_scores WHERE game_slug = ?`
-    )
-    .bind(gameSlug)
-    .first<{ total: number }>();
+  const [countRow, myBest] = await Promise.all([
+    db
+      .prepare(
+        `SELECT COUNT(DISTINCT visitor_id) as total FROM game_scores WHERE game_slug = ?`
+      )
+      .bind(gameSlug)
+      .first<{ total: number }>(),
+    visitorId
+      ? db
+          .prepare(
+            `SELECT score, nickname FROM game_scores
+             WHERE visitor_id = ? AND game_slug = ?
+             ORDER BY score ${order} LIMIT 1`
+          )
+          .bind(visitorId, gameSlug)
+          .first<{ score: number; nickname: string | null }>()
+      : Promise.resolve(null),
+  ]);
 
   let myRank = null;
   if (visitorId) {
-    const myBest = await db
-      .prepare(
-        `SELECT score, nickname FROM game_scores
-         WHERE visitor_id = ? AND game_slug = ?
-         ORDER BY score ${order} LIMIT 1`
-      )
-      .bind(visitorId, gameSlug)
-      .first<{ score: number; nickname: string | null }>();
-
     if (myBest) {
       const op = order === "ASC" ? "<" : ">";
       const rankRow = await db
@@ -108,14 +113,14 @@ export async function getLeaderboard(
         .first<{ rank: number }>();
 
       myRank = {
-        rank: rankRow!.rank,
+        rank: rankRow?.rank ?? 1,
         score: myBest.score,
         nickname: myBest.nickname,
       };
     }
   }
 
-  return { leaderboard, myRank, total: countRow!.total };
+  return { leaderboard, myRank, total: countRow?.total ?? 0 };
 }
 
 export async function checkRateLimit(
@@ -138,14 +143,3 @@ export async function checkRateLimit(
   return elapsed >= intervalMs;
 }
 
-function getDB(): D1Database {
-  if (process.env.USE_LOCAL_DB === "true") {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { getLocalDB } = require("./local-db");
-    return getLocalDB() as unknown as D1Database;
-  }
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { getCloudflareContext } = require("@opennextjs/cloudflare");
-  const { env } = getCloudflareContext();
-  return env.DB;
-}

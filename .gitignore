@@ -60,3 +60,4 @@ color-memory-*.png
 # misc
 *.pem
 .vercel
+apps/web/local.db

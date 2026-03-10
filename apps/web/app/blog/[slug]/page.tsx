@@ -44,6 +44,7 @@ export default async function BlogPostPage({ params }: Props) {
         description={post.description}
         url={`/blog/${slug}`}
         datePublished={post.date}
+        dateModified={post.updatedAt}
         tags={post.tags}
       />
       <BreadcrumbJsonLd
@@ -69,11 +70,11 @@ export default async function BlogPostPage({ params }: Props) {
           {post.title}
         </h1>
         <div className="mt-4 flex flex-wrap gap-3 text-[13px] text-text-muted">
-          <time>{post.date}</time>
+          <time dateTime={post.date}>{post.date}</time>
           {post.updatedAt && (
             <>
               <span>&middot;</span>
-              <time>(수정: {post.updatedAt})</time>
+              <time dateTime={post.updatedAt}>(수정: {post.updatedAt})</time>
             </>
           )}
           <span>&middot;</span>

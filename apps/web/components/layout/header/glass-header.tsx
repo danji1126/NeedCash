@@ -1,13 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { NAV_LINKS, SITE } from "@/lib/constants";
 import { DesignPicker } from "@/components/design/design-picker";
 import { cn } from "@/lib/utils";
 
 export function GlassHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-4">
@@ -18,15 +29,22 @@ export function GlassHeader() {
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm text-text-secondary transition-colors hover:text-text"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "text-sm transition-colors hover:text-text",
+                  isActive ? "text-text font-medium" : "text-text-secondary"
+                )}
+                {...(isActive ? { "aria-current": "page" as const } : {})}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <DesignPicker />
         </div>
 
@@ -35,7 +53,9 @@ export function GlassHeader() {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="flex h-8 w-8 items-center justify-center text-text-secondary"
-            aria-label="Menu"
+            aria-expanded={menuOpen}
+            aria-controls="glass-mobile-menu"
+            aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               {menuOpen ? (
@@ -55,6 +75,9 @@ export function GlassHeader() {
       </nav>
 
       <div
+        id="glass-mobile-menu"
+        role="navigation"
+        aria-label="모바일 메뉴"
         className={cn(
           "mx-auto mt-2 max-w-5xl overflow-hidden rounded-2xl transition-all duration-500 md:hidden",
           menuOpen
@@ -63,16 +86,23 @@ export function GlassHeader() {
         )}
       >
         <div className="flex flex-col gap-1 p-4">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="rounded-lg py-2.5 px-3 text-sm text-text-secondary hover:bg-bg-secondary/50"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href || pathname.startsWith(link.href + "/");
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "rounded-lg py-2.5 px-3 text-sm hover:bg-bg-secondary/50",
+                  isActive ? "text-text font-medium" : "text-text-secondary"
+                )}
+                {...(isActive ? { "aria-current": "page" as const } : {})}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </header>

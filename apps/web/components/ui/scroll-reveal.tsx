@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 
 const OFFSETS = {
@@ -22,10 +22,12 @@ export function ScrollReveal({
   direction = "up",
   className,
 }: ScrollRevealProps) {
+  const shouldReduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    if (shouldReduce) return;
     const el = ref.current;
     if (!el) return;
 
@@ -48,7 +50,11 @@ export function ScrollReveal({
       clearTimeout(timer);
       observer.disconnect();
     };
-  }, []);
+  }, [shouldReduce]);
+
+  if (shouldReduce) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div

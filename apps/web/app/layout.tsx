@@ -1,10 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import dynamic from "next/dynamic";
 import { DesignProvider } from "@/components/design/design-provider";
-import { GlassBackground } from "@/components/design/glass-background";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+
+const GlassBackground = dynamic(
+  () => import("@/components/design/glass-background").then((m) => ({ default: m.GlassBackground }))
+);
 import { SITE } from "@/lib/constants";
 import { WebSiteJsonLd } from "@/components/seo/json-ld";
 import { CookieConsent } from "@/components/ui/cookie-consent";
@@ -85,7 +89,7 @@ export default function RootLayout({
       <head>
         <link
           rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+          href="/styles/github-dark.min.css"
         />
         <script
           dangerouslySetInnerHTML={{
