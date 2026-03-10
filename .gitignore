@@ -50,6 +50,10 @@ docs/.pdca-snapshots/*.png
 color-memory-*.png
 color-memory-*.png
 
+# AI / docs
+CLAUDE.md
+/docs/**
+
 # misc
 *.pem
 .vercel
