@@ -54,6 +54,21 @@ export async function submitScore(data: {
     .first<{ id: number }>();
 
   if (!row) throw new Error("Failed to submit score");
+
+  // SEC-14: 방문자당 게임당 최대 500건으로 오래된 기록 정리
+  await db
+    .prepare(
+      `DELETE FROM game_scores
+       WHERE visitor_id = ? AND game_slug = ?
+       AND id NOT IN (
+         SELECT id FROM game_scores
+         WHERE visitor_id = ? AND game_slug = ?
+         ORDER BY created_at DESC LIMIT 500
+       )`
+    )
+    .bind(data.visitorId, data.gameSlug, data.visitorId, data.gameSlug)
+    .run();
+
   return { id: row.id };
 }
 

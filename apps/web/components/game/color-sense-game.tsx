@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { GameResultPanel } from "@/components/game/game-result-panel";
 import { addGameHistory } from "@/lib/game-history";
+import { startGameSession } from "@/lib/game-session";
 
 // ── Types ──
 
@@ -97,6 +98,7 @@ export function ColorSenseGame() {
   const startTimeRef = useRef(0);
   const scoreRef = useRef(0);
   const roundRef = useRef(1);
+  const [sessionId, setSessionId] = useState<string | null>(null);
 
   const clearTimer = useCallback(() => {
     if (timerRef.current) {
@@ -145,7 +147,7 @@ export function ColorSenseGame() {
     [clearTimer],
   );
 
-  const startGame = useCallback(() => {
+  const startGame = useCallback(async () => {
     clearTimer();
     clearFeedbackTimer();
     setRound(1);
@@ -153,6 +155,8 @@ export function ColorSenseGame() {
     setRoundResults([]);
     scoreRef.current = 0;
     roundRef.current = 1;
+    const sid = await startGameSession("color-sense");
+    setSessionId(sid);
     startRound(1);
   }, [clearTimer, clearFeedbackTimer, startRound]);
 
@@ -299,6 +303,7 @@ export function ColorSenseGame() {
           score={score}
           grade={grade}
           title={title}
+          sessionId={sessionId}
           shareLines={[
             `등급: ${grade} · ${title}`,
             `점수: ${score}점`,
@@ -367,6 +372,7 @@ export function ColorSenseGame() {
           score={score}
           grade={grade}
           title={title}
+          sessionId={sessionId}
           shareLines={[
             `등급: ${grade} · ${title}`,
             `점수: ${score}점`,

@@ -96,12 +96,12 @@ describe("GET /api/scores/[game]", () => {
     expect(mockGetLeaderboard).toHaveBeenCalledWith("reaction", "visitor-123", 50);
   });
 
-  // API-SG-005: Cache-Control header with s-maxage
-  it("Cache-Control header with s-maxage", async () => {
+  // API-SG-005: Cache-Control header (SEC-15: private, max-age=60)
+  it("Cache-Control header with private max-age", async () => {
     const { request, context } = createRequest("reaction");
 
     const res = await GET(request, context);
 
-    expect(res.headers.get("Cache-Control")).toContain("s-maxage=60");
+    expect(res.headers.get("Cache-Control")).toBe("private, max-age=60");
   });
 });

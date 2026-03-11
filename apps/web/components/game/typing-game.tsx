@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { GameResultPanel } from "@/components/game/game-result-panel";
 import { addGameHistory } from "@/lib/game-history";
+import { startGameSession } from "@/lib/game-session";
 
 // ── Types ──
 
@@ -67,6 +68,7 @@ export function TypingGame() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const totalCorrectRef = useRef(0);
   const totalTypedRef = useRef(0);
+  const [sessionId, setSessionId] = useState<string | null>(null);
 
   const clearAllTimers = useCallback(() => {
     if (timerRef.current) {
@@ -157,7 +159,9 @@ export function TypingGame() {
     [clearAllTimers, startPlaying],
   );
 
-  const handleStart = useCallback(() => {
+  const handleStart = useCallback(async () => {
+    const sid = await startGameSession("typing");
+    setSessionId(sid);
     startCountdown(lang);
   }, [startCountdown, lang]);
 
@@ -341,6 +345,7 @@ export function TypingGame() {
           score={wpm}
           grade={grade}
           title={title}
+          sessionId={sessionId}
           shareLines={[
             `등급: ${grade} · ${title}`,
             `WPM: ${wpm}`,

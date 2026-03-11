@@ -1,6 +1,7 @@
 import { getAllPosts, createPost } from "@/lib/db";
 import { compileMarkdown, calculateReadingTime } from "@/lib/compile-markdown";
 import { verifyAdminAuth, unauthorizedResponse } from "@/lib/auth";
+import { checkAdminRateLimit } from "@/lib/admin-rate-limit";
 
 const SLUG_REGEX = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
@@ -24,6 +25,9 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
+    if (!(await checkAdminRateLimit(request))) {
+      return Response.json({ error: "Too many requests" }, { status: 429 });
+    }
     if (!(await verifyAdminAuth(request))) return unauthorizedResponse();
 
     let body: Record<string, unknown>;

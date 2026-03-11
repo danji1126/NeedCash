@@ -10,6 +10,7 @@ interface ScoreSubmitProps {
   game: RankableGame;
   score: number;
   metadata?: Record<string, unknown>;
+  sessionId?: string | null;
   onSubmitted?: () => void;
   onSkipped?: () => void;
 }
@@ -20,6 +21,7 @@ export function ScoreSubmit({
   game,
   score,
   metadata,
+  sessionId,
   onSubmitted,
   onSkipped,
 }: ScoreSubmitProps) {
@@ -74,6 +76,7 @@ export function ScoreSubmit({
           score,
           nickname: trimmed || null,
           metadata,
+          sessionId,
         }),
       });
 

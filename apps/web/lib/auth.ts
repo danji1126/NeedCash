@@ -1,18 +1,19 @@
 async function timingSafeCompare(a: string, b: string): Promise<boolean> {
   const encoder = new TextEncoder();
-  const aBuf = encoder.encode(a);
-  const bBuf = encoder.encode(b);
-  if (aBuf.byteLength !== bBuf.byteLength) return false;
+  // SEC-08: HMAC으로 고정 길이 비교 — 길이 정보 누출 방지
+  const keyMaterial = encoder.encode("needcash-hmac-comparison");
   const key = await crypto.subtle.importKey(
     "raw",
-    aBuf,
+    keyMaterial,
     { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign"]
   );
-  const sig = await crypto.subtle.sign("HMAC", key, bBuf);
-  const expected = await crypto.subtle.sign("HMAC", key, aBuf);
-  return arraysEqual(new Uint8Array(sig), new Uint8Array(expected));
+  const [sigA, sigB] = await Promise.all([
+    crypto.subtle.sign("HMAC", key, encoder.encode(a)),
+    crypto.subtle.sign("HMAC", key, encoder.encode(b)),
+  ]);
+  return arraysEqual(new Uint8Array(sigA), new Uint8Array(sigB));
 }
 
 function arraysEqual(a: Uint8Array, b: Uint8Array): boolean {

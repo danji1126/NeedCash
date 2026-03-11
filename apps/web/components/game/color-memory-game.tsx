@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { GameResultPanel } from "@/components/game/game-result-panel";
 import { addGameHistory } from "@/lib/game-history";
+import { startGameSession } from "@/lib/game-session";
 
 // ── Types ──
 
@@ -65,6 +66,7 @@ export function ColorMemoryGame() {
   const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
   const feedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const roundRef = useRef(1);
+  const [sessionId, setSessionId] = useState<string | null>(null);
 
   const clearAllTimeouts = useCallback(() => {
     timeoutRefs.current.forEach(clearTimeout);
@@ -105,12 +107,15 @@ export function ColorMemoryGame() {
     timeoutRefs.current.push(completeTimeout);
   }, [clearAllTimeouts]);
 
-  const startGame = useCallback(() => {
+  const startGame = useCallback(async () => {
     clearAllTimeouts();
     clearFeedbackTimer();
     setRound(1);
     roundRef.current = 1;
     setPlayerInput([]);
+
+    const sid = await startGameSession("color-memory");
+    setSessionId(sid);
 
     const initialSeq = createInitialSequence();
     setSequence(initialSeq);
@@ -259,6 +264,7 @@ export function ColorMemoryGame() {
           score={resultRound}
           grade={resultGrade}
           title="Color Memory"
+          sessionId={sessionId}
           shareLines={[
             `등급: ${resultGrade} · ${resultTitle}`,
             `${resultRound}라운드 도달`,

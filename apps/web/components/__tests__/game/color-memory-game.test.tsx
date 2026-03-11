@@ -9,6 +9,10 @@ vi.mock("@/lib/game-history", () => ({
   addGameHistory: vi.fn(),
 }));
 
+vi.mock("@/lib/game-session", () => ({
+  startGameSession: vi.fn().mockResolvedValue("test-session-id"),
+}));
+
 vi.mock("@/components/game/game-result-panel", () => ({
   GameResultPanel: ({ game, score, grade }: { game: string; score: number; grade: string }) => (
     <div data-testid="game-result-panel" data-game={game} data-score={score} data-grade={grade} />
@@ -39,22 +43,26 @@ describe("ColorMemoryGame", () => {
     expect(screen.getByText("시작하기")).toBeInTheDocument();
   });
 
-  it("시작 후 showing 상태에서 패턴을 기억하세요 메시지가 나타난다", () => {
+  it("시작 후 showing 상태에서 패턴을 기억하세요 메시지가 나타난다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<ColorMemoryGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     expect(screen.getByText("패턴을 기억하세요...")).toBeInTheDocument();
     expect(screen.getByText("Round 1")).toBeInTheDocument();
   });
 
-  it("showing 완료 후 input 상태로 전환된다", () => {
+  it("showing 완료 후 input 상태로 전환된다", async () => {
     // createInitialSequence: [floor(0.5*4), floor(0.5*4)] = [2, 2]
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<ColorMemoryGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     // Total showing time: ROUND_DELAY + seqLen * (FLASH_DURATION + FLASH_GAP) = 600 + 2*800 = 2200
     act(() => { vi.advanceTimersByTime(2200); });
@@ -67,7 +75,9 @@ describe("ColorMemoryGame", () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<ColorMemoryGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     // Wait for showing phase to complete (+100 margin)
     act(() => { vi.advanceTimersByTime(2300); });
@@ -97,13 +107,15 @@ describe("ColorMemoryGame", () => {
     expect(screen.getByText("Round 2")).toBeInTheDocument();
   });
 
-  it("잘못된 입력 시 틀렸습니다 표시 후 result로 전환된다", () => {
+  it("잘못된 입력 시 틀렸습니다 표시 후 result로 전환된다", async () => {
     vi.mocked(addGameHistory).mockClear();
     // sequence = [2, 2]
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<ColorMemoryGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     act(() => { vi.advanceTimersByTime(2200); });
 
@@ -123,12 +135,14 @@ describe("ColorMemoryGame", () => {
     expect(screen.getByTestId("game-result-panel")).toBeInTheDocument();
   });
 
-  it("그만하기 버튼 클릭 시 result 화면으로 전환된다", () => {
+  it("그만하기 버튼 클릭 시 result 화면으로 전환된다", async () => {
     vi.mocked(addGameHistory).mockClear();
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<ColorMemoryGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     const quitButton = screen.getByText("그만하기");
     expect(quitButton).toBeInTheDocument();
@@ -142,11 +156,13 @@ describe("ColorMemoryGame", () => {
     );
   });
 
-  it("result 화면에서 라운드 도달 정보와 등급이 표시된다", () => {
+  it("result 화면에서 라운드 도달 정보와 등급이 표시된다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<ColorMemoryGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     // Quit immediately in round 1 → cleared round = 0
     fireEvent.click(screen.getByText("그만하기"));
@@ -155,22 +171,26 @@ describe("ColorMemoryGame", () => {
     expect(screen.getByTestId("game-result-panel")).toHaveAttribute("data-grade", "F");
   });
 
-  it("showing 상태에서 패드가 disabled이다", () => {
+  it("showing 상태에서 패드가 disabled이다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<ColorMemoryGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     const pads = screen.getAllByRole("button", { name: /패드/ });
     // showing 상태에서는 패드가 비활성
     expect(pads[0]).toBeDisabled();
   });
 
-  it("패드에 aria-label이 있다", () => {
+  it("패드에 aria-label이 있다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<ColorMemoryGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     const pads = screen.getAllByRole("button", { name: /패드/ });
     expect(pads.length).toBeGreaterThan(0);
@@ -178,16 +198,20 @@ describe("ColorMemoryGame", () => {
     expect(pads[0].getAttribute("aria-label")).toContain("패드");
   });
 
-  it("result에서 다시 도전 버튼으로 재시작할 수 있다", () => {
+  it("result에서 다시 도전 버튼으로 재시작할 수 있다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<ColorMemoryGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     fireEvent.click(screen.getByText("그만하기"));
     expect(screen.getByText("다시 도전")).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText("다시 도전"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("다시 도전"));
+    });
 
     expect(screen.getByText("패턴을 기억하세요...")).toBeInTheDocument();
     expect(screen.getByText("Round 1")).toBeInTheDocument();

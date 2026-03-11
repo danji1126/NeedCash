@@ -18,6 +18,9 @@ vi.mock("@/lib/compile-markdown", () => ({
   compileMarkdown: vi.fn().mockResolvedValue("<p>compiled</p>"),
   calculateReadingTime: vi.fn().mockReturnValue(3),
 }));
+vi.mock("@/lib/admin-rate-limit", () => ({
+  checkAdminRateLimit: vi.fn().mockResolvedValue(true),
+}));
 
 import { GET, POST } from "@/app/api/posts/route";
 import { getAllPosts, createPost } from "@/lib/db";

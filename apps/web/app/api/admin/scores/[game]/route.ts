@@ -51,9 +51,15 @@ export async function DELETE(
   { params }: { params: Promise<{ game: string }> }
 ) {
   try {
+    if (!(await checkAdminRateLimit(request))) {
+      return Response.json({ error: "Too many requests" }, { status: 429 });
+    }
     if (!(await verifyAdminAuth(request))) return unauthorizedResponse();
 
     const { game } = await params;
+    if (!isRankableGame(game)) {
+      return Response.json({ error: "Invalid game" }, { status: 400 });
+    }
 
     let body: Record<string, unknown>;
     try {
@@ -62,14 +68,15 @@ export async function DELETE(
       return Response.json({ error: "Invalid JSON" }, { status: 400 });
     }
 
-    if (!body.id) {
-      return Response.json({ error: "Missing score id" }, { status: 400 });
+    const id = Number(body.id);
+    if (!Number.isInteger(id) || id <= 0) {
+      return Response.json({ error: "Invalid score id" }, { status: 400 });
     }
 
     const db = getDB();
     await db
       .prepare(`DELETE FROM game_scores WHERE id = ? AND game_slug = ?`)
-      .bind(body.id, game)
+      .bind(id, game)
       .run();
 
     return Response.json({ deleted: true });

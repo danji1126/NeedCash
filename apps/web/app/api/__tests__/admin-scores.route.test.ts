@@ -175,7 +175,7 @@ describe("DELETE /api/admin/scores/[game]", () => {
     const data = await res.json();
 
     expect(res.status).toBe(400);
-    expect(data.error).toBe("Missing score id");
+    expect(data.error).toBe("Invalid score id");
   });
 
   // invalid game → still processes (DELETE doesn't validate game)

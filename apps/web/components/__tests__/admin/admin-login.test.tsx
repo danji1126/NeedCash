@@ -49,6 +49,7 @@ describe("AuthProvider - admin login", () => {
   beforeEach(() => {
     vi.stubGlobal("fetch", vi.fn());
     localStorage.clear();
+    sessionStorage.clear();
   });
 
   afterEach(() => {
@@ -80,7 +81,7 @@ describe("AuthProvider - admin login", () => {
     await waitFor(() => {
       expect(screen.getByTestId("children")).toHaveTextContent("Admin Content");
     });
-    expect(localStorage.getItem("admin_api_key")).toBe("valid-key");
+    expect(sessionStorage.getItem("admin_api_key")).toBe("valid-key");
   });
 
   it("failed login shows error message", async () => {
@@ -141,11 +142,12 @@ describe("AuthProvider - admin login", () => {
 
     fireEvent.click(screen.getByText("Logout"));
     expect(screen.getByTestId("auth-status")).toHaveTextContent("unauthenticated");
-    expect(localStorage.getItem("admin_api_key")).toBeNull();
+    expect(sessionStorage.getItem("admin_api_key")).toBeNull();
   });
 
-  it("restores apiKey from localStorage on mount", () => {
-    localStorage.setItem("admin_api_key", "saved-key");
+  it("restores apiKey from sessionStorage on mount", () => {
+    sessionStorage.setItem("admin_api_key", "saved-key");
+    sessionStorage.setItem("admin_api_key_expiry", String(Date.now() + 3600000));
 
     render(
       <AuthProvider>
@@ -155,6 +157,20 @@ describe("AuthProvider - admin login", () => {
 
     expect(screen.getByTestId("auth-status")).toHaveTextContent("authenticated");
     expect(screen.getByTestId("api-key")).toHaveTextContent("saved-key");
+  });
+
+  it("migrates legacy localStorage key to sessionStorage", () => {
+    localStorage.setItem("admin_api_key", "legacy-key");
+
+    render(
+      <AuthProvider>
+        <TestConsumer />
+      </AuthProvider>
+    );
+
+    expect(screen.getByTestId("auth-status")).toHaveTextContent("authenticated");
+    expect(localStorage.getItem("admin_api_key")).toBeNull();
+    expect(sessionStorage.getItem("admin_api_key")).toBe("legacy-key");
   });
 
   it("useAuth throws outside AuthProvider", () => {

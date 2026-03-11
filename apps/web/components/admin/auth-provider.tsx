@@ -5,6 +5,7 @@ import {
   useContext,
   useState,
   useCallback,
+  useEffect,
   type ReactNode,
 } from "react";
 
@@ -17,11 +18,48 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+const SESSION_KEY = "admin_api_key";
+const EXPIRY_KEY = "admin_api_key_expiry";
+const SESSION_DURATION = 4 * 60 * 60 * 1000; // 4시간
+
+function getStoredKey(): string | null {
+  if (typeof window === "undefined") return null;
+
+  // 기존 localStorage 키 마이그레이션
+  const legacyKey = localStorage.getItem(SESSION_KEY);
+  if (legacyKey) {
+    localStorage.removeItem(SESSION_KEY);
+    sessionStorage.setItem(SESSION_KEY, legacyKey);
+    sessionStorage.setItem(EXPIRY_KEY, String(Date.now() + SESSION_DURATION));
+    return legacyKey;
+  }
+
+  // 만료 확인
+  const expiry = sessionStorage.getItem(EXPIRY_KEY);
+  if (expiry && Date.now() > parseInt(expiry)) {
+    sessionStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(EXPIRY_KEY);
+    return null;
+  }
+
+  return sessionStorage.getItem(SESSION_KEY);
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [apiKey, setApiKey] = useState<string | null>(() => {
-    if (typeof window === "undefined") return null;
-    return localStorage.getItem("admin_api_key");
-  });
+  const [apiKey, setApiKey] = useState<string | null>(() => getStoredKey());
+
+  // 주기적 만료 체크 (1분마다)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const expiry = sessionStorage.getItem(EXPIRY_KEY);
+      if (expiry && Date.now() > parseInt(expiry)) {
+        sessionStorage.removeItem(SESSION_KEY);
+        sessionStorage.removeItem(EXPIRY_KEY);
+        setApiKey(null);
+      }
+    }, 60_000);
+    return () => clearInterval(interval);
+  }, []);
 
   const login = useCallback(async (key: string): Promise<boolean> => {
     const res = await fetch("/api/auth/verify", {
@@ -29,7 +67,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
     if (res.ok) {
       setApiKey(key);
-      localStorage.setItem("admin_api_key", key);
+      sessionStorage.setItem(SESSION_KEY, key);
+      sessionStorage.setItem(EXPIRY_KEY, String(Date.now() + SESSION_DURATION));
       return true;
     }
     return false;
@@ -37,7 +76,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = useCallback(() => {
     setApiKey(null);
-    localStorage.removeItem("admin_api_key");
+    sessionStorage.removeItem(SESSION_KEY);
+    sessionStorage.removeItem(EXPIRY_KEY);
   }, []);
 
   return (

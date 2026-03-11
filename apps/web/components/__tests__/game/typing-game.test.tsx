@@ -8,6 +8,10 @@ vi.mock("@/lib/game-history", () => ({
   addGameHistory: vi.fn(),
 }));
 
+vi.mock("@/lib/game-session", () => ({
+  startGameSession: vi.fn().mockResolvedValue("test-session-id"),
+}));
+
 vi.mock("@/components/game/game-result-panel", () => ({
   GameResultPanel: () => <div data-testid="game-result-panel" />,
 }));
@@ -44,17 +48,21 @@ describe("TypingGame", () => {
     expect(koBtn.className).toContain("bg-text-primary");
   });
 
-  it("시작 클릭 후 카운트다운이 3부터 시작된다", () => {
+  it("시작 클릭 후 카운트다운이 3부터 시작된다", async () => {
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     expect(screen.getByText("3")).toBeInTheDocument();
     expect(screen.getByText("준비하세요...")).toBeInTheDocument();
   });
 
-  it("카운트다운이 3→2→1 후 playing 상태로 전환된다", () => {
+  it("카운트다운이 3→2→1 후 playing 상태로 전환된다", async () => {
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     expect(screen.getByText("3")).toBeInTheDocument();
 
@@ -78,11 +86,13 @@ describe("TypingGame", () => {
     expect(screen.getByPlaceholderText("여기에 타이핑하세요...")).toBeInTheDocument();
   });
 
-  it("playing 상태에서 타이머와 WPM이 표시된다", () => {
+  it("playing 상태에서 타이머와 WPM이 표시된다", async () => {
     vi.spyOn(performance, "now").mockReturnValue(0);
 
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     // 카운트다운 완료
     act(() => {
@@ -93,11 +103,13 @@ describe("TypingGame", () => {
     expect(screen.getByText("WPM")).toBeInTheDocument();
   });
 
-  it("문자 입력 시 정확/오류가 색으로 구분된다", () => {
+  it("문자 입력 시 정확/오류가 색으로 구분된다", async () => {
     vi.spyOn(performance, "now").mockReturnValue(0);
 
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     act(() => {
       vi.advanceTimersByTime(3000);
@@ -120,12 +132,14 @@ describe("TypingGame", () => {
     ).toBe(true);
   });
 
-  it("60초 타임아웃 후 결과가 표시된다", () => {
+  it("60초 타임아웃 후 결과가 표시된다", async () => {
     let nowValue = 0;
     vi.spyOn(performance, "now").mockImplementation(() => nowValue);
 
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     // 카운트다운 완료
     act(() => {
@@ -153,12 +167,14 @@ describe("TypingGame", () => {
     );
   });
 
-  it("결과에서 등급이 WPM에 따라 결정된다", () => {
+  it("결과에서 등급이 WPM에 따라 결정된다", async () => {
     let nowValue = 0;
     vi.spyOn(performance, "now").mockImplementation(() => nowValue);
 
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     act(() => {
       vi.advanceTimersByTime(3000);
@@ -174,11 +190,13 @@ describe("TypingGame", () => {
     expect(screen.getByText("초보 타이피스트")).toBeInTheDocument();
   });
 
-  it("완료한 문장 수가 표시된다", () => {
+  it("완료한 문장 수가 표시된다", async () => {
     vi.spyOn(performance, "now").mockReturnValue(0);
 
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     act(() => {
       vi.advanceTimersByTime(3000);
@@ -187,12 +205,14 @@ describe("TypingGame", () => {
     expect(screen.getByText(/완료한 문장: 0/)).toBeInTheDocument();
   });
 
-  it("진행바 색상이 시간에 따라 변한다", () => {
+  it("진행바 색상이 시간에 따라 변한다", async () => {
     let nowValue = 0;
     vi.spyOn(performance, "now").mockImplementation(() => nowValue);
 
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     act(() => {
       vi.advanceTimersByTime(3000);
@@ -205,12 +225,14 @@ describe("TypingGame", () => {
     expect(progressBar || document.querySelector('[style*="width"]')).toBeTruthy();
   });
 
-  it("WPM 계산이 정확하다 — 타이핑 없이 종료 시 0 WPM", () => {
+  it("WPM 계산이 정확하다 — 타이핑 없이 종료 시 0 WPM", async () => {
     let nowValue = 0;
     vi.spyOn(performance, "now").mockImplementation(() => nowValue);
 
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     act(() => {
       vi.advanceTimersByTime(3000);
@@ -225,12 +247,14 @@ describe("TypingGame", () => {
     expect(screen.getByText("F")).toBeInTheDocument();
   });
 
-  it("등급 S: WPM >= 100이면 타자의 신", () => {
+  it("등급 S: WPM >= 100이면 타자의 신", async () => {
     let nowValue = 0;
     vi.spyOn(performance, "now").mockImplementation(() => nowValue);
 
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     act(() => {
       vi.advanceTimersByTime(3000);
@@ -249,12 +273,14 @@ describe("TypingGame", () => {
     expect(screen.getByText("초보 타이피스트")).toBeInTheDocument();
   });
 
-  it("게임 종료 시 addGameHistory에 올바른 metadata가 전달된다", () => {
+  it("게임 종료 시 addGameHistory에 올바른 metadata가 전달된다", async () => {
     let nowValue = 0;
     vi.spyOn(performance, "now").mockImplementation(() => nowValue);
 
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     act(() => {
       vi.advanceTimersByTime(3000);
@@ -278,12 +304,14 @@ describe("TypingGame", () => {
     );
   });
 
-  it("다시 도전 클릭 시 카운트다운부터 재시작된다", () => {
+  it("다시 도전 클릭 시 카운트다운부터 재시작된다", async () => {
     let nowValue = 0;
     vi.spyOn(performance, "now").mockImplementation(() => nowValue);
 
     render(<TypingGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     act(() => {
       vi.advanceTimersByTime(3000);
@@ -295,7 +323,9 @@ describe("TypingGame", () => {
     });
 
     expect(screen.getByText("다시 도전")).toBeInTheDocument();
-    fireEvent.click(screen.getByText("다시 도전"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("다시 도전"));
+    });
 
     // 다시 카운트다운 상태
     expect(screen.getByText("3")).toBeInTheDocument();

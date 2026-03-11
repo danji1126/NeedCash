@@ -17,6 +17,25 @@ vi.mock("@/lib/visitor", () => ({
   setVisitorCookie: vi.fn(),
 }));
 
+const kvStore = new Map<string, string>();
+vi.mock("@/lib/env", () => ({
+  getKV: () =>
+    ({
+      get: async (key: string) => kvStore.get(key) ?? null,
+      put: async (key: string, value: string) => {
+        kvStore.set(key, value);
+      },
+    }) as unknown as KVNamespace,
+  getDB: () => ({
+    prepare: () => ({
+      bind: () => ({
+        first: async () => ({ started_at: Date.now() - 10000, used: 0 }),
+        run: async () => ({}),
+      }),
+    }),
+  }),
+}));
+
 import { POST } from "../scores/route";
 import { submitScore, checkRateLimit } from "@/lib/scores";
 import {
@@ -35,11 +54,11 @@ const mockValidateNickname = vi.mocked(validateNickname);
 const mockGetVisitorId = vi.mocked(getVisitorId);
 const mockSetVisitorCookie = vi.mocked(setVisitorCookie);
 
-function createRequest(body: unknown): NextRequest {
+function createRequest(body: Record<string, unknown>): NextRequest {
   return new NextRequest("http://localhost/api/scores", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    body: JSON.stringify({ sessionId: "test-session", ...body }),
   });
 }
 
@@ -53,6 +72,7 @@ function createInvalidJsonRequest(): NextRequest {
 
 beforeEach(() => {
   vi.resetAllMocks();
+  kvStore.clear();
   // Default happy path mocks
   mockIsRankableGame.mockReturnValue(true);
   mockValidateScore.mockReturnValue(true);

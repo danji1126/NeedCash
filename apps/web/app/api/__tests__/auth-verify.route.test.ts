@@ -8,6 +8,9 @@ vi.mock("@/lib/auth", () => ({
       { status: 401, headers: { "WWW-Authenticate": "Bearer" } }
     ),
 }));
+vi.mock("@/lib/admin-rate-limit", () => ({
+  checkAdminRateLimit: vi.fn().mockResolvedValue(true),
+}));
 
 import { GET } from "../auth/verify/route";
 import { verifyAdminAuth } from "@/lib/auth";

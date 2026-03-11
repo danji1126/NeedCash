@@ -61,3 +61,7 @@ color-memory-*.png
 *.pem
 .vercel
 apps/web/local.db
+
+#AI
+CLAUDE.md
+/docs/**

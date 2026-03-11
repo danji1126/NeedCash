@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { GameResultPanel } from "@/components/game/game-result-panel";
 import { addGameHistory } from "@/lib/game-history";
+import { startGameSession } from "@/lib/game-session";
 
 // ── Types ──
 
@@ -120,6 +121,7 @@ export function MathGame() {
   const attemptsRef = useRef(0);
   const correctRef = useRef(0);
   const startTimeRef = useRef(0);
+  const [sessionId, setSessionId] = useState<string | null>(null);
 
   const clearAllTimers = useCallback(() => {
     if (timerRef.current) {
@@ -237,6 +239,15 @@ export function MathGame() {
     [clearAllTimers, startPlaying],
   );
 
+  const handleStartGame = useCallback(
+    async (diff: Difficulty) => {
+      const sid = await startGameSession("math");
+      setSessionId(sid);
+      startCountdown(diff);
+    },
+    [startCountdown],
+  );
+
   const handleSubmit = useCallback(() => {
     if (!problem || phase !== "playing") return;
 
@@ -301,7 +312,7 @@ export function MathGame() {
         </p>
 
         <Button
-          onClick={() => startCountdown(difficulty)}
+          onClick={() => handleStartGame(difficulty)}
           size="lg"
           className="mt-6"
         >
@@ -379,6 +390,7 @@ export function MathGame() {
           score={score}
           grade={grade}
           title={title}
+          sessionId={sessionId}
           shareLines={[
             `등급: ${grade} · ${title}`,
             `점수: ${score}문제 (${DIFFICULTY_CONFIG[difficulty].label})`,
@@ -387,7 +399,7 @@ export function MathGame() {
         />
 
         <Button
-          onClick={() => startCountdown(difficulty)}
+          onClick={() => handleStartGame(difficulty)}
           size="lg"
           className="mt-8"
         >

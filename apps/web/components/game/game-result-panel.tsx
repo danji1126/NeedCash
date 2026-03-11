@@ -14,6 +14,7 @@ interface GameResultPanelProps {
   grade: string;
   title: string;
   shareLines: string[];
+  sessionId?: string | null;
   children?: React.ReactNode;
 }
 
@@ -23,6 +24,7 @@ export function GameResultPanel({
   grade,
   title,
   shareLines,
+  sessionId,
   children,
 }: GameResultPanelProps) {
   const [submitted, setSubmitted] = useState(false);
@@ -38,6 +40,7 @@ export function GameResultPanel({
           game={game as RankableGame}
           score={score}
           metadata={{ grade }}
+          sessionId={sessionId}
           onSubmitted={() => {
             setSubmitted(true);
             setLeaderboardKey((k) => k + 1);

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { GameResultPanel } from "@/components/game/game-result-panel";
 import { addGameHistory } from "@/lib/game-history";
+import { startGameSession } from "@/lib/game-session";
 
 // ── Types ──
 
@@ -57,6 +58,7 @@ export function ReactionGame() {
   const startTimeRef = useRef(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const roundRef = useRef(0);
+  const [sessionId, setSessionId] = useState<string | null>(null);
 
   const clearTimer = useCallback(() => {
     if (timeoutRef.current) {
@@ -76,7 +78,7 @@ export function ReactionGame() {
     }, delay);
   }, [clearTimer]);
 
-  const resetGame = useCallback(() => {
+  const resetGame = useCallback(async () => {
     clearTimer();
     const parsed = parseInt(roundInput, 10);
     const clamped = Math.min(MAX_ROUNDS, Math.max(MIN_ROUNDS, isNaN(parsed) ? DEFAULT_ROUNDS : parsed));
@@ -86,6 +88,8 @@ export function ReactionGame() {
     setRounds([]);
     setCurrentTime(0);
     roundRef.current = 0;
+    const sid = await startGameSession("reaction");
+    setSessionId(sid);
     startRound();
   }, [clearTimer, startRound, roundInput]);
 
@@ -284,6 +288,7 @@ export function ReactionGame() {
           score={average}
           grade={grade}
           title={title}
+          sessionId={sessionId}
           shareLines={[
             `등급: ${grade} · ${title}`,
             `평균: ${average}ms`,

@@ -9,6 +9,10 @@ vi.mock("@/lib/game-history", () => ({
   addGameHistory: vi.fn(),
 }));
 
+vi.mock("@/lib/game-session", () => ({
+  startGameSession: vi.fn().mockResolvedValue("test-session-id"),
+}));
+
 vi.mock("@/components/game/game-result-panel", () => ({
   GameResultPanel: ({ game, score, grade }: { game: string; score: number; grade: string }) => (
     <div data-testid="game-result-panel" data-game={game} data-score={score} data-grade={grade} />
@@ -47,20 +51,24 @@ describe("MathGame", () => {
     expect(screen.getByText("1~100 범위, 사칙연산")).toBeInTheDocument();
   });
 
-  it("시작 버튼 클릭 시 카운트다운이 시작된다", () => {
+  it("시작 버튼 클릭 시 카운트다운이 시작된다", async () => {
     render(<MathGame />);
 
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     expect(screen.getByText("3")).toBeInTheDocument();
     expect(screen.getByText("준비하세요!")).toBeInTheDocument();
   });
 
-  it("카운트다운 후 playing 상태로 전환되어 문제가 표시된다", () => {
+  it("카운트다운 후 playing 상태로 전환되어 문제가 표시된다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<MathGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
 
     act(() => { vi.advanceTimersByTime(1000); });
     act(() => { vi.advanceTimersByTime(1000); });
@@ -70,12 +78,14 @@ describe("MathGame", () => {
     expect(screen.getByText("Enter를 눌러 제출")).toBeInTheDocument();
   });
 
-  it("정답을 입력하면 점수가 증가한다", () => {
+  it("정답을 입력하면 점수가 증가한다", async () => {
     // Math.random=0 → easy mode, operator="+", a=1, b=1, answer=2
     vi.spyOn(Math, "random").mockReturnValue(0);
 
     render(<MathGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
     act(() => { vi.advanceTimersByTime(3000); });
 
     const input = screen.getByPlaceholderText("?");
@@ -89,11 +99,13 @@ describe("MathGame", () => {
     expect(scoreArea).toBeInTheDocument();
   });
 
-  it("오답을 입력하면 streak이 리셋된다", () => {
+  it("오답을 입력하면 streak이 리셋된다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0);
 
     render(<MathGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
     act(() => { vi.advanceTimersByTime(3000); });
 
     const input = screen.getByPlaceholderText("?");
@@ -106,11 +118,13 @@ describe("MathGame", () => {
     expect(screen.queryByText(/연속 정답/)).toBeNull();
   });
 
-  it("빈 입력이나 NaN은 무시된다", () => {
+  it("빈 입력이나 NaN은 무시된다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0);
 
     render(<MathGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
     act(() => { vi.advanceTimersByTime(3000); });
 
     const input = screen.getByPlaceholderText("?");
@@ -131,11 +145,13 @@ describe("MathGame", () => {
     expect(scoreSpans[0].textContent).toContain("0");
   });
 
-  it("60초 타이머가 종료되면 result 상태로 전환된다", () => {
+  it("60초 타이머가 종료되면 result 상태로 전환된다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<MathGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
     act(() => { vi.advanceTimersByTime(3000); });
 
     // Simulate 60 seconds elapsed
@@ -149,12 +165,14 @@ describe("MathGame", () => {
     );
   });
 
-  it("3연속 정답 시 streak 표시가 나타난다", () => {
+  it("3연속 정답 시 streak 표시가 나타난다", async () => {
     // Math.random=0 → "+", a=1, b=1, answer=2
     vi.spyOn(Math, "random").mockReturnValue(0);
 
     render(<MathGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
     act(() => { vi.advanceTimersByTime(3000); });
 
     const input = screen.getByPlaceholderText("?");
@@ -168,11 +186,13 @@ describe("MathGame", () => {
     expect(screen.getByText(/3 연속 정답/)).toBeInTheDocument();
   });
 
-  it("등급 S: 30문제 이상이면 수학 천재", () => {
+  it("등급 S: 30문제 이상이면 수학 천재", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0);
 
     render(<MathGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
     act(() => { vi.advanceTimersByTime(3000); });
 
     const input = screen.getByPlaceholderText("?");
@@ -190,11 +210,13 @@ describe("MathGame", () => {
     expect(screen.getByTestId("game-result-panel")).toHaveAttribute("data-grade", "S");
   });
 
-  it("등급 F: 5문제 미만이면 계산기를 찾아주세요", () => {
+  it("등급 F: 5문제 미만이면 계산기를 찾아주세요", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<MathGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
     act(() => { vi.advanceTimersByTime(3000); });
 
     // 아무것도 안 풀고 60초 경과
@@ -204,23 +226,27 @@ describe("MathGame", () => {
     expect(screen.getByTestId("game-result-panel")).toHaveAttribute("data-grade", "F");
   });
 
-  it("난이도 hard 선택 후 시작하면 어려운 문제가 나온다", () => {
+  it("난이도 hard 선택 후 시작하면 어려운 문제가 나온다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<MathGame />);
     fireEvent.click(screen.getByText("어려움"));
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
     act(() => { vi.advanceTimersByTime(3000); });
 
     // playing 상태로 진입
     expect(screen.getByPlaceholderText("?")).toBeInTheDocument();
   });
 
-  it("정답 피드백이 표시된 후 사라진다", () => {
+  it("정답 피드백이 표시된 후 사라진다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0);
 
     render(<MathGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
     act(() => { vi.advanceTimersByTime(3000); });
 
     const input = screen.getByPlaceholderText("?");
@@ -234,11 +260,13 @@ describe("MathGame", () => {
     expect((screen.getByPlaceholderText("?") as HTMLInputElement).value).toBe("");
   });
 
-  it("result에서 다시 도전 버튼을 누르면 카운트다운부터 재시작한다", () => {
+  it("result에서 다시 도전 버튼을 누르면 카운트다운부터 재시작한다", async () => {
     vi.spyOn(Math, "random").mockReturnValue(0.5);
 
     render(<MathGame />);
-    fireEvent.click(screen.getByText("시작하기"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("시작하기"));
+    });
     act(() => { vi.advanceTimersByTime(3000); });
 
     vi.spyOn(performance, "now").mockReturnValue(60000);
@@ -247,7 +275,9 @@ describe("MathGame", () => {
     expect(screen.getByText("다시 도전")).toBeInTheDocument();
 
     vi.spyOn(performance, "now").mockReturnValue(0);
-    fireEvent.click(screen.getByText("다시 도전"));
+    await act(async () => {
+      fireEvent.click(screen.getByText("다시 도전"));
+    });
 
     expect(screen.getByText("3")).toBeInTheDocument();
     expect(screen.getByText("준비하세요!")).toBeInTheDocument();
