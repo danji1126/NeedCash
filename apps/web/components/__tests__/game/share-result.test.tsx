@@ -5,7 +5,7 @@ import { ShareResult } from "@/components/game/share-result";
 
 vi.mock("@/lib/share", () => ({
   buildShareText: vi.fn(({ game, title, lines }: { game: string; title: string; lines: string[] }) =>
-    `[NeedCash] ${title}\n${lines.join("\n")}\nhttps://needcash.dev/game/${game}`
+    `[NeedCash] ${title}\n${lines.join("\n")}\nhttps://needcash-hub.danji1126.workers.dev/game/${game}`
   ),
   copyToClipboard: vi.fn(),
 }));

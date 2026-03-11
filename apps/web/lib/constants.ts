@@ -1,7 +1,7 @@
 export const SITE = {
   name: "NeedCash",
   description: "프로토타입 허브 - 게임, 블로그, 이력서를 하나의 공간에서.",
-  url: "https://needcash.dev",
+  url: "https://needcash-hub.danji1126.workers.dev",
 } as const;
 
 export const NAV_LINKS = [

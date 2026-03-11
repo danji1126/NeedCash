@@ -92,7 +92,7 @@ export default async function Image({ params }: Props) {
           <div style={{ fontSize: 18, fontWeight: 700, color: "#FFFFFF" }}>
             NeedCash
           </div>
-          <div style={{ fontSize: 14, color: "#444" }}>needcash.dev/blog</div>
+          <div style={{ fontSize: 14, color: "#444" }}>needcash-hub.danji1126.workers.dev/blog</div>
         </div>
       </div>
     ),

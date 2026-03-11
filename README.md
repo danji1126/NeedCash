@@ -2,7 +2,7 @@
 
 프로토타입 허브 - 블로그, 게임, 이력서 등 다양한 프로토타입을 하나의 프로젝트에서 관리합니다.
 
-**Live**: https://needcash.dev
+**Live**: https://needcash-hub.danji1126.workers.dev
 
 ## Tech Stack
 
@@ -134,7 +134,7 @@ pnpm cf-deploy
 
 배포 설정:
 - **Worker 이름**: `needcash-hub`
-- **커스텀 도메인**: `needcash.dev`
+- **Workers URL**: `needcash-hub.danji1126.workers.dev`
 - **D1 데이터베이스**: `needcash-blog`
 
 ## Project Structure

@@ -33,7 +33,7 @@ export default function ResumePage() {
         name={RESUME.name}
         jobTitle={RESUME.title}
         description={RESUME.bio}
-        url="https://needcash.dev/resume"
+        url="https://needcash-hub.danji1126.workers.dev/resume"
       />
       <ResumeContent
         resume={RESUME}

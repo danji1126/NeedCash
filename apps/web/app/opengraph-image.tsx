@@ -74,7 +74,7 @@ export default async function Image() {
             color: "#444",
           }}
         >
-          needcash.dev
+          needcash-hub.danji1126.workers.dev
         </div>
       </div>
     ),

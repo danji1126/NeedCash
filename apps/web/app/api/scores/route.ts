@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
   try {
     // SEC-13: Origin 검증 (CSRF 방어)
     const origin = request.headers.get("Origin");
-    if (origin && !origin.endsWith("needcash.dev") && !origin.includes("localhost")) {
+    if (origin && !origin.endsWith("danji1126.workers.dev") && !origin.includes("localhost")) {
       return Response.json({ error: "Forbidden" }, { status: 403 });
     }
 

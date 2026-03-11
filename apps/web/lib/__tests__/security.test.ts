@@ -324,8 +324,8 @@ describe("SEC-13: Origin 검증", () => {
     return POST(req);
   }
 
-  it("needcash.dev Origin은 허용", async () => {
-    const res = await postScores("https://needcash.dev");
+  it("workers.dev Origin은 허용", async () => {
+    const res = await postScores("https://needcash-hub.danji1126.workers.dev");
     expect(res.status).not.toBe(403);
   });
 
