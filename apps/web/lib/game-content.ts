@@ -31,6 +31,7 @@ import colorMemoryData from "@/content/games/color-memory.json";
 import typingData from "@/content/games/typing.json";
 import mathData from "@/content/games/math.json";
 import quizData from "@/content/games/quiz.json";
+import crocodileData from "@/content/games/crocodile.json";
 
 const GAME_CONTENTS: GameContent[] = [
   diceData as GameContent,
@@ -42,6 +43,7 @@ const GAME_CONTENTS: GameContent[] = [
   typingData as GameContent,
   mathData as GameContent,
   quizData as GameContent,
+  crocodileData as GameContent,
 ];
 
 export function getGameContent(slug: string): GameContent | undefined {

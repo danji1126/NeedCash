@@ -33,6 +33,7 @@ export const FOOTER_SECTIONS = [
       { href: "/game/typing", label: "Typing Speed" },
       { href: "/game/math", label: "Math Game" },
       { href: "/game/quiz", label: "Personality Quiz" },
+      { href: "/game/crocodile", label: "Crocodile Roulette" },
     ],
   },
   {
@@ -120,6 +121,12 @@ export const GAMES: Game[] = [
     title: "Personality Quiz",
     description: "15개 질문으로 알아보는 나의 성격 유형은?",
     icon: "sparkles",
+  },
+  {
+    slug: "crocodile",
+    title: "Crocodile Roulette",
+    description: "친구들과 돌아가며 악어 이빨을 눌러보세요! 물리면 즉시 패배!",
+    icon: "crocodile",
   },
 ];
 

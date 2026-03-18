@@ -39,6 +39,9 @@ const MathGame = dynamic(() =>
 const PersonalityQuiz = dynamic(() =>
   import("@/components/game/personality-quiz").then((m) => m.PersonalityQuiz),
 );
+const CrocodileGame = dynamic(() =>
+  import("@/components/game/crocodile-game").then((m) => m.CrocodileGame),
+);
 
 const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   dice: DiceGame,
@@ -50,6 +53,7 @@ const GAME_COMPONENTS: Record<string, React.ComponentType> = {
   typing: TypingGame,
   math: MathGame,
   quiz: PersonalityQuiz,
+  crocodile: CrocodileGame,
 };
 
 interface Props {

@@ -160,7 +160,7 @@ export function AnimalIcon({ animal, className = "w-6 h-6" }: AnimalIconProps) {
 // UI 아이콘
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type UIIconType = "camera" | "video" | "capture" | "search" | "robot" | "warning" | "dice" | "clover" | "paw" | "bolt" | "eye" | "brain" | "keyboard" | "calculator" | "sparkles" | "braces" | "code" | "palette" | "chart-bar";
+export type UIIconType = "camera" | "video" | "capture" | "search" | "robot" | "warning" | "dice" | "clover" | "paw" | "bolt" | "eye" | "brain" | "keyboard" | "calculator" | "sparkles" | "braces" | "code" | "palette" | "chart-bar" | "crocodile";
 
 interface UIIconProps extends IconProps {
   icon: UIIconType;
@@ -298,6 +298,16 @@ export function UIIcon({ icon, className = "w-6 h-6" }: UIIconProps) {
         <line x1="12" y1="20" x2="12" y2="10" />
         <line x1="18" y1="20" x2="18" y2="4" />
         <line x1="6" y1="20" x2="6" y2="16" />
+      </svg>
+    ),
+    crocodile: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-label="악어">
+        <path d="M3 11c0-2 1-4 4-4h6c3 0 5.5 1 7 3l1.5 2c.5.7.5 1.3 0 2l-1 1c-1 1-2.5 1.5-4 1.5H10" />
+        <path d="M3 11v4c0 1 .5 2 2 2h5" />
+        <circle cx="17" cy="10" r="0.5" fill="currentColor" />
+        <path d="M7 14l1-3" />
+        <path d="M10 14l1-3" />
+        <path d="M13 14l1-3" />
       </svg>
     ),
   };
