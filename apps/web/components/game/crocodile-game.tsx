@@ -224,9 +224,11 @@ export function CrocodileGame() {
                       animal === a
                         ? {
                             background: `${THEMES[a].accentColor}20`,
-                            ringColor: THEMES[a].accentColor,
+                            outlineColor: THEMES[a].accentColor,
                             color: THEMES[a].accentColor,
-                          }
+                            // ring-2 uses --tw-ring-color
+                            "--tw-ring-color": THEMES[a].accentColor,
+                          } as React.CSSProperties
                         : undefined
                     }
                   >
@@ -440,7 +442,6 @@ export function CrocodileGame() {
                 onToothClick={() => {}}
                 isInteractive={false}
                 isBitten
-                theme={theme}
                 animal={animal}
               />
 
